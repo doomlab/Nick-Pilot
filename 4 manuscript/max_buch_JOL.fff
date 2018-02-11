@@ -1,6 +1,19 @@
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
-
+[htbp]
+\centering
+\includegraphics{max_buch_JOL_files/figure-latex/unnamed-chunk-2-1.pdf}
+\caption{\label{fig:unnamed-chunk-2}JAM slope findings from Maki (2007a).
+JAM is characterized by a high intercept (between 40 and 60) and a
+shallow slope (between .2 and .4). The dashed line shows expected
+results if judgment ratings are perfectly calibrated with association
+norms.}
+\end{figure*}
+\efloatseparator
+ 
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+[htbp]
 \centering
 \includegraphics{max_buch_JOL_files/figure-latex/hyp2graph-1.pdf}
 \caption{\label{fig:hyp2graph}Simple slopes graph displaying the slope of
@@ -11,7 +24,7 @@ split by low, average, and high COS. All variables were mean centered.}
  
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
-
+[htbp]
 \centering
 \includegraphics{max_buch_JOL_files/figure-latex/hyp3graph-1.pdf}
 \caption{\label{fig:hyp3graph}Simple slopes graph displaying the slope of
