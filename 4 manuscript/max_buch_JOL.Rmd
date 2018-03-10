@@ -84,7 +84,7 @@ cleanup = theme(panel.grid.major = element_blank(),
   
   The judgment of associative memory function (JAM) is created by plotting the judged values by the word pair's normed associative strength and calculating a fit line, which characteristically has a high intercept (bias) with a shallow slope (sensitivity). Figure \@ref(fig:makislope) illustrates this function. Overall, the JAM function has been found to be highly reliable and generalized well across multiple variations of the study, with item characteristics such as word frequency, cue set size (QSS), and semantic similarity all having a minimal influence on it [@Maki2007]. Furthermore, an applied meta-analysis of more than ten studies on JAM indicated that bias and sensitivity are nearly unchangeable, often hovering around 40-60 points for the intercept and .20-.30 for the slope [@Valentine2013]. Additionally, @Valentine2013 extended this research to include judgments of semantic memory with the same results. 
 
-```{r makislope, echo=FALSE, fig.cap = "JAM slope findings from Maki (2007a). JAM is characterized by a high intercept (between 40 and 60) and a shallow slope (between .2 and .4). The solid line shows expected results if judgment ratings are perfectly calibrated with association norms.", fig.height=6, fig.width=6}
+```{r makislope, echo=FALSE, fig.cap = "JAM slope findings from Maki (2007a). JAM is characterized by a high intercept (between 40 and 60) and a shallow slope (between 0.20 and 0.40). The solid line shows expected results if judgment ratings are perfectly calibrated with association norms.", fig.height=6, fig.width=6}
 
 ####JAM plot####
 fakedata = data.frame(FSG = 0:100,
@@ -104,7 +104,7 @@ plot1 = ggplot(fakedata, aes(FSG, JAM)) +
   geom_hline(yintercept = -5) +
   cleanup 
   
-plot1
+plot1 + theme(legend.position = c(.75, .25))
 
 ```
 
@@ -191,10 +191,12 @@ tableprint[8, ] = c("LSA High", lsaN[2,1], lsamean[2,1], lsasd[2,1],
                     lsaN[3,1], lsamean[3,1], lsasd[3,1],
                     lsaN[1,1], lsamean[1,1], lsasd[1,1])
 
-apa_table(tableprint,
+apa_table.latex(as.data.frame(tableprint),
           align = c("l", rep("c", 9)), 
           caption = "Summary Statistics for Stimuli",
-          note = "COS: Cosine, FSG: Forward Strength, LSA: Latent Semantic Analysis."
+          note = "COS: Cosine, FSG: Forward Strength, LSA: Latent Semantic Analysis.",
+          escape = FALSE,
+          col.names = c("Variable", " ", "COS Low", " ", " ", "COS Average", " ", " ", "COS High", " ")
  )
 
 ```
@@ -314,7 +316,7 @@ sdRno = tapply(noout$Recall, noout$Judgment, sd, na.rm = T)
 
 ## Data Processing and Descriptive Statistics
 
-First, the recall portion of the study was coded as zero for incorrect responses, one for correct responses, and NA for participants who did not complete the recall section (all or nearly all responses were blank). All word responses to judgment items were deleted and set to missing data. The final dataset was created by splitting the initial data file into six sections (one for each of the three experimental blocks and their corresponding recall scores). Each section was individually melted using the *reshape* package in *R* [@Wickham2007] and was written as a csv file. The six output files were then combined to form the final dataset. Code is available on our OSF page embedded inline with the manuscript in an *R* markdown document PAPAJA RIGHT HERE. With 112 participants, the dataset in long format included 7,056 rows of potential data (i.e., 112 participants \* 63 judgments). One incorrect judgment data point (> 100) was corrected to NA. Missing data for judgments or recall were then excluded from the analysis, which includes word responses to judgment items (i.e. responding with cat instead of a number). These items usually excluded a participant from receiving Amazon Mechanical Turk payment, but were included in the datasets found online. In total, 787 data points were excluded (188 judgment only, 279 recall only, 320 both), leading to a final *N* of 105 participants and 6,269 observations. Recall and judgment scores were then screened for outliers using Mahalanobis distance at *p* < .001, and no outliers were found [@Tabachnick2007]. To screen for multicollinearity, we examined correlations between judgment items, COS, LSA, and FSG. All correlations were rs < .50.
+First, the recall portion of the study was coded as zero for incorrect responses, one for correct responses, and NA for participants who did not complete the recall section (all or nearly all responses were blank). All word responses to judgment items were deleted and set to missing data. The final dataset was created by splitting the initial data file into six sections (one for each of the three experimental blocks and their corresponding recall scores). Each section was individually melted using the *reshape* package in *R* [@Wickham2007] and was written as a csv file. The six output files were then combined to form the final dataset. Code is available on our OSF page embedded inline with the manuscript in an *R* markdown document [@R-papaja]. With 112 participants, the dataset in long format included 7,056 rows of potential data (i.e., 112 participants \* 63 judgments). One incorrect judgment data point (> 100) was corrected to NA. Missing data for judgments or recall were then excluded from the analysis, which includes word responses to judgment items (i.e., responding with *cat* instead of a number). These items usually excluded a participant from receiving Amazon Mechanical Turk payment, but were included in the datasets found online. In total, 787 data points were excluded (188 judgment only, 279 recall only, 320 both), leading to a final *N* of 105 participants and 6,269 observations. Recall and judgment scores were then screened for outliers using Mahalanobis distance at *p* < .001, and no outliers were found [@Tabachnick2007]. To screen for multicollinearity, we examined correlations between judgment items, COS, LSA, and FSG. All correlations were *r*s < .50.
 
 The mean judgment of memory for the associative condition (*M* = `r apa(meanJno[1], 2)`, *SD* = `r apa(sdJno[1], 2)`) was lower than the semantic (*M* = `r apa(meanJno[2], 2)`, *SD* = `r apa(sdJno[2], 2)`) and thematic (*M* = `r apa(meanJno[3], 2)`, *SD* = `r apa(sdJno[3], 2)`) judgment conditions. Recall averaged over 60% for all three conditions: associative *M* = `r apa(meanRno[1]*100, 2)`, *SD* = `r apa(sdRno[1]*100, 2)`; semantic *M* = `r apa(meanRno[2]*100, 2)`, *SD* = `r apa(sdRno[2]*100, 2)`; thematic *M* = `r apa(meanRno[3]*100, 2)`, *SD* = `r apa(sdRno[3]*100, 2)`. 
 
@@ -457,10 +459,12 @@ tableprint[12 , ] = c("Thematic LSA", apa(hyp1results$TLSA$m, 3, F),
 
 ##of course I figured out an easier way later... 
 
-apa_table(tableprint, 
+apa_table.latex(as.data.frame(tableprint), 
           align = c("l", rep("c", 7)), 
           caption = "Summary Statistics for Hypothesis 1 t-Tests",
-          note = "Confidence interval for $d$ was calculated using the non-central $t$-distribution. "
+          note = "Confidence interval for $d$ was calculated using the non-central $t$-distribution. ",
+          col.names = c("Variable", "$M$", "$SD$", "$t$", "$df$", "$p$", "$d$", "$95\\% CI$"),
+          escape = FALSE
  )
 
 ```
@@ -692,12 +696,14 @@ tableprint[ , 3] = apa(as.numeric(tableprint[ , 3]),3,T)
 tableprint[ , 4] = apa(as.numeric(tableprint[ , 4]),3,T)
 tableprint[ , 5] =  apply(as.data.frame(as.numeric(tableprint[ , 5])), 1, p.value)
 
-apa_table(tableprint,
+apa_table.latex(as.data.frame(tableprint),
           align = c("l", rep("c", 4)), 
           small = T,
           caption = "MLM Statistics for Hypothesis 2",
-          note = "Database norms were mean centered. The table shows main effects and interactions for database norms at low, average, and high levels of COS and LSA when predicting participant judgments."
+          note = "Database norms were mean centered. The table shows main effects and interactions for database norms at low, average, and high levels of COS and LSA when predicting participant judgments.",
+          escape = FALSE
  )
+
 ```
 
 ```{r hyp2graph, echo=FALSE, fig.cap = "Simple slopes graph displaying the slope of FSG when predicting participant judgments at low, average, and high LSA split by low, average, and high COS. All variables were mean centered.", fig.height=6, fig.width=6}
@@ -873,12 +879,14 @@ tableprint[ , 4] = apa(as.numeric(tableprint[ , 4]),3,T)
 tableprint[ , 5] = apply(as.data.frame(as.numeric(tableprint[ , 5])), 1, p.value)
 
 
-apa_table(tableprint,
+apa_table.latex(as.data.frame(tableprint),
           align = c("l", rep("c", 4)), 
           small = T,
           caption = "MLM Statistics for Hypothesis 3",
-          note = "Database norms were mean centered. The table shows main effects and interactions for database norms at low, average, and high levels of COS and LSA when predicting recall."
+          note = "Database norms were mean centered. The table shows main effects and interactions for database norms at low, average, and high levels of COS and LSA when predicting recall.",
+          escape = FALSE
  )
+
 ```
 
 ```{r hyp3graph, echo=FALSE, fig.cap = "Simple slopes graph displaying the slope of FSG when predicting recall at low, average, and high LSA split by low, average, and high COS. All variables were mean centered.", fig.height=6, fig.width=6}
@@ -1000,25 +1008,30 @@ tableprint[ , 3] = apa(as.numeric(tableprint[ , 3]),3,T)
 tableprint[ , 4] = apa(as.numeric(tableprint[ , 4]),3,T)
 tableprint[ , 5] = apply(as.data.frame(as.numeric(tableprint[ , 5])), 1, p.value)
 
-apa_table(tableprint,
+apa_table.latex(as.data.frame(tableprint),
           align = c("l", rep("c", 4)), 
           caption = "MLM Statistics for Hypothesis 4",
-          note = "Each judgment-database bias and sensitivity predicting recall for corresponding judgment block. A: Associative, S: Semantic, T: Thematic."
+          note = "Each judgment-database bias and sensitivity predicting recall for corresponding judgment block. A: Associative, S: Semantic, T: Thematic.",
+          escape = FALSE
  )
+
 ```
 
 In our fourth and final hypothesis, we investigated whether the judgment slopes and intercepts obtained in Hypothesis 1 would be predictive of recall ability. Whereas Hypothesis 3 indicated that word relatedness was directly related to recall performance, this hypothesis instead looked at whether or not participants' sensitivity and bias to word relatedness could be used a predictor of recall [@Maki2007]. This analysis was conducted with a multilevel logistic regression, as described in Hypothesis 3 where each database slope and intercept was used as predictors of recall using participant as a random intercept factor. These analyses were separated by judgment type, so that each set of judgment slopes and intercepts were used to predict recall. The separation controlled for the number of variables in the equation, as all slopes and intercepts would have resulted in overfitting. These values were obtained from Hypothesis 1 where each participant's individual slopes and intercepts were calculated for associative, semantic, and thematic judgment conditions. Table \@ref(tab:hyp1-table1) shows average slopes and intercepts for recall for each of the three types of memory, and Table \@ref(tab:hyp4-table) portrays the regression coefficients and statistics. In the associative condition, FSG slope significantly predicted recall (*b* = `r tableprint[4, 2]`, *p* = `r tableprint[4, 5]`), while COS slope (*b* = `r tableprint[2, 2]`, *p* = `r tableprint[2, 5]`) and LSA slope (*b* = `r tableprint[3, 2]`, *p* = `r tableprint[3, 5]`) were non-significant. In the semantic condition, COS slope (*b* = `r tableprint[7, 2]`, *p* `r tableprint[7, 5]`) and LSA slope (*b* = `r tableprint[8, 2]`, *p* = `r tableprint[8, 5]`) were both found to be significant predictors of recall. FSG slope was non-significant in this condition (*b* = `r tableprint[9, 2]`, *p* = `r tableprint[9, 5]`). Finally, no predictors were significant in the thematic condition, though LSA slope was found to be the strongest (*b* = `r tableprint[13, 2]`, *p* = `r tableprint[13, 5]`).
 
-# Summary and Discussion
+# Discussion
+
 This study investigated the relationship between associative, semantic, and thematic word relations and their effect on participant judgments and recall performance through the testing of four hypotheses. In our first hypothesis, bias and sensitivity findings first proposed by @Maki2007a were successfully replicated in the associative condition, with slope and intercept values falling within the expected range. While these findings were not fully replicated when extending the analysis to include semantic and thematic judgments (as slopes in these conditions did not fall within the appropriate range), participants still displayed high intercepts and shallow slopes, suggesting overconfidence in judgment making and an insensitivity to changes in strength between pairs. Additionally, when looking at the frequency that each predictor was the strongest in making these judgments, FSG was the best predictor for both the associative and semantic conditions, while LSA was the best predictor in the thematic condition. In each of the three conditions, COS was the weakest predictor, even when participants were asked to make semantic judgments. This finding suggests that associative relationships seem to take precedence over semantic relationships when judging pair relatedness, regardless of what type of judgment is elicited. Additionally, this finding may be taken as further evidence of a separation between associative information and semantic information, in which associative information is always processed, while semantic information may be suppressed due to task demands [@Buchanan2010; @Hutchison2007].
 
 Our second hypothesis examined the three-way interaction between FSG, COS, and LSA when predicting participant judgments. At low semantic overlap, a seesaw effect was found in which increases in thematic strength led to decreases in associative predictiveness. This finding was then replicated in hypothesis 3 when extending the analysis to predict recall. By limiting the semantic relationships between pairs, an increased importance is placed on the role of associations and thematics when making judgments or retrieving pairs. In such cases, increasing the amount of thematic overlap between pairs results in thematic relationships taking precedent over associative relationships. However, when semantic overlap was high, a complementary relationship was found in which increases in thematic strength in turn led to increases in the strength of FSG as a predictor. This result suggests that at high semantic overlap, associations and thematic relations build upon one another. Because thematics is tied to both semantic overlap and item associations, the presence of strong thematic relationships between pairs during conditions of high semantic overlap boosts the predictive ability of associative word norms. Again, this complementary effect was found when examining both recall and judgments. 
 
-Finally, our fourth hypothesis used the judgment slopes and intercepts calculated in hypothesis 1 to investigate if participants' bias and sensitivity to word relatedness could be used to predict recall. For the associative condition, the FSG slope significantly predicted recall. In the semantic condition, recall was significantly predicted by both the COS and LSA slopes. However, for the thematic condition, although the LSA slope was the strongest, no predictors were significant. One explanation for this finding is that thematic relationships between item pairs act as a blend between associations and semantics. As such, LSA faces increased competition from the associative and semantic database norms when predicting recall in this manner.
+Finally, our fourth hypothesis used the judgment slopes and intercepts calculated in Hypothesis 1 to investigate if participants' bias and sensitivity to word relatedness could be used to predict recall. For the associative condition, the FSG slope significantly predicted recall. In the semantic condition, recall was significantly predicted by both the COS and LSA slopes. However, for the thematic condition, although the LSA slope was the strongest, no predictors were significant. One explanation for this finding is that thematic relationships between item pairs act as a blend between associations and semantics. As such, LSA faces increased competition from the associative and semantic database norms when predicting recall in this manner.
 
-Overall, our findings indicated the degree to which the processing of associative, semantic, and thematic information impacts retrieval and judgment making tasks and the interactive relationship that exists between these three types of lexical information. While previous research has shown that memory networks are divided into separate systems which handle storage and processing for meaning and association, the presence of these interactions suggests that connections exist between these networks, linking them to one another. As such, we suggest that these memory systems may form a three-tiered, interconnected system. First, information enters the semantic memory network, which processes features of concepts and provides a means of categorizing items based on the similarity of their features. Next, the associative network adds information for items based on contexts generated by reading or speech. Finally, the thematic network pulls in information from both the semantic and associative networks to create a mental representation of both the item and its place world relative to other concepts. Viewing this model purely through the lens of semantic memory, it draws comparison to dynamic attractor models [@Jones2015; @Hopfield1982; @McLeod2000]. One of the defining features of dynamic attractor models is that they allow for some type of bidirectionally or feedback between connections in the network. In the study of semantic memory, these models are useful for taking into account multiple restraints (such as links between semantics and the orthography of the concept in question) Our hypothesis extends this notion as a means of framing how these three memory systems are connected. The underlying meaning of a concept is linked with both information pertaining to its co-occurrences in everyday language and information relating to the general contexts in which it typically appears.
+Overall, our findings indicated the degree to which the processing of associative, semantic, and thematic information impacts retrieval and judgment making tasks and the interactive relationship that exists between these three types of lexical information. While previous research has shown that memory networks are divided into separate systems which handle storage and processing for meaning and association, the presence of these interactions suggests that connections exist between these networks, linking them to one another. As such, we suggest that these memory systems may form a three-tiered, interconnected system. First, information enters the semantic memory network, which processes features of concepts and provides a means of categorizing items based on the similarity of their features. Next, the associative network adds information for items based on contexts generated by reading or speech. Finally, the thematic network pulls in information from both the semantic and associative networks to create a mental representation of both the item and its place world relative to other concepts. This study did not explore the timing of information input from each of these systems, but it may be similar to a dual-route model of reading and naming, in that each runs in parallel contributing the judgment and recall process [@Coltheart1993].
 
-How then does this hypothesis lend itself towards the broader context of psycholinguistic research? One application of this hypothesis may be models of word recognition. One popular model is @Seidenberg1989 "triangle model" (often referred to as the SM model), and several variations of this model have been proposed and tested (see @Harley2008 for a review). This model recognizes speech and reading based upon the orthography, phonology, and meaning of words. Each of these three word properties are linked to in such a way that orthography is linked to phonology, phonology is linked with meaning, and meaning is linked to orthography (forming a triangle). The pathways between word properties are bidirectional, allowing for feedback between connections. Whereas the original version of this model focused almost exclusively on the link between orthography and phonology, @Harm2004 developed a version which included a focus on semantics, with word meaning being based on input from the orthography and phonology components of the model. Future studies in this area may wish to incorporate thematic and associative knowledge as elements of meaning, as thematic and associative information is interconnected with the semantic network. Ultimately, further studies will be needed to explore the interconnections between the semantic, thematic, and associative networks.  
+Viewing this model purely through the lens of semantic memory, it draws comparison to dynamic attractor models [@Jones2015; @Hopfield1982; @McLeod2000]. One of the defining features of dynamic attractor models is that they allow for some type of bidirectionally or feedback between connections in the network. In the study of semantic memory, these models are useful for taking into account multiple restraints such as links between semantics and the orthography of the concept in question. Our hypothesis extends this notion as a means of framing how these three memory systems are connected. The underlying meaning of a concept is linked with both information pertaining to its co-occurrences in everyday language and information relating to the general contexts in which it typically appears.
+
+How then does this hypothesis lend itself towards the broader context of psycholinguistic research? One application of this hypothesis may be models of word recognition. One popular model is @Seidenberg1989 "triangle model", and several variations of this model have been proposed and tested [see @Harley2008 for a review]. This model recognizes speech and reading based upon the orthography, phonology, and meaning of words. Each of these three word properties are linked to in such a way that orthography is linked to phonology, phonology is linked with meaning, and meaning is linked to orthography (forming a triangle). The pathways between word properties are bidirectional, allowing for feedback between connections. Whereas the original version of this model focused almost exclusively on the link between orthography and phonology, @Harm2004 developed a version which included a focus on semantics, with word meaning being based on input from the orthography and phonology components of the model. Future studies in this area may wish to incorporate thematic and associative knowledge as elements of meaning, as thematic and associative information is interconnected with the semantic network. Ultimately, further studies will be needed to explore the interconnections between the semantic, thematic, and associative networks.  
 
 \newpage
 

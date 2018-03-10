@@ -6,9 +6,9 @@
 \caption{\label{tab:stim-table}Summary Statistics for Stimuli}
 \begin{tabular}{lccccccccc}
 \toprule
-Variable & \multicolumn{1}{c}{ } & \multicolumn{1}{c}{COS Low} & \multicolumn{1}{c}{COS Average} & \multicolumn{1}{c}{COS High} & NA & NA & NA & NA & NA\\
+Variable &   & COS Low &   &   & COS Average &   &   & COS High &  \\
 \midrule
- & \$N\$ & \$M\$ & \$SD\$ & \$N\$ & \$M\$ & \$SD\$ & \$N\$ & \$M\$ & \$SD\$\\
+ & $N$ & $M$ & $SD$ & $N$ & $M$ & $SD$ & $N$ & $M$ & $SD$\\
 COS & 21 & .115 & .122 & 21 & .461 & .098 & 21 & .754 & .059\\
 FSG Low & 18 & .062 & .059 & 18 & .122 & .079 & 17 & .065 & .067\\
 FSG Average & 3 & .413 & .093 & 2 & .411 & .046 & 2 & .505 & .175\\
@@ -35,7 +35,7 @@ LSA High & NA & NA & NA & 3 & .707 & .023 & 2 & .830 & .102\\
 \caption{\label{tab:hyp1-table1}Summary Statistics for Hypothesis 1 t-Tests}
 \begin{tabular}{lccccccc}
 \toprule
-Variable & \multicolumn{1}{c}{\$M\$} & \multicolumn{1}{c}{\$SD\$} & \multicolumn{1}{c}{\$t\$} & \multicolumn{1}{c}{\$df\$} & \multicolumn{1}{c}{\$p\$} & \multicolumn{1}{c}{\$d\$} & \multicolumn{1}{c}{\$95 CI\$}\\
+Variable & $M$ & $SD$ & $t$ & $df$ & $p$ & $d$ & $95\% CI$\\
 \midrule
 Associative Intercept & .511 & .245 & 20.864 & 99 & < .001 & 2.086 & 1.734 - 2.435\\
 Associative COS & -.030 & .284 & -1.071 & 99 & .287 & -0.107 & -0.303 - 0.090\\
@@ -53,7 +53,7 @@ Thematic LSA & .188 & .265 & 7.111 & 100 & < .001 & 0.708 & 0.488 - 0.924\\
 \addlinespace
 \end{tabular}
 \begin{tablenotes}[para]
-\textit{Note.} Confidence interval for \$d\$ was calculated using the non-central \$t\$-distribution.
+\textit{Note.} Confidence interval for $d$ was calculated using the non-central $t$-distribution.
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
@@ -69,7 +69,7 @@ Thematic LSA & .188 & .265 & 7.111 & 100 & < .001 & 0.708 & 0.488 - 0.924\\
 \small{
 \begin{tabular}{lcccc}
 \toprule
-Variable & \multicolumn{1}{c}{\$beta\$} & \multicolumn{1}{c}{\$SE\$} & \multicolumn{1}{c}{\$t\$} & \multicolumn{1}{c}{\$p\$}\\
+Variable & \multicolumn{1}{c}{$beta$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$p$}\\
 \midrule
 Intercept & 0.603 & 0.014 & 43.287 & < .001\\
 Semantic Judgments & 0.079 & 0.008 & 9.968 & < .001\\
@@ -114,7 +114,7 @@ High COS High LSA ZFSG & 0.236 & 0.023 & 10.263 & < .001\\
 \small{
 \begin{tabular}{lcccc}
 \toprule
-Variable & \multicolumn{1}{c}{\$beta\$} & \multicolumn{1}{c}{\$SE\$} & \multicolumn{1}{c}{\$z\$} & \multicolumn{1}{c}{\$p\$}\\
+Variable & \multicolumn{1}{c}{$beta$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$z$} & \multicolumn{1}{c}{$p$}\\
 \midrule
 Intercept & 0.301 & 0.138 & 2.188 & .029\\
 Semantic Judgments & 0.201 & 0.074 & 2.702 & .007\\
@@ -157,7 +157,7 @@ High COS High LSA ZFSG & 4.692 & 0.388 & 12.083 & < .001\\
 \caption{\label{tab:hyp4-table}MLM Statistics for Hypothesis 4}
 \begin{tabular}{lcccc}
 \toprule
-Variable & \multicolumn{1}{c}{\$b\$} & \multicolumn{1}{c}{\$SE\$} & \multicolumn{1}{c}{\$z\$} & \multicolumn{1}{c}{\$p\$}\\
+Variable & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$z$} & \multicolumn{1}{c}{$p$}\\
 \midrule
 (Intercept) & -0.432 & 0.439 & -0.983 & .326\\
 ACOS & 0.314 & 0.550 & 0.572 & .568\\

@@ -202,22 +202,22 @@ between these three types of information.}
 The study of cognition has a rich history of exploring the role of
 association in human memory. One key finding is that elements of
 cognitive processing play a critical role in how well an individual
-retains learned information. Throughout the mid-20th century, much
-research was conducted that investigated this notion, particularly
-through the use of paired-associate learning (PAL). In this paradigm,
-participants are presented with a pair of items and are asked to make
-connections between them so that the presentation of one item (the cue)
-will in turn trigger the recall of the other (the target). Early studies
-of this nature focused primarily on the effects of meaning and imagery
-on recall performance. For example, Smythe and Paivio (1968) found that
-noun imagery played a crucial role in PAL performance; subjects were
-much more likely to remember word-pairs that were low in meaning
-similarity if imagery between the two was high. Subsequent studies in
-this area focused on the effects of mediating variables on PAL tasks as
-well as the effects of imagery and meaningfulness on associative
-learning (Richardson, 1998), with modern studies shifting their focus
-towards a broad range of applied topics such as how PAL is affected by
-aging (Hertzog, Kidder, Powell-Moman, \& Dunlosky, 2002), its impacts on
+retains learned information. Throughout the mid-20th century,
+researchers investigated this notion, particularly through the use of
+paired-associate learning (PAL). In this paradigm, participants are
+presented with a pair of items and are asked to make connections between
+them so that the presentation of one item (the cue) will in turn trigger
+the recall of the other (the target). Early studies of this nature
+focused primarily on the effects of meaning and imagery on recall
+performance. For example, Smythe and Paivio (1968) found that noun
+imagery played a crucial role in PAL performance; subjects were much
+more likely to remember word-pairs that were low in meaning similarity
+if imagery between the two was high. Subsequent studies in this area
+focused on the effects of mediating variables on PAL tasks as well as
+the effects of imagery and meaningfulness on associative learning
+(Richardson, 1998), with modern studies shifting their focus towards a
+broad range of applied topics such as how PAL is affected by aging
+(Hertzog, Kidder, Powell-Moman, \& Dunlosky, 2002), its impacts on
 second language acquisition (Chow, 2014), and even in evolutionary
 psychology (Schwartz \& Brothers, 2013).
 
@@ -229,35 +229,37 @@ frequency of occurrence in text. While lab self-generation appears face
 valid, one finds that this method of selection lacks a decisive method
 of defining the underlying relationships between the pairs (Buchanan,
 2010), as these variables only capture psycholinguistic measurements of
-an individual concept (i.e.~how concrete is cat and word occurrence).
-PAL is, by definition, used on word pairs, which requires examining
-concept relations in a reliable manner. As a result, free association
-norms have become a common means of indexing associative strength
-between word pairs (Nelson, McEvoy, \& Schreiber, 2004). As we will use
-several related variables, it is important to first define association
-as the context based relation between concepts, usually found in text or
-popular culture (Nelson, McEvoy, \& Dennis, 2000). Such word
-associations typically arise through their co-occurrence together in
-language. For example, the terms PEANUT and BUTTER have become
-associated over time through their joint use to depict a particular type
-of food, though separately, the two concepts share very little in terms
-of meaning. To generate these norms, participants engage in a free
-association task, in which they are presented with a cue word and are
-asked to list the first related target word that comes to mind. The
-probability of producing a given response to a particular cue word can
-then be determined by dividing the number of participants who produced
-the response in question by the total number of responses generated for
-that word (Nelson et al., 2000). Using this technique, researchers have
-developed databases of associative word norms that can be used to
-generate stimuli with a high degree of reliability. Many of these
-databases are now readily available online, with the largest one
-consisting of over 72,000 associates generated from more than 5,000 cue
-words (Nelson et al., 2004).
+an individual concept (i.e., how concrete is \emph{cat} and word
+occurrence). PAL is, by definition, used on word pairs, which requires
+examining concept relations in a reliable manner. As a result, free
+association norms have become a common means of indexing associative
+strength between word pairs (Nelson, McEvoy, \& Schreiber, 2004).
+
+As we will use several related variables, it is important to first
+define association as the context based relation between concepts,
+usually found in text or popular culture (Nelson, McEvoy, \& Dennis,
+2000). Such word associations typically arise through their
+co-occurrence together in language. For example, the terms \emph{peanut}
+and \emph{butter} have become associated over time through their joint
+use to depict a particular type of food, though separately, the two
+concepts share very little in terms of meaning. To generate these norms,
+participants engage in a free association task, in which they are
+presented with a cue word and are asked to list the first related target
+word that comes to mind. The probability of producing a given response
+to a particular cue word, or forward strength, can then be determined by
+dividing the number of participants who produced the response in
+question by the total number of responses generated for that word (FSG;
+Nelson et al., 2000). Using this technique, researchers have developed
+databases of associative word norms that can be used to generate stimuli
+with a high degree of reliability. Many of these databases are now
+readily available online, with the largest one consisting of over 72,000
+associates generated from more than 5,000 cue words (Nelson et al.,
+2004).
 
 Similar to association norms, semantic word norms provide researchers
-with another option of constructing stimuli for use in paired associate
-tasks.These norms measure the underlying concepts represented by words
-and allow researchers to tap into aspects of semantic memory. Semantic
+with another option of constructing stimuli for use in word-pair tasks.
+These norms measure the underlying concepts represented by words and
+allow researchers to tap into aspects of semantic memory. Semantic
 memory is best described as an organized collection of our general
 knowledge and contains information regarding a concept's meaning
 (Hutchison, 2003). Models of semantic memory broadly fall into one of
@@ -273,7 +275,8 @@ semantic representations are created through the co-occurrences of words
 together in a body of text and suggest that words with similar meanings
 will appear together in similar contexts (Riordan \& Jones, 2011).
 Popular distributional models of semantic memory include Latent Semantic
-Analysis (Landauer \& Dumais, 1997) and HAL (Lund \& Burgess, 1996).
+Analysis (LSA; Landauer \& Dumais, 1997) and the Hyperspance Analogue to
+Language (HAL; Lund \& Burgess, 1996).
 
 Feature production tasks are a common means of producing semantic word
 norms (Buchanan, Holmes, Teasley, \& Hutchison, 2013; McRae, Cree,
@@ -284,37 +287,38 @@ they believe the concept's most important features to be (McRae et al.,
 the degree of feature overlap between concepts. Similarity between any
 two concepts can be measured by representing them as vectors and
 calculating the cosine value (COS) between them (Maki, McKinley, \&
-Thompson, 2004). For example, the pair HORNET - WASP has a COS of .88,
-indicating a high degree of overlap between the two concepts. Feature
-overlap can also be measured by JCN, which involves calculating the
-information content value of each concept and the lowest super-ordinate
-shared by each concept using an online dictionary, such as WordNET
-(Miller, 1995). The JCN value is then computed by summing together the
-difference of each concept and its lowest super-ordinate (Jiang \&
-Conrath, 1997; Maki et al., 2004). The advantage to using COS values
-over JCN values is the limitation of JCN being tied to a somewhat static
-dictionary database, while a semantic feature production task can be
-used on any concept to calculate COS values. However, JCN values are
+Thompson, 2004). Cosine values range from 0 (unrelated) to 1 (perfectly
+related). For example, the pair \emph{hornet} - \emph{wasp} has a COS of
+.88, indicating a high degree of overlap between the two concepts.
+Feature overlap can also be measured by JCN, which involves calculating
+the information content value of each concept and the lowest
+super-ordinate shared by each concept using an online dictionary, such
+as WordNET (Miller, 1995). The JCN value is then computed by summing
+together the difference of each concept and its lowest super-ordinate
+(Jiang \& Conrath, 1997; Maki et al., 2004). The advantage to using COS
+values over JCN values is the limitation of JCN being tied to a somewhat
+static dictionary database, while a semantic feature production task can
+be used on any concept to calculate COS values. However, JCN values are
 less time consuming to obtain if both concepts are in the database
 (Buchanan et al., 2013).
 
 Semantic relations can be broadly described as being taxonomic or
 thematic in nature. Whereas taxonomic relationships focus on the
-connections between features and concepts within categories (e.g., BIRD
-- PIDGEON), thematic relationships center around the links between
-concepts and an overarching theme or scenario (e.g., BIRD - NEST, Jones
-\& Golonka, 2012). Jouravlev and McRae (2016) provide a list of 100
-thematic relatedness production norms, which were generated through a
-task similar to feature production in which participants were presented
-with a concept and were asked to list names of other concepts they
-believed to be related. Distributional models of semantic memory also
-lend themselves well to the study of thematic word relations. Because
-these models are text based and score word pair relations in regard to
-their overall context within a document, they assess thematic knowledge
-as well as semantic knowledge. Additionally, text based models such as
-LSA are able to account for both the effects of context and similarity
-of meaning, bridging the gap between associations and semantics
-(Landauer, Foltz, \& Laham, 1998).
+connections between features and concepts within categories (e.g.,
+\emph{bird} - \emph{pidgeon}), thematic relationships center around the
+links between concepts and an overarching theme or scenario (e.g.,
+\emph{bird} - \emph{nest}; Jones \& Golonka, 2012). Jouravlev and McRae
+(2016) provide a list of 100 thematic relatedness production norms,
+which were generated through a task similar to feature production in
+which participants were presented with a concept and were asked to list
+names of other concepts they believed to be related. Distributional
+models of semantic memory also lend themselves well to the study of
+thematic word relations. Because these models are text based and score
+word pair relations in regard to their overall context within a
+document, they assess thematic knowledge as well as semantic knowledge.
+Additionally, text based models such as LSA are able to account for both
+the effects of context and similarity of meaning, bridging the gap
+between associations and semantics (Landauer, Foltz, \& Laham, 1998).
 
 Discussion of these measures then leads to the question of whether each
 one truly assesses some unique concept or if they simply tap into our
@@ -329,18 +333,10 @@ appears to confirm this theory. Using clustering and factor analysis
 techniques, they analyzed multiple associative, semantic, and text based
 measures of associative and semantic knowledge. First, their findings
 suggested associative measures to be separate from semantic measures.
-Additionally, semantic information derived from lexical measures
-(e.g.~COS, JCN) was found to be separate from measures generated from
-analysis of text corpora, suggesting that text based measures may be
-more representative of thematic information. As such, the present study
-seeks to provide further insight by examining how different levels of
-associative overlap (measured in forward strength), semantic overlap
-(feature overlap measured with cosine), and thematic overlap (measured
-with LSA, a text based measure of semantic memory) affect cognitive
-tasks such as short term item retrieval and item relatedness judgments.
-Specifically, this is done within the framework of a three-tiered view
-of the interconnections between these systems as it relates to
-processing concept information.
+Additionally, semantic information derived from lexical measures (e.g.,
+COS, JCN) was found to be separate from measures generated from analysis
+of text corpora, suggesting that text based measures may be more
+representative of thematic information.
 
 While it is apparent that these word relation measures are assessing
 different domains of our linguistic knowledge, care must be taken when
@@ -358,7 +354,39 @@ necessarily be indicative of a total lack of association, as traditional
 norming tasks typically do not produce a large enough set of responses
 to capture all available associations between items. Some items with
 extremely weak associations may inevitably slip through the cracks
-(Hutchison, 2003).
+(Hutchison, 2003). As such, the present study seeks to provide further
+insight by examining how different levels of associative overlap
+(measured in FSG), semantic overlap (feature overlap measured with COS),
+and thematic overlap (measured with LSA) affect cognitive tasks such as
+short term item retrieval and item relatedness judgments. Instead of
+focusing solely on one variable or trying to create stimuli that
+represent only one form of relatedness, we included a range of each of
+these variables to explore their potential interaction.
+
+Specifically, this research was conceptualized within the framework of a
+three-tiered view of the interconnections between these systems as it
+relates to processing concept information. The three-tiered view is
+inspired by models of reading and naming, particularly the triangle
+models presented by Seidenberg and Mcclelland (1989) and Plaut,
+McClelland, Seidenberg, and Patterson (1996). These models explored the
+nature of reading as bidirectional relations between semantics,
+orthography, and phonology. In this research, we examine if the
+semantic, associative, and thematic systems are interactive for judgment
+and recall processes, much like the proposed interactive nature of
+phonology, orthographics, and semantics for reading and naming
+processes. Potentially, association, semantic, and thematic facets of
+word relation each provide unique component that can be judged and used
+for memory, thus, suggesting three separate networks of independent
+information. This view seems unlikely, in that research indicates that
+there is often overlap in the information provided by each measure of
+word-pair relatedness. Instead, dynamic attractor networks, as proposed
+by Hopfield (1982) and McLeod, Shallice, and Plaut (2000) may represent
+better represent the interplay between these representations of
+concepts, as these models posit a similar feedback relationship between
+concepts in a network. Using these models as a theoretical framework for
+our study, we sought to understand how these three types of word-pair
+information may interact when judgment and recall processes were applied
+to concept networks.
 
 \subsection{Application to Judgment
 Studies}\label{application-to-judgment-studies}
@@ -378,12 +406,13 @@ that were high in backwards strength but low in forward strength. To
 account for this finding, the authors suggested that JOLs may rely more
 heavily on overlap between cue and target with the direction of the
 associative relationship being secondary. Take for example the pair
-Feather-Bird, which has a FSG of .051 and a BSG of .359. This item pair
-also has a cosine value of .272 (suggesting low to moderate feature
-overlap) and an LSA score of 0.517 (suggesting moderate thematic
-overlap). As such, some of the overconfidence in JOLs may be attributed
-more than just item associations. Paired items may also be connected by
-similar themes or share certain features, resulting in inflated JOLs.
+\emph{feather} - \emph{bird}, which has a FSG of .051 and a BSG of .359.
+This item pair also has a cosine value of .272 (suggesting low to
+moderate feature overlap) and an LSA score of .517 (suggesting moderate
+thematic overlap). As such, some of the overconfidence in JOLs may be
+attributed more than just item associations. Paired items may also be
+connected by similar themes or share certain features, resulting in
+inflated JOLs.
 
 JOL tasks can then be manipulated to investigate perceptions of word
 pair relationships by having participants judge how related they believe
@@ -392,37 +421,37 @@ this task can then be compared to the normed databases to create a
 similar accuracy function or correlation as is created in JOL studies.
 When presented with the item pair, participants are asked to estimate
 the number of people out of 100 who would provide the target word when
-shown only the cue (Maki, 2007a), which mimics how the association word
+shown only the cue (Maki, 2007b), which mimics how the association word
 norms are created through free association tasks. Maki (2007a)
 investigated such judgments within the context of associative memory by
 having participants rate how much associative overlap was shared between
 items and found that responses greatly overestimated the actual overlap
 strength for pairs that were weak associates, while underestimating
 strong associates; thus replicating the Koriat and Bjork (2005) findings
-for judgments on associative memory, rather than on learning. The
-judgment of associative memory function (JAM) is created by plotting the
-judged values by the word pair's normed associative strength and
+for judgments on associative memory, rather than on learning.
+
+The judgment of associative memory function (JAM) is created by plotting
+the judged values by the word pair's normed associative strength and
 calculating a fit line, which characteristically has a high intercept
-(bias) with a shallow slope (sensitivity). Figure 1 illustrates this
-function. Overall, the JAM function has been found to be highly reliable
-and generalized well across multiple variations of the study, with item
-characteristics such as word frequency, cue set size (QSS), and semantic
-similarity all having a minimal influence on it (Maki, 2007b).
-Furthermore, an applied meta-analysis of more than ten studies on JAM
-indicated that bias and sensitivity are nearly unchangeable, often
-hovering around 40-60 points for the intercept and .20-.30 for the slope
-(Valentine \& Buchanan, 2013). Additionally, Valentine and Buchanan
-(2013) extended this research to include judgments of semantic memory
-with the same results.
+(bias) with a shallow slope (sensitivity). Figure \ref{fig:makislope}
+illustrates this function. Overall, the JAM function has been found to
+be highly reliable and generalized well across multiple variations of
+the study, with item characteristics such as word frequency, cue set
+size (QSS), and semantic similarity all having a minimal influence on it
+(Maki, 2007b). Furthermore, an applied meta-analysis of more than ten
+studies on JAM indicated that bias and sensitivity are nearly
+unchangeable, often hovering around 40-60 points for the intercept and
+.20-.30 for the slope (Valentine \& Buchanan, 2013). Additionally,
+Valentine and Buchanan (2013) extended this research to include
+judgments of semantic memory with the same results.
 
 \begin{figure}
 \centering
-\includegraphics{max_buch_JOL_files/figure-latex/unnamed-chunk-1-1.pdf}
-\caption{\label{fig:unnamed-chunk-1}JAM slope findings from Maki (2007a).
-JAM is characterized by a high intercept (between 40 and 60) and a
-shallow slope (between .2 and .4). The dashed line shows expected
-results if judgment ratings are perfectly calibrated with association
-norms.}
+\includegraphics{max_buch_JOL_files/figure-latex/makislope-1.pdf}
+\caption{\label{fig:makislope}JAM slope findings from Maki (2007a). JAM is
+characterized by a high intercept (between 40 and 60) and a shallow
+slope (between 0.20 and 0.40). The solid line shows expected results if
+judgment ratings are perfectly calibrated with association norms.}
 \end{figure}
 
 The present study combined PAL and JAM to examine item recall within the
@@ -436,7 +465,7 @@ hypotheses:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \item
-  First, we sought to expand previous Maki (2007a), Maki (2007b),
+  First, we sought to expand previous Maki (2007b), Maki (2007a),
   Buchanan (2010), and Valentine and Buchanan (2013) research to include
   three types of judgments of memory in one experiment, while
   replicating JAM bias and sensitivity findings. We used the three
@@ -446,14 +475,15 @@ hypotheses:
   values that were significantly different from zero, as well as within
   the range of previous findings. Additionally, we examined the
   frequency of each predictor being the strongest variable to predict
-  its own judgment condition (i.e.~how often association was the
+  its own judgment condition (i.e., how often association was the
   strongest predictor of associative judgments, etc.).
 \item
-  Given the overlap in these variables, we expected to find an
-  interaction between database norms in predicting participant
-  judgments, controlling for judgment type. We used multilevel modeling
-  to examine that interaction of database norms for association,
-  semantics, and thematics in relation to participant judgments.
+  Given the overlap in these variables and predictions from
+  bidirectional models, we expected to find an interaction between
+  database norms in predicting participant judgments, controlling for
+  judgment type. We used multilevel modeling to examine that interaction
+  of database norms for association, semantics, and thematics in
+  relation to participant judgments.
 \item
   These analyses were then extended to recall as the dependent variable
   of interest. We examined the interaction of database norms in
@@ -461,7 +491,7 @@ hypotheses:
   controlling for judgment type and rating. We expected to find that
   database norms would show differences in recall based on the levels
   other variables (the interaction would be significant), and that
-  ratings would also positively predict recall (i.e.~words that
+  ratings would also positively predict recall (i.e., words that
   participants thought were more related would be remembered better).
 \item
   Finally, we examined if the judgment slopes from Hypothesis 1 would be
@@ -479,7 +509,7 @@ hypotheses:
 A power analysis was conducted using the \emph{simR} package in \emph{R}
 (Green \& MacLeod, 2016). This package uses simulations to generate
 power estimates for mixed linear models created from the \emph{lme4}
-package in \emph{R} (Bates, Machler, Bolker, \& Walker, 2015). The
+package in \emph{R} (Bates, Mächler, Bolker, \& Walker, 2015). The
 results of this analyses suggested a minimum of 35 participants would be
 required to detect an effect. However, because power often tends to be
 underestimated, we extended participant recruitment as funding
@@ -542,9 +572,9 @@ judgment condition, and stimuli were randomized within each block.
 \caption{\label{tab:stim-table}Summary Statistics for Stimuli}
 \begin{tabular}{lccccccccc}
 \toprule
-Variable & \multicolumn{1}{c}{ } & \multicolumn{1}{c}{COS Low} & \multicolumn{1}{c}{COS Average} & \multicolumn{1}{c}{COS High} & NA & NA & NA & NA & NA\\
+Variable &   & COS Low &   &   & COS Average &   &   & COS High &  \\
 \midrule
- & \$N\$ & \$M\$ & \$SD\$ & \$N\$ & \$M\$ & \$SD\$ & \$N\$ & \$M\$ & \$SD\$\\
+ & $N$ & $M$ & $SD$ & $N$ & $M$ & $SD$ & $N$ & $M$ & $SD$\\
 COS & 21 & .115 & .122 & 21 & .461 & .098 & 21 & .754 & .059\\
 FSG Low & 18 & .062 & .059 & 18 & .122 & .079 & 17 & .065 & .067\\
 FSG Average & 3 & .413 & .093 & 2 & .411 & .046 & 2 & .505 & .175\\
@@ -567,7 +597,7 @@ LSA High & NA & NA & NA & 3 & .707 & .023 & 2 & .830 & .102\\
 The present study was divided into three phases. In the first section,
 participants were presented with word pairs and were asked to make
 judgments of how related they believed the words in each pair to be.
-This Judgment phase consisted of three blocks of 21 word pairs which
+This judgment phase consisted of three blocks of 21 word pairs which
 corresponded to one of three types of word pair relationships:
 associative, semantic, or thematic. Each block was preceded by a set of
 instructions explaining one of the three types of relationships, and
@@ -576,19 +606,21 @@ relationship to be judged. Participants were then presented with the
 word pairs to be judged. The associative block began by explaining
 associative memory and the role of free association tasks. Participants
 were provided with examples of both strong and weak associates. For
-example, LOST and FOUND and were presented as an example of a strongly
-associated pair, while ARTICLE was paired with NEWSPAPER, THE, and
-CLOTHING to illustrate that words can have many weak associates. The
-semantic judgment block provided participants with a brief overview of
-how words are related by meaning and showed examples of concepts with
-both high and low feature overlap. TORTOISE and TURTLE were provided as
-an example of two concepts with significant overlap. Other examples were
-then provided to illustrate concepts with little or no overlap. For the
+example, \emph{lost} and \emph{found} and were presented as an example
+of a strongly associated pair, while \emph{article} was paired with
+\emph{newspaper}, \emph{the}, and \emph{clothing} to illustrate that
+words can have many weak associates. The semantic judgment block
+provided participants with a brief overview of how words are related by
+meaning and showed examples of concepts with both high and low feature
+overlap. \emph{Tortoise} and \emph{turtle} were provided as an example
+of two concepts with significant overlap. Other examples were then
+provided to illustrate concepts with little or no overlap. For the
 thematic judgments, participants were provided with an explanation of
-thematic relatedness. TREE is explained to be related to LEAF, FRUIT,
-and BRANCH, but not COMPUTER. Participants were then given three
-concepts (LOST, OLD, ARTICLE) and were asked to come up with words that
-they feel are thematically related.
+thematic relatedness. \emph{Tree} is explained to be related to
+\emph{leaf}, \emph{fruit}, and \emph{branch}, but not \emph{computer}.
+Participants were then given three concepts (\emph{lost}, \emph{old},
+\emph{article}) and were asked to come up with words that they feel are
+thematically related.
 
 After viewing the examples at the start of the block, participants
 completed the judgment task. Judgment instructions for each block were
@@ -605,15 +637,15 @@ Valentine and Buchanan (2013).
 
 Participants then rated the relatedness of the word pairs based on the
 set of instructions that they received. In accordance with previous work
-on JOLs and Jam, item judgments were made using a scale of zero to one
+on JOLs and JAM, item judgments were made using a scale of zero to one
 hundred, with zero indicating no relationship, and one hundred
 indicating a perfect relationship. Participants typed their responses
 into the survey. Once completed, participants then completed the
-remaining Judgment blocks in the same manner. Each subsequent judgment
-block changed the type of Judgment being made. Three versions of the
+remaining judgment blocks in the same manner. Each subsequent judgment
+block changed the type of judgment being made. Three versions of the
 study were created, which counter-balanced the order in which the
-Judgment blocks appeared, and participants were randomly assigned to a
-survey version. This resulted in each word pair receiving Judgments on
+judgment blocks appeared, and participants were randomly assigned to a
+survey version. This resulted in each word pair receiving judgments on
 each of the three types relationships. After completing this section,
 participants were then presented with a short distractor task to account
 for recency effects. In this section, participants were presented with a
@@ -621,7 +653,7 @@ randomized list of the fifty U.S. states and were asked to arrange them
 in alphabetical order. This task was timed to last two minutes. Once
 time had elapsed, participants automatically progressed to the final
 section, which consisted of a cued-recall task. Participants were
-presented with each of the 63 cue words from the Judgment section and
+presented with each of the 63 cue words from the judgment section and
 were asked to complete each word pair by responding with the correct
 target word. Participants were informed that they would not be penalized
 for guessing. The cued-recall task included all stimuli in a random
@@ -641,22 +673,23 @@ data file into six sections (one for each of the three experimental
 blocks and their corresponding recall scores). Each section was
 individually melted using the \emph{reshape} package in \emph{R}
 (Wickham, 2007) and was written as a csv file. The six output files were
-then combined to form the final dataset. Code is available at
-\url{http://osf.io/y8h7v}. With 112 participants, the dataset in long
-format included 7,056 rows of potential data (i.e., 112 participants *
-63 judgments). One incorrect judgment data point (\textgreater{} 100)
-was corrected to NA. Missing data for judgments or recall were then
-excluded from the analysis, which includes word responses to judgment
-items (i.e.~responding with cat instead of a number). These items
-usually excluded a participant from receiving Amazon Mechanical Turk
-payment, but were included in the datasets found online. In total, 787
-data points were excluded (188 judgment only, 279 recall only, 320
-both), leading to a final \emph{N} of 105 participants and 6,269
-observations. Recall and judgment scores were then screened for outliers
-using Mahalanobis distance at \emph{p} \textless{} .001, and no outliers
-were found (Tabachnick \& Fidell, 2007). To screen for
+then combined to form the final dataset. Code is available on our OSF
+page embedded inline with the manuscript in an \emph{R} markdown
+document (Aust \& Barth, 2017). With 112 participants, the dataset in
+long format included 7,056 rows of potential data (i.e., 112
+participants * 63 judgments). One incorrect judgment data point
+(\textgreater{} 100) was corrected to NA. Missing data for judgments or
+recall were then excluded from the analysis, which includes word
+responses to judgment items (i.e., responding with \emph{cat} instead of
+a number). These items usually excluded a participant from receiving
+Amazon Mechanical Turk payment, but were included in the datasets found
+online. In total, 787 data points were excluded (188 judgment only, 279
+recall only, 320 both), leading to a final \emph{N} of 105 participants
+and 6,269 observations. Recall and judgment scores were then screened
+for outliers using Mahalanobis distance at \emph{p} \textless{} .001,
+and no outliers were found (Tabachnick \& Fidell, 2007). To screen for
 multicollinearity, we examined correlations between judgment items, COS,
-LSA, and FSG. All correlations were rs \textless{} .50.
+LSA, and FSG. All correlations were \emph{r}s \textless{} .50.
 
 The mean judgment of memory for the associative condition (\emph{M} =
 58.74, \emph{SD} = 30.28) was lower than the semantic (\emph{M} = 66.98,
@@ -673,7 +706,7 @@ associative \emph{M} = 63.40, \emph{SD} = 48.18; semantic \emph{M} =
 \caption{\label{tab:hyp1-table1}Summary Statistics for Hypothesis 1 t-Tests}
 \begin{tabular}{lccccccc}
 \toprule
-Variable & \multicolumn{1}{c}{\$M\$} & \multicolumn{1}{c}{\$SD\$} & \multicolumn{1}{c}{\$t\$} & \multicolumn{1}{c}{\$df\$} & \multicolumn{1}{c}{\$p\$} & \multicolumn{1}{c}{\$d\$} & \multicolumn{1}{c}{\$95 CI\$}\\
+Variable & $M$ & $SD$ & $t$ & $df$ & $p$ & $d$ & $95\% CI$\\
 \midrule
 Associative Intercept & .511 & .245 & 20.864 & 99 & < .001 & 2.086 & 1.734 - 2.435\\
 Associative COS & -.030 & .284 & -1.071 & 99 & .287 & -0.107 & -0.303 - 0.090\\
@@ -691,7 +724,7 @@ Thematic LSA & .188 & .265 & 7.111 & 100 & < .001 & 0.708 & 0.488 - 0.924\\
 \addlinespace
 \end{tabular}
 \begin{tablenotes}[para]
-\textit{Note.} Confidence interval for \$d\$ was calculated using the non-central \$t\$-distribution. 
+\textit{Note.} Confidence interval for $d$ was calculated using the non-central $t$-distribution. 
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
@@ -757,7 +790,7 @@ the semantic judgment condition.
 \small{
 \begin{tabular}{lcccc}
 \toprule
-Variable & \multicolumn{1}{c}{\$beta\$} & \multicolumn{1}{c}{\$SE\$} & \multicolumn{1}{c}{\$t\$} & \multicolumn{1}{c}{\$p\$}\\
+Variable & \multicolumn{1}{c}{$beta$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$p$}\\
 \midrule
 Intercept & 0.603 & 0.014 & 43.287 & < .001\\
 Semantic Judgments & 0.079 & 0.008 & 9.968 & < .001\\
@@ -865,7 +898,7 @@ predictor strength.
 \small{
 \begin{tabular}{lcccc}
 \toprule
-Variable & \multicolumn{1}{c}{\$beta\$} & \multicolumn{1}{c}{\$SE\$} & \multicolumn{1}{c}{\$z\$} & \multicolumn{1}{c}{\$p\$}\\
+Variable & \multicolumn{1}{c}{$beta$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$z$} & \multicolumn{1}{c}{$p$}\\
 \midrule
 Intercept & 0.301 & 0.138 & 2.188 & .029\\
 Semantic Judgments & 0.201 & 0.074 & 2.702 & .007\\
@@ -962,7 +995,7 @@ levels.
 \caption{\label{tab:hyp4-table}MLM Statistics for Hypothesis 4}
 \begin{tabular}{lcccc}
 \toprule
-Variable & \multicolumn{1}{c}{\$b\$} & \multicolumn{1}{c}{\$SE\$} & \multicolumn{1}{c}{\$z\$} & \multicolumn{1}{c}{\$p\$}\\
+Variable & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$z$} & \multicolumn{1}{c}{$p$}\\
 \midrule
 (Intercept) & -0.432 & 0.439 & -0.983 & .326\\
 ACOS & 0.314 & 0.550 & 0.572 & .568\\
@@ -1018,7 +1051,7 @@ this condition (\emph{b} = 0.381, \emph{p} = .187). Finally, no
 predictors were significant in the thematic condition, though LSA slope
 was found to be the strongest (\emph{b} = 0.896, \emph{p} = .090).
 
-\section{Summary and Discussion}\label{summary-and-discussion}
+\section{Discussion}\label{discussion}
 
 This study investigated the relationship between associative, semantic,
 and thematic word relations and their effect on participant judgments
@@ -1066,7 +1099,7 @@ ability of associative word norms. Again, this complementary effect was
 found when examining both recall and judgments.
 
 Finally, our fourth hypothesis used the judgment slopes and intercepts
-calculated in hypothesis 1 to investigate if participants' bias and
+calculated in Hypothesis 1 to investigate if participants' bias and
 sensitivity to word relatedness could be used to predict recall. For the
 associative condition, the FSG slope significantly predicted recall. In
 the semantic condition, recall was significantly predicted by both the
@@ -1093,41 +1126,46 @@ network adds information for items based on contexts generated by
 reading or speech. Finally, the thematic network pulls in information
 from both the semantic and associative networks to create a mental
 representation of both the item and its place world relative to other
-concepts. Viewing this model purely through the lens of semantic memory,
-it draws comparison to dynamic attractor models (Hopfield, 1982; Jones
-et al., 2015; McLeod, Shallice, \& Plaut, 2000). One of the defining
-features of dynamic attractor models is that they allow for some type of
-bidirectionally or feedback between connections in the network. In the
-study of semantic memory, these models are useful for taking into
-account multiple restraints (such as links between semantics and the
-orthography of the concept in question) Our hypothesis extends this
-notion as a means of framing how these three memory systems are
-connected. The underlying meaning of a concept is linked with both
-information pertaining to its co-occurrences in everyday language and
-information relating to the general contexts in which it typically
-appears.
+concepts. This study did not explore the timing of information input
+from each of these systems, but it may be similar to a dual-route model
+of reading and naming, in that each runs in parallel contributing the
+judgment and recall process (Coltheart, Curtis, Atkins, \& Haller,
+1993).
+
+Viewing this model purely through the lens of semantic memory, it draws
+comparison to dynamic attractor models (Hopfield, 1982; Jones et al.,
+2015; McLeod et al., 2000). One of the defining features of dynamic
+attractor models is that they allow for some type of bidirectionally or
+feedback between connections in the network. In the study of semantic
+memory, these models are useful for taking into account multiple
+restraints such as links between semantics and the orthography of the
+concept in question. Our hypothesis extends this notion as a means of
+framing how these three memory systems are connected. The underlying
+meaning of a concept is linked with both information pertaining to its
+co-occurrences in everyday language and information relating to the
+general contexts in which it typically appears.
 
 How then does this hypothesis lend itself towards the broader context of
 psycholinguistic research? One application of this hypothesis may be
 models of word recognition. One popular model is Seidenberg and
-Mcclelland (1989) \enquote{triangle model} (often referred to as the SM
-model), and several variations of this model have been proposed and
-tested (see Harley (2008) for a review). This model recognizes speech
-and reading based upon the orthography, phonology, and meaning of words.
-Each of these three word properties are linked to in such a way that
-orthography is linked to phonology, phonology is linked with meaning,
-and meaning is linked to orthography (forming a triangle). The pathways
-between word properties are bidirectional, allowing for feedback between
-connections. Whereas the original version of this model focused almost
-exclusively on the link between orthography and phonology, Harm and
-Seidenberg (2004) developed a version which included a focus on
-semantics, with word meaning being based on input from the orthography
-and phonology components of the model. Future studies in this area may
-wish to incorporate thematic and associative knowledge as elements of
-meaning, as thematic and associative information is interconnected with
-the semantic network. Ultimately, further studies will be needed to
-explore the interconnections between the semantic, thematic, and
-associative networks.
+Mcclelland (1989) \enquote{triangle model}, and several variations of
+this model have been proposed and tested (see Harley, 2008 for a
+review). This model recognizes speech and reading based upon the
+orthography, phonology, and meaning of words. Each of these three word
+properties are linked to in such a way that orthography is linked to
+phonology, phonology is linked with meaning, and meaning is linked to
+orthography (forming a triangle). The pathways between word properties
+are bidirectional, allowing for feedback between connections. Whereas
+the original version of this model focused almost exclusively on the
+link between orthography and phonology, Harm and Seidenberg (2004)
+developed a version which included a focus on semantics, with word
+meaning being based on input from the orthography and phonology
+components of the model. Future studies in this area may wish to
+incorporate thematic and associative knowledge as elements of meaning,
+as thematic and associative information is interconnected with the
+semantic network. Ultimately, further studies will be needed to explore
+the interconnections between the semantic, thematic, and associative
+networks.
 
 \newpage
 
@@ -1136,16 +1174,20 @@ associative networks.
 \setlength{\parindent}{-0.5in} \setlength{\leftskip}{0.5in}
 
 \hypertarget{refs}{}
+\hypertarget{ref-R-papaja}{}
+Aust, F., \& Barth, M. (2017). \emph{papaja: Create APA manuscripts with
+R Markdown}. Retrieved from \url{https://github.com/crsh/papaja}
+
 \hypertarget{ref-Bates2015}{}
-Bates, D., Machler, M., Bolker, B., \& Walker, S. (2015). Fitting Linear
-Mixed-Effects Models Using lme4. \emph{Journal of Statistical Software},
+Bates, D., Mächler, M., Bolker, B., \& Walker, S. (2015). Fitting linear
+mixed-effects models using lme4. \emph{Journal of Statistical Software},
 \emph{67}(1), 1--48.
+doi:\href{https://doi.org/10.18637/jss.v067.i01}{10.18637/jss.v067.i01}
 
 \hypertarget{ref-Buchanan2010}{}
-Buchanan, E. M. (2010). Access into Memory: Differences in Judgments and
-Priming for Semantic and Associative Memory. \emph{Journal of Scientific
-Psychology.}, (March), 1--8. Retrieved from
-\href{http://www.psyencelab.com/images/Access\%7B/_\%7Dinto\%7B/_\%7DMemory\%7B/_\%7D\%7B/_\%7DDifferences\%7B/_\%7Din\%7B/_\%7DJudgments\%7B/_\%7Dand\%7B/_\%7DPriming\%7B/_\%7Dfor\%7B/_\%7DSemantic\%7B/_\%7Dand\%7B/_\%7DAssociative\%7B/_\%7DMemory.pdf}{http://www.psyencelab.com/images/Access\{\textbackslash{}\_\}into\{\textbackslash{}\_\}Memory\{\textbackslash{}\_\}\{\textbackslash{}\_\}Differences\{\textbackslash{}\_\}in\{\textbackslash{}\_\}Judgments\{\textbackslash{}\_\}and\{\textbackslash{}\_\}Priming\{\textbackslash{}\_\}for\{\textbackslash{}\_\}Semantic\{\textbackslash{}\_\}and\{\textbackslash{}\_\}Associative\{\textbackslash{}\_\}Memory.pdf}
+Buchanan, E. M. (2010). Access into memory: Differences in judgments and
+priming for semantic and associative memory. \emph{Journal of Scientific
+Psychology}, \emph{March}, 1--8.
 
 \hypertarget{ref-Buchanan2013}{}
 Buchanan, E. M., Holmes, J. L., Teasley, M. L., \& Hutchison, K. A.
@@ -1162,22 +1204,29 @@ doi:\href{https://doi.org/10.1177/1745691610393980}{10.1177/1745691610393980}
 \hypertarget{ref-Chow2014}{}
 Chow, B. W.-Y. (2014). The differential roles of paired associate
 learning in Chinese and English word reading abilities in bilingual
-children. \emph{Reading and Writing}, 1--16.
+children. \emph{Reading and Writing}, \emph{27}(9), 1657--1672.
 doi:\href{https://doi.org/10.1007/s11145-014-9514-3}{10.1007/s11145-014-9514-3}
 
+\hypertarget{ref-Coltheart1993}{}
+Coltheart, M., Curtis, B., Atkins, P., \& Haller, M. (1993). Models of
+reading aloud: Dual-route and parallel-distributed-processing
+approaches. \emph{Psychological Review}, \emph{100}(4), 589--608.
+doi:\href{https://doi.org/10.1037//0033-295X.100.4.589}{10.1037//0033-295X.100.4.589}
+
 \hypertarget{ref-Gelman2006}{}
-Gelman, A. (2006). Multilevel (Hierarchical) Modeling: What It Can and
-Cannot Do. \emph{Technometrics}, \emph{48}(3), 432--435.
+Gelman, A. (2006). Multilevel (hierarchical) modeling: What it can and
+cannot do. \emph{Technometrics}, \emph{48}(3), 432--435.
 doi:\href{https://doi.org/10.1198/004017005000000661}{10.1198/004017005000000661}
 
 \hypertarget{ref-Green2016}{}
-Green, P., \& MacLeod, C. J. (2016). SIMR: An R Package for Power
-Analysis of Generalized Linear Mixed Models by Simulation. \emph{Methods
+Green, P., \& MacLeod, C. J. (2016). SIMR: an R package for power
+analysis of generalized linear mixed models by simulation. \emph{Methods
 in Ecology and Evolution}, \emph{7}(4), 493--498.
+doi:\href{https://doi.org/10.1111/2041-210X.12504}{10.1111/2041-210X.12504}
 
 \hypertarget{ref-Harley2008}{}
 Harley, T. (2008). \emph{The psychology of language: From data to
-theory} (Third.). New York: Psychology Press.
+theory} (3rd ed.). New York: Psychology Press.
 
 \hypertarget{ref-Harm2004}{}
 Harm, M. W., \& Seidenberg, M. S. (2004). Computing the meanings of
@@ -1211,28 +1260,28 @@ letter search task: semantic activation in the absence of priming.
 doi:\href{https://doi.org/10.3758/BF03193291}{10.3758/BF03193291}
 
 \hypertarget{ref-Jiang1997}{}
-Jiang, J. J., \& Conrath, D. W. (1997). Semantic Similarity Based on
-Corpus Statistics and Lexical Taxonomy. \emph{Proceedings of
-International Conference Research on Computational Linguistics},
-(Rocling X), 19--33.
-doi:\href{https://doi.org/10.1.1.269.3598}{10.1.1.269.3598}
+Jiang, J. J., \& Conrath, D. W. (1997). Semantic similarity based on
+corpus statistics and lexical taxonomy. \emph{Proceedings of
+International Conference Research on Computational Linguistics}, 19--33.
+Retrieved from \url{http://arxiv.org/abs/cmp-lg/9709008}
 
 \hypertarget{ref-Jones2012}{}
 Jones, L. L., \& Golonka, S. (2012). Different influences on lexical
 priming for integrative, thematic, and taxonomic relations.
-\emph{Frontiers in Human Neuroscience}, \emph{6}(July), 1--17.
+\emph{Frontiers in Human Neuroscience}, \emph{6}, 1--17.
 doi:\href{https://doi.org/10.3389/fnhum.2012.00205}{10.3389/fnhum.2012.00205}
 
 \hypertarget{ref-Jones2015}{}
-Jones, M. N., Willits, J., \& Dennis, S. (2015). Models of Semantic
-Memory. \emph{Oxford Handbook of Mathematical and Computational
-Psychology}, 232--254.
+Jones, M. N., Willits, J., \& Dennis, S. (2015). Models of semantic
+memory. In A. T. Townsend \& Jerome R. Busemeyer (Eds.), \emph{Oxford
+handbook of mathematical and computational psychology} (pp. 232--254).
+Oxford University Press.
 doi:\href{https://doi.org/10.1093/oxfordhb/9780199957996.013.11}{10.1093/oxfordhb/9780199957996.013.11}
 
 \hypertarget{ref-Jouravlev2016}{}
 Jouravlev, O., \& McRae, K. (2016). Thematic relatedness production
 norms for 100 object concepts. \emph{Behavior Research Methods},
-(October 2015), 1349--1357.
+\emph{48}(4), 1349--1357.
 doi:\href{https://doi.org/10.3758/s13428-015-0679-8}{10.3758/s13428-015-0679-8}
 
 \hypertarget{ref-Koriat2005}{}
@@ -1272,8 +1321,8 @@ doi:\href{https://doi.org/10.1016/j.cogpsych.2006.08.002}{10.1016/j.cogpsych.200
 
 \hypertarget{ref-Maki2007}{}
 Maki, W. S. (2007b). Separating bias and sensitivity in judgments of
-associative memory. \emph{Journal of Experimental Psychology. Learning,
-Memory, and Cognition}, \emph{33}(1), 231--7.
+associative memory. \emph{Journal of Experimental Psychology: Learning,
+Memory, and Cognition}, \emph{33}(1), 231--237.
 doi:\href{https://doi.org/10.1037/0278-7393.33.1.231}{10.1037/0278-7393.33.1.231}
 
 \hypertarget{ref-Maki2008}{}
@@ -1333,14 +1382,21 @@ of South Florida free association, rhyme, and word fragment norms.
 doi:\href{https://doi.org/10.3758/BF03195588}{10.3758/BF03195588}
 
 \hypertarget{ref-Paivio1969}{}
-Paivio, A. (1969). Mental Imagery in Associative Learning and Memory.
-\emph{American Psychological Association}, \emph{76}(3), 241--263.
-doi:\href{https://doi.org/10.1037/h0021465}{10.1037/h0021465}
+Paivio, A. (1969). Mental imagery in associative learning and memory.
+\emph{Psychological Review}, \emph{76}(3), 241--263.
+doi:\href{https://doi.org/10.1037/h0027272}{10.1037/h0027272}
 
 \hypertarget{ref-Pinheiro2017}{}
 Pinheiro, J., Bates, D., Debroy, S., Sarkar, D., \& R Core Team. (2017).
 nlme: Linear and Nonlinear Mixed Effects Models. Retrieved from
 \url{https://cran.r-project.org/package=nlme}
+
+\hypertarget{ref-Plaut1996}{}
+Plaut, D. C., McClelland, J. L., Seidenberg, M. S., \& Patterson, K.
+(1996). Understanding normal and impaired word reading: Computational
+principles in quasi-regular domains. \emph{Psychological Review},
+\emph{103}(1), 56--115.
+doi:\href{https://doi.org/10.1037//0033-295X.103.1.56}{10.1037//0033-295X.103.1.56}
 
 \hypertarget{ref-Richardson1998}{}
 Richardson, J. T. E. (1998). The availability and effectiveness of
@@ -1367,7 +1423,10 @@ microstructure of cognition. Volume 1}. Cambridge, MA: MIT Press.
 
 \hypertarget{ref-Schwartz2013}{}
 Schwartz, B. L., \& Brothers, B. R. (2013). Survival processing does not
-improve paired-associate learning, (September), 37--41.
+improve paired-associate learning. In B. L. Schwartz, M. L. Howe, M. P.
+Toglia, \& H. Otgaar (Eds.), \emph{What is adaptive about adaptive
+memory?} (pp. 159--171). Oxford University Press.
+doi:\href{https://doi.org/10.1093/acprof:oso/9780199928057.003.0009}{10.1093/acprof:oso/9780199928057.003.0009}
 
 \hypertarget{ref-Seidenberg1989}{}
 Seidenberg, M. S., \& Mcclelland, J. L. (1989). A distributed,
@@ -1376,8 +1435,8 @@ Review}, \emph{96}, 523--568.
 
 \hypertarget{ref-Smythe1968}{}
 Smythe, P. C., \& Paivio, A. (1968). A comparison of the effectiveness
-of word imagery and meaningfulness In palred-associate learning of
-nouns, 49--50.
+of word imagery and meaningfulness in paired-associate learning of
+nouns. \emph{Psychonomic Science}, \emph{10}(2), 49--50.
 doi:\href{https://doi.org/10.3758/BF03331401}{10.3758/BF03331401}
 
 \hypertarget{ref-Tabachnick2007}{}
@@ -1397,8 +1456,9 @@ Methods}, \emph{40}(1), 183--190.
 doi:\href{https://doi.org/10.3758/BRM.40.1.183}{10.3758/BRM.40.1.183}
 
 \hypertarget{ref-Wickham2007}{}
-Wickham, H. (2007). Reshaping Data with the Reshape Pakage.
+Wickham, H. (2007). Reshaping data with the reshape package.
 \emph{Journal of Statistical Software}, \emph{21}(12).
+doi:\href{https://doi.org/10.18637/jss.v021.i12}{10.18637/jss.v021.i12}
 
 
 
