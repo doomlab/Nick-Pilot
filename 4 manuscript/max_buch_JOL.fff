@@ -16,8 +16,8 @@ judgment ratings are perfectly calibrated with association norms.}
 \centering
 \includegraphics{max_buch_JOL_files/figure-latex/hyp2graph-1.pdf}
 \caption{\label{fig:hyp2graph}Simple slopes graph displaying the slope of
-FSG when predicting participant judgments at low, average, and high LSA
-split by low, average, and high COS. All variables were mean centered.}
+FSG when predicting JORs at low, average, and high LSA split by low,
+average, and high COS. All variables were mean centered.}
 \end{figure*}
 \efloatseparator
  
