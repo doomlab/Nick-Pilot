@@ -257,8 +257,8 @@ readily available online, with the largest one consisting of over 72,000
 associates generated from more than 5,000 cue words (Nelson, McEvoy, \&
 Schreiber, 2004). More recently, the Small World of Words project (SWOW;
 De Deyne, Navarro, \& Storms, 2013) has sought to capture associations
-between Dutch words by employing a multiple response techinique in
-constrast to the traditional single response free association task used
+between Dutch words by employing a multiple response technique in
+contrast to the traditional single response free association task used
 by Nelson et al. (2004). These norms are now being collected for English
 words (De Deyne, Navarro, Perfors, Brysbaert, \& Storms, 2018).
 
@@ -269,20 +269,20 @@ allow researchers to tap into aspects of semantic memory. Semantic
 memory is best described as an organized collection of our general
 knowledge and contains information regarding a concept's meaning
 (Hutchison, 2003). Models of semantic memory broadly fall into one of
-two categories. Connectionist models (Rogers \& McClelland, 2006; e.g,
-Rumelhart, McClelland, \& Group, 1986) portray semantic memory as a
-system of interconnected units representing concepts, which are linked
-together by weighted connections representing knowledge. By triggering
-the input units, activation will then spread throughout the system
-activating or suppressing connected units based on the weighted strength
-of the corresponding unit connections (Jones, Willits, \& Dennis, 2015).
-On the other hand, distributional models of semantic memory posit that
-semantic representations are created through the co-occurrences of words
-together in a body of text and suggest that words with similar meanings
-will appear together in similar contexts (Riordan \& Jones, 2011).
-Popular distributional models of semantic memory include Latent Semantic
-Analysis (LSA; Landauer \& Dumais, 1997) and the Hyperspace Analogue to
-Language (HAL; Lund \& Burgess, 1996).
+two categories. Connectionist models (e.g, Rogers \& McClelland, 2006;
+Rumelhart, McClelland, \& PDP Research Group, 1986) portray semantic
+memory as a system of interconnected units representing concepts, which
+are linked together by weighted connections representing knowledge. By
+triggering the input units, activation will then spread throughout the
+system activating or suppressing connected units based on the weighted
+strength of the corresponding unit connections (Jones, Willits, \&
+Dennis, 2015). On the other hand, distributional models of semantic
+memory posit that semantic representations are created through the
+co-occurrences of words together in a body of text and suggest that
+words with similar meanings will appear together in similar contexts
+(Riordan \& Jones, 2011). Popular distributional models of semantic
+memory include Latent Semantic Analysis (LSA; Landauer \& Dumais, 1997)
+and the Hyperspace Analogue to Language (HAL; Lund \& Burgess, 1996).
 
 Feature production tasks are a common means of producing semantic word
 norms (Buchanan, Holmes, Teasley, \& Hutchison, 2013; McRae, Cree,
@@ -324,7 +324,8 @@ word pair relations in regard to their overall context within a
 document, they assess thematic knowledge as well as semantic knowledge.
 Additionally, text-based models such as LSA are able to account for both
 the effects of context and similarity of meaning, bridging the gap
-between associations and semantics (Landauer, Foltz, \& Laham, 1998).
+between associations and semantics (Landauer, Foltz, Laham, Folt, \&
+Laham, 1998).
 
 Discussion of these measures then leads to the question of whether each
 one truly assesses some unique concept or if they simply tap into our
@@ -373,7 +374,7 @@ Specifically, this research was conceptualized within the framework of a
 three-tiered view of the interconnections between these systems as it
 relates to processing concept information. The three-tiered view is
 inspired by models of reading and naming, particularly the triangle
-models presented by Seidenberg and Mcclelland (1989) and Plaut (1995).
+models presented by Seidenberg and McClelland (1989) and Plaut (1995).
 These models explored the nature of reading as bidirectional relations
 between semantics, orthography, and phonology. In this research, we
 examine if the associative, semantic, and thematic systems are
@@ -534,7 +535,7 @@ models:
 A power analysis was conducted using the \emph{simR} package in \emph{R}
 (Green \& MacLeod, 2016). This package uses simulations to generate
 power estimates for mixed linear models created from the \emph{lme4}
-package in \emph{R} (Bates, Machler, Bolker, \& Walker, 2015). The
+package in \emph{R} (Bates, Mächler, Bolker, \& Walker, 2015). The
 results of this analyses suggested a minimum of 35 participants would be
 required to detect an effect. However, because power often tends to be
 underestimated, we extended participant recruitment as funding
@@ -713,7 +714,7 @@ online. In total, 787 data points were excluded (188 JOR only, 279
 recall only, 320 both), leading to a final \emph{N} of 105 participants
 and 6,269 observations. Recall and JOR values were then screened for
 outliers using Mahalanobis distance at \emph{p} \textless{} .001, and no
-outliers were found (Tabachnick \& Fidell, 2007). To screen for
+outliers were found (Tabachnick \& Fidell, 2012). To screen for
 multicollinearity, we examined correlations between judgment items, COS,
 LSA, and FSG. All correlations were \emph{r}s \textless{} .50.
 
@@ -867,20 +868,19 @@ three database norms when predicting participant JORs to examine the
 bidirectional network model. First, the database norms were mean
 centered to control for multicollinearity. The \emph{nlme} package and
 \emph{lme} function were used to calculate these analyses (Pinheiro,
-Bates, Debroy, Sarkar, \& R Core Team, 2017). A maximum likelihood
-multilevel model was used to test the interaction between FSG, COS, and
-LSA when predicting JOR values, with participant number used as the
-random intercept factor. The type of JOR being elicited was controlled
-for, so as to better assess the impact of each word overlap measure
-regardless of JOR condition. Multilevel models were used to retain all
-data points (rather than averaging over items and conditions) while
-controlling for correlated error due to participants, which makes these
-models advantageous for multiway repeated measures designs (Gelman,
-2006). This analysis resulted in a significant three-way interaction
-between FSG, COS, and LSA (\(\beta\) = 3.324, \emph{p} \textless{}
-.001), which is examined below in a simple slopes analysis. Table
-\ref{tab:hyp2-table} includes values for main effects, two-way, and
-three-way interactions.
+Bates, Debroy, Sarkar, \& Team, 2017). A maximum likelihood multilevel
+model was used to test the interaction between FSG, COS, and LSA when
+predicting JOR values, with participant number used as the random
+intercept factor. The type of JOR being elicited was controlled for, so
+as to better assess the impact of each word overlap measure regardless
+of JOR condition. Multilevel models were used to retain all data points
+(rather than averaging over items and conditions) while controlling for
+correlated error due to participants, which makes these models
+advantageous for multiway repeated measures designs (Gelman, 2006). This
+analysis resulted in a significant three-way interaction between FSG,
+COS, and LSA (\(\beta\) = 3.324, \emph{p} \textless{} .001), which is
+examined below in a simple slopes analysis. Table \ref{tab:hyp2-table}
+includes values for main effects, two-way, and three-way interactions.
 
 To investigate this interaction, simple slopes were calculated for low,
 average, and high levels of COS. This variable was chosen for two
@@ -915,7 +915,7 @@ associative and thematic overlap are complementary when predicting JOR
 ratings, increasing together as semantic strength increases. Figure
 \ref{fig:hyp2graph} displays the three-way interaction wherein the top
 row of figures indicates the seesaw effect, as thematic strength
-increases, the preditive ability of associative overlap decreases in
+increases, the predictive ability of associative overlap decreases in
 strength. The bottom row indicates the complementary effect where
 increases in LSA occur with increases in FSG predictor strength.
 Therefore, the cognitive process of judgment appears to be interactive
@@ -1147,7 +1147,7 @@ associations and semantics. As such, LSA faces increased competition
 from the associative and semantic database norms when predicting recall
 in this manner. Additionally, the dominance of FSG when predicting
 recall in the associative condition may be attributed to word
-associations being more accesible (and, thus, easier to process) than
+associations being more accessible (and, thus, easier to process) than
 semantic or thematic relations between pairs.
 
 Overall, our findings indicated the degree to which the processing of
@@ -1156,7 +1156,7 @@ judgment making tasks and the interactive relationship that exists
 between these three types of lexical information. While previous
 research has shown that memory networks are divided into separate
 systems which handle storage and processing for meaning and association
-(see Ferrand \& New, 2003 for a review), the presence of these
+(see Ferrand \& New, 2004 for a review), the presence of these
 interactions suggests that connections exist between these individual
 memory networks, linking them to one another. As such, we suggest that
 these memory systems may be connected in such a way to form a
@@ -1189,7 +1189,7 @@ general contexts in which it typically appears.
 How then does this hypothesis lend itself towards the broader context of
 psycholinguistic research? One application of this hypothesis may be
 models of word recognition. One popular class of models are those based
-upon Seidenberg and Mcclelland (1989) \enquote{triangle model} (see
+upon Seidenberg and McClelland (1989) \enquote{triangle model} (see
 Harley, 2008 for a review). They key feature of these models is that
 they recognize speech and reading based upon the orthography, phonology,
 and meaning of words in a bidirectional manner, similar to models
@@ -1222,15 +1222,15 @@ Aust, F., \& Barth, M. (2017). papaja: Create APA manuscripts with R
 Markdown. Retrieved from \url{https://github.com/crsh/papaja}
 
 \hypertarget{ref-Bates2015}{}
-Bates, D., Machler, M., Bolker, B., \& Walker, S. (2015). Fitting Linear
-Mixed-Effects Models Using lme4. \emph{Journal of Statistical Software},
+Bates, D., Mächler, M., Bolker, B., \& Walker, S. (2015). Fitting linear
+mixed-effects models using lme4. \emph{Journal of Statistical Software},
 \emph{67}(1), 1--48.
+doi:\href{https://doi.org/10.18637/jss.v067.i01}{10.18637/jss.v067.i01}
 
 \hypertarget{ref-Buchanan2010}{}
-Buchanan, E. M. (2010). Access into Memory: Differences in Judgments and
-Priming for Semantic and Associative Memory. \emph{Journal of Scientific
-Psychology.}, (March), 1--8. Retrieved from
-\href{http://www.psyencelab.com/images/Access\%7B/_\%7Dinto\%7B/_\%7DMemory\%7B/_\%7D\%7B/_\%7DDifferences\%7B/_\%7Din\%7B/_\%7DJudgments\%7B/_\%7Dand\%7B/_\%7DPriming\%7B/_\%7Dfor\%7B/_\%7DSemantic\%7B/_\%7Dand\%7B/_\%7DAssociative\%7B/_\%7DMemory.pdf}{http://www.psyencelab.com/images/Access\{\textbackslash{}\_\}into\{\textbackslash{}\_\}Memory\{\textbackslash{}\_\}\{\textbackslash{}\_\}Differences\{\textbackslash{}\_\}in\{\textbackslash{}\_\}Judgments\{\textbackslash{}\_\}and\{\textbackslash{}\_\}Priming\{\textbackslash{}\_\}for\{\textbackslash{}\_\}Semantic\{\textbackslash{}\_\}and\{\textbackslash{}\_\}Associative\{\textbackslash{}\_\}Memory.pdf}
+Buchanan, E. M. (2010). Access into memory: Differences in judgments and
+priming for semantic and associative memory. \emph{Journal of Scientific
+Psychology}, \emph{March}, 1--8.
 
 \hypertarget{ref-Buchanan2013}{}
 Buchanan, E. M., Holmes, J. L., Teasley, M. L., \& Hutchison, K. A.
@@ -1247,7 +1247,7 @@ doi:\href{https://doi.org/10.1177/1745691610393980}{10.1177/1745691610393980}
 \hypertarget{ref-Chow2014}{}
 Chow, B. W.-Y. (2014). The differential roles of paired associate
 learning in Chinese and English word reading abilities in bilingual
-children. \emph{Reading and Writing}, 1--16.
+children. \emph{Reading and Writing}, \emph{27}(9), 1657--1672.
 doi:\href{https://doi.org/10.1007/s11145-014-9514-3}{10.1007/s11145-014-9514-3}
 
 \hypertarget{ref-Coltheart1993}{}
@@ -1268,20 +1268,21 @@ De Deyne, S., Navarro, D. J., Perfors, A., Brysbaert, M., \& Storms, G.
 (2018). \emph{Measuring the associative structure of English: The
 ``Small World of Words'' norms for word association}.
 
-\hypertarget{ref-Ferrand2003}{}
-Ferrand, L., \& New, B. (2003). Semantic and associative priming in the
-mental lexicon. In P. Bonin (Ed.), \emph{Mental lexicon: Some words to
-talk about words} (pp. 25--43). Hauppauge, NY: Nova Science Publishers.
+\hypertarget{ref-Ferrand2004}{}
+Ferrand, L., \& New, B. (2004). Semantic and associative priming in the
+mental lexicon. In P. Bonin (Ed.), \emph{The mental lexicon} (pp.
+25--43). Hauppauge, NY: Nova Science.
 
 \hypertarget{ref-Gelman2006}{}
-Gelman, A. (2006). Multilevel (Hierarchical) Modeling: What It Can and
-Cannot Do. \emph{Technometrics}, \emph{48}(3), 432--435.
+Gelman, A. (2006). Multilevel (hierarchical) modeling: What it can and
+cannot do. \emph{Technometrics}, \emph{48}(3), 432--435.
 doi:\href{https://doi.org/10.1198/004017005000000661}{10.1198/004017005000000661}
 
 \hypertarget{ref-Green2016}{}
-Green, P., \& MacLeod, C. J. (2016). SIMR: An R Package for Power
-Analysis of Generalized Linear Mixed Models by Simulation. \emph{Methods
+Green, P., \& MacLeod, C. J. (2016). SIMR: an R package for power
+analysis of generalized linear mixed models by simulation. \emph{Methods
 in Ecology and Evolution}, \emph{7}(4), 493--498.
+doi:\href{https://doi.org/10.1111/2041-210X.12504}{10.1111/2041-210X.12504}
 
 \hypertarget{ref-Harley2008}{}
 Harley, T. (2008). \emph{The psychology of language: From data to
@@ -1314,16 +1315,15 @@ doi:\href{https://doi.org/10.3758/BF03196544}{10.3758/BF03196544}
 
 \hypertarget{ref-Hutchison2007}{}
 Hutchison, K. A., \& Bosco, F. A. (2007). Congruency effects in the
-letter search task: semantic activation in the absence of priming.
+letter search task: Semantic activation in the absence of priming.
 \emph{Memory \& Cognition}, \emph{35}(3), 514--525.
 doi:\href{https://doi.org/10.3758/BF03193291}{10.3758/BF03193291}
 
 \hypertarget{ref-Jiang1997}{}
-Jiang, J. J., \& Conrath, D. W. (1997). Semantic Similarity Based on
-Corpus Statistics and Lexical Taxonomy. \emph{Proceedings of
-International Conference Research on Computational Linguistics},
-(Rocling X), 19--33.
-doi:\href{https://doi.org/10.1.1.269.3598}{10.1.1.269.3598}
+Jiang, J. J., \& Conrath, D. W. (1997). Semantic similarity based on
+corpus statistics and lexical taxonomy. \emph{Proceedings of
+International Conference Research on Computational Linguistics (ROCLING
+X)}. Retrieved from \url{http://arxiv.org/abs/cmp-lg/9709008}
 
 \hypertarget{ref-Jones2012}{}
 Jones, L. L., \& Golonka, S. (2012). Different influences on lexical
@@ -1332,15 +1332,16 @@ priming for integrative, thematic, and taxonomic relations.
 doi:\href{https://doi.org/10.3389/fnhum.2012.00205}{10.3389/fnhum.2012.00205}
 
 \hypertarget{ref-Jones2015}{}
-Jones, M. N., Willits, J., \& Dennis, S. (2015). Models of Semantic
-Memory. \emph{Oxford Handbook of Mathematical and Computational
-Psychology}, 232--254.
+Jones, M. N., Willits, J., \& Dennis, S. (2015). Models of semantic
+memory. In A. T. Townsend \& J. R. Busemeyer (Eds.), \emph{Oxford
+handbook of mathematical and computational psychology} (pp. 232--254).
+Oxford University Press.
 doi:\href{https://doi.org/10.1093/oxfordhb/9780199957996.013.11}{10.1093/oxfordhb/9780199957996.013.11}
 
 \hypertarget{ref-Jouravlev2016}{}
 Jouravlev, O., \& McRae, K. (2016). Thematic relatedness production
 norms for 100 object concepts. \emph{Behavior Research Methods},
-(October 2015), 1349--1357.
+\emph{48}(4), 1349--1357.
 doi:\href{https://doi.org/10.3758/s13428-015-0679-8}{10.3758/s13428-015-0679-8}
 
 \hypertarget{ref-Koriat2005}{}
@@ -1357,9 +1358,9 @@ representation of knowledge. \emph{Psychological Review}, \emph{104}(2),
 doi:\href{https://doi.org/10.1037//0033-295X.104.2.211}{10.1037//0033-295X.104.2.211}
 
 \hypertarget{ref-Landauer1998}{}
-Landauer, T. K., Foltz, P. W., \& Laham, D. (1998). An introduction to
-latent semantic analysis. \emph{Discourse Processes}, \emph{25}(2),
-259--284.
+Landauer, T. K., Foltz, P. W., Laham, D., Folt, P. W., \& Laham, D.
+(1998). An introduction to latent semantic analysis. \emph{Discourse
+Processes}, \emph{25}(2), 259--284.
 doi:\href{https://doi.org/10.1080/01638539809545028}{10.1080/01638539809545028}
 
 \hypertarget{ref-Lucas2000}{}
@@ -1381,7 +1382,7 @@ doi:\href{https://doi.org/10.1016/j.cogpsych.2006.08.002}{10.1016/j.cogpsych.200
 \hypertarget{ref-Maki2007}{}
 Maki, W. S. (2007b). Separating bias and sensitivity in judgments of
 associative memory. \emph{Journal of Experimental Psychology. Learning,
-Memory, and Cognition}, \emph{33}(1), 231--7.
+Memory, and Cognition}, \emph{33}(1), 231--237.
 doi:\href{https://doi.org/10.1037/0278-7393.33.1.231}{10.1037/0278-7393.33.1.231}
 
 \hypertarget{ref-Maki2008}{}
@@ -1409,7 +1410,7 @@ McRae, K., Cree, G. S., Seidenberg, M. S., \& McNorgan, C. (2005).
 Semantic feature production norms for a large set of living and
 nonliving things. \emph{Behavior Research Methods}, \emph{37}(4),
 547--559.
-doi:\href{https://doi.org/10.3758/BRM.40.1.183}{10.3758/BRM.40.1.183}
+doi:\href{https://doi.org/10.3758/BF03192726}{10.3758/BF03192726}
 
 \hypertarget{ref-Meyer1971}{}
 Meyer, D. E., \& Schvaneveldt, R. W. (1971). Facilitation in recognizing
@@ -1441,20 +1442,19 @@ of South Florida free association, rhyme, and word fragment norms.
 doi:\href{https://doi.org/10.3758/BF03195588}{10.3758/BF03195588}
 
 \hypertarget{ref-Paivio1969}{}
-Paivio, A. (1969). Mental Imagery in Associative Learning and Memory.
-\emph{American Psychological Association}, \emph{76}(3), 241--263.
-doi:\href{https://doi.org/10.1037/h0021465}{10.1037/h0021465}
+Paivio, A. (1969). Mental imagery in associative learning and memory.
+\emph{Psychological Review}, \emph{76}(3), 241--263.
+doi:\href{https://doi.org/10.1037/h0027272}{10.1037/h0027272}
 
 \hypertarget{ref-Pinheiro2017}{}
-Pinheiro, J., Bates, D., Debroy, S., Sarkar, D., \& R Core Team. (2017).
-nlme: Linear and Nonlinear Mixed Effects Models. Retrieved from
+Pinheiro, J., Bates, D., Debroy, S., Sarkar, D., \& Team, R. C. (2017).
+nlme: Linear and nonlinear mixed effects models. Retrieved from
 \url{https://cran.r-project.org/package=nlme}
 
 \hypertarget{ref-Plaut1995}{}
 Plaut, D. C. (1995). Semantic and associative priming in a distributed
 attractor network. \emph{Proceedings of the 17th Annual Conference of
-the Cognitive Science Society}, 37--42. Retrieved from
-\href{http://books.google.com/books?hl=en\%7B/\&\%7Dlr=\%7B/\&\%7Did=CSU\%7B/_\%7DMj07G7UC\%7B/\&\%7Doi=fnd\%7B/\&\%7Dpg=PA37\%7B/\&\%7Ddq=Semantic+and+Associative+Priming+in+a+Distributed+Attractor+Network\%7B/\&\%7Dots=7OLUdxqiyS\%7B/\&\%7Dsig=SrxfKrRsI2\%7B/_\%7DdujuFT2qL8qH4ksw}{http://books.google.com/books?hl=en\{\textbackslash{}\&\}lr=\{\textbackslash{}\&\}id=CSU\{\textbackslash{}\_\}Mj07G7UC\{\textbackslash{}\&\}oi=fnd\{\textbackslash{}\&\}pg=PA37\{\textbackslash{}\&\}dq=Semantic+and+Associative+Priming+in+a+Distributed+Attractor+Network\{\textbackslash{}\&\}ots=7OLUdxqiyS\{\textbackslash{}\&\}sig=SrxfKrRsI2\{\textbackslash{}\_\}dujuFT2qL8qH4ksw}
+the Cognitive Science Society}, 37--42.
 
 \hypertarget{ref-Richardson1998}{}
 Richardson, J. T. E. (1998). The availability and effectiveness of
@@ -1475,28 +1475,32 @@ Rogers, T. T., \& McClelland, J. L. (2006). \emph{Semantic cognition}.
 Cambridge, MA: MIT Press.
 
 \hypertarget{ref-Rumelhart1986}{}
-Rumelhart, D. E., McClelland, J. L., \& Group, P. R. (1986).
+Rumelhart, D. E., McClelland, J. L., \& PDP Research Group. (1986).
 \emph{Parallel distributed processing: Explorations in the
 microstructure of cognition. Volume 1}. Cambridge, MA: MIT Press.
 
 \hypertarget{ref-Schwartz2013}{}
 Schwartz, B. L., \& Brothers, B. R. (2013). Survival processing does not
-improve paired-associate learning, (September), 37--41.
+improve paired-associate learning. In B. L. Schwartz, M. L. Howe, M. P.
+Toglia, \& H. Otgaar (Eds.), \emph{What is adaptive about adaptive
+memory?} (pp. 159--171). Oxford University Press.
+doi:\href{https://doi.org/10.1093/acprof:oso/9780199928057.003.0009}{10.1093/acprof:oso/9780199928057.003.0009}
 
-\hypertarget{ref-Seidenberg1989}{}
-Seidenberg, M. S., \& Mcclelland, J. L. (1989). A distributed,
+\hypertarget{ref-Seidenberg1989a}{}
+Seidenberg, M. S., \& McClelland, J. L. (1989). A distributed,
 developmental model of word recognition and naming. \emph{Psychological
-Review}, \emph{96}, 523--568.
+Review}, \emph{96}(4), 523--568.
+doi:\href{https://doi.org/10.1037//0033-295X.96.4.523}{10.1037//0033-295X.96.4.523}
 
 \hypertarget{ref-Smythe1968}{}
 Smythe, P. C., \& Paivio, A. (1968). A comparison of the effectiveness
-of word imagery and meaningfulness In palred-associate learning of
-nouns, 49--50.
+of word Imagery and meaningfulness in paired-associate learning of
+nouns. \emph{Psychonomic Science}, \emph{10}(2), 49--50.
 doi:\href{https://doi.org/10.3758/BF03331401}{10.3758/BF03331401}
 
-\hypertarget{ref-Tabachnick2007}{}
-Tabachnick, B. G., \& Fidell, L. S. (2007). \emph{Using Multivariate
-Statistics} (5th ed.). New York, NY: Allyn \& Bacon.
+\hypertarget{ref-Tabachnick2012}{}
+Tabachnick, B. G., \& Fidell, L. S. (2012). \emph{Using multivariate
+statistics} (Sixth.). Boston, MA: Pearson.
 
 \hypertarget{ref-Valentine2013}{}
 Valentine, K. D., \& Buchanan, E. M. (2013). JAM-boree: An application
@@ -1511,8 +1515,9 @@ Methods}, \emph{40}(1), 183--190.
 doi:\href{https://doi.org/10.3758/BRM.40.1.183}{10.3758/BRM.40.1.183}
 
 \hypertarget{ref-Wickham2007}{}
-Wickham, H. (2007). Reshaping Data with the Reshape Pakage.
-\emph{Journal of Statistical Software}, \emph{21}(12).
+Wickham, H. (2007). Reshaping data with the reshape package.
+\emph{Journal of Statistical Software}, \emph{21}(12), 1--20.
+doi:\href{https://doi.org/10.18637/jss.v021.i12}{10.18637/jss.v021.i12}
 
 
 
