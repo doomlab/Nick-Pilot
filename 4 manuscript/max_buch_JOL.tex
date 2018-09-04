@@ -1,5 +1,5 @@
-\documentclass[english,man]{apa6}
-
+\documentclass[english,,man, mask]{apa6}
+\usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
@@ -9,144 +9,118 @@
 \else % if luatex or xelatex
   \ifxetex
     \usepackage{mathspec}
-    \usepackage{xltxtra,xunicode}
   \else
     \usepackage{fontspec}
   \fi
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-  \newcommand{\euro}{€}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
-\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Investigating the Interaction between Associative, Semantic, and Thematic Database Norms for Memory Judgments and Retrieval},
+            pdfauthor={Nicholas P. Maxwell~\& Erin M. Buchanan},
+            pdfkeywords={judgments, memory, association, semantics, thematics},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=english]{babel}
+\else
+  \usepackage{polyglossia}
+  \setmainlanguage[]{english}
+\fi
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
 
-% Table formatting
-\usepackage{longtable, booktabs}
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+
+  \title{Investigating the Interaction between Associative, Semantic, and
+Thematic Database Norms for Memory Judgments and Retrieval}
+    \author{Nicholas P. Maxwell\textsuperscript{1}~\& Erin M.
+Buchanan\textsuperscript{1}}
+    \date{}
+  
+\shorttitle{Judgments and Recall}
+\affiliation{
+\vspace{0.5cm}
+\textsuperscript{1} Missouri State University}
+\keywords{judgments, memory, association, semantics, thematics}
+\usepackage{csquotes}
+\usepackage{upgreek}
+\captionsetup{font=singlespacing,justification=justified}
+
+\usepackage{longtable}
 \usepackage{lscape}
-% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
-\usepackage{multirow}		% Table styling
-\usepackage{tabularx}		% Control Column width
-\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
-\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage[flushleft]{threeparttable}
+\usepackage{threeparttablex}
 
-% Create new environments so endfloat can handle them
-% \newenvironment{ltable}
-%   {\begin{landscape}\begin{center}\begin{threeparttable}}
-%   {\end{threeparttable}\end{center}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\begin{center}\begin{ThreePartTable}}{\end{ThreePartTable}\end{center}\end{landscape}}
 
-\newenvironment{lltable}
-  {\begin{landscape}\begin{center}\begin{ThreePartTable}}
-  {\end{ThreePartTable}\end{center}\end{landscape}}
-
-  \usepackage{ifthen} % Only add declarations when endfloat package is loaded
-  \ifthenelse{\equal{\string man}{\string man}}{%
-   \DeclareDelayedFloatFlavor{ThreePartTable}{table} % Make endfloat play with longtable
-   % \DeclareDelayedFloatFlavor{ltable}{table} % Make endfloat play with lscape
-   \DeclareDelayedFloatFlavor{lltable}{table} % Make endfloat play with lscape & longtable
-  }{}%
-
-
-
-% The following enables adjusting longtable caption width to table width
-% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
 \makeatletter
 \newcommand\LastLTentrywidth{1em}
 \newlength\longtablewidth
 \setlength{\longtablewidth}{1in}
-\newcommand\getlongtablewidth{%
- \begingroup
-  \ifcsname LT@\roman{LT@tables}\endcsname
-  \global\longtablewidth=0pt
-  \renewcommand\LT@entry[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}%
-  \@nameuse{LT@\roman{LT@tables}}%
-  \fi
-\endgroup}
+\newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
 
 
-  \usepackage{graphicx}
-  \makeatletter
-  \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-  \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-  \makeatother
-  % Scale images if necessary, so that they will not overflow the page
-  % margins by default, and it is still possible to overwrite the defaults
-  % using explicit options in \includegraphics[width, height, ...]{}
-  \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\ifxetex
-  \usepackage[setpagesize=false, % page size defined by xetex
-              unicode=false, % unicode breaks when used with xetex
-              xetex]{hyperref}
-\else
-  \usepackage[unicode=true]{hyperref}
-\fi
-\hypersetup{breaklinks=true,
-            pdfauthor={},
-            pdftitle={Investigating the Interaction between Associative, Semantic, and Thematic Database Norms for Memory Judgments and Retrieval},
-            colorlinks=true,
-            citecolor=blue,
-            urlcolor=blue,
-            linkcolor=black,
-            pdfborder={0 0 0}}
-\urlstyle{same}  % don't use monospace font for urls
+\DeclareDelayedFloatFlavor{ThreePartTable}{table}
+\DeclareDelayedFloatFlavor{lltable}{table}
+\DeclareDelayedFloatFlavor*{longtable}{table}
+\makeatletter
+\renewcommand{\efloat@iwrite}[1]{\immediate\expandafter\protected@write\csname efloat@post#1\endcsname{}}
+\makeatother
+\usepackage{lineno}
 
-\setlength{\parindent}{0pt}
-%\setlength{\parskip}{0pt plus 0pt minus 0pt}
+\linenumbers
 
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\authornote{Nicholas P. Maxwell is a graduate student at
+Missouri State University. Erin M. Buchanan is an Associate Professor of
+Psychology at Missouri State University. Compliance with Ethical
+Standards: The authors declare that they have no conflict of interest.
 
-\ifxetex
-  \usepackage{polyglossia}
-  \setmainlanguage{}
-\else
-  \usepackage[english]{babel}
-\fi
+Correspondence concerning this article should be addressed to Nicholas
+P. Maxwell, 901 S. National Ave, Springfield, MO, 65897. E-mail:
+\href{mailto:maxwell270@live.missouristate.edu}{\nolinkurl{maxwell270@live.missouristate.edu}}}
 
-% Manuscript styling
-\captionsetup{font=singlespacing,justification=justified}
-\usepackage{csquotes}
-\usepackage{upgreek}
-
- % Line numbering
-  \usepackage{lineno}
-  \linenumbers
-
-
-\usepackage{tikz} % Variable definition to generate author note
-
-% fix for \tightlist problem in pandoc 1.14
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
-% Essential manuscript parts
-  \title{Investigating the Interaction between Associative, Semantic, and
-Thematic Database Norms for Memory Judgments and Retrieval}
-
-  \shorttitle{Judgments and Recall}
-
-
-  \author{Nicholas P. Maxwell\textsuperscript{1}~\& Erin M. Buchanan\textsuperscript{1}}
-
-  % \def\affdep{{"", ""}}%
-  % \def\affcity{{"", ""}}%
-
-  \affiliation{
-    \vspace{0.5cm}
-          \textsuperscript{1} Missouri State University  }
-
-  \authornote{
-    Nicholas P. Maxwell is a graduate student at Missouri State University.
-    Erin M. Buchanan is an Associate Professor of Psychology at Missouri
-    State University. Compliance with Ethical Standards: The authors declare
-    that they have no conflict of interest.
-    
-    Correspondence concerning this article should be addressed to Nicholas
-    P. Maxwell, 901 S. National Ave, Springfield, MO, 65897. E-mail:
-    \href{mailto:maxwell270@live.missouristate.edu}{\nolinkurl{maxwell270@live.missouristate.edu}}
-  }
-
-
-  \abstract{This study examined the interactive relationship between semantic,
+\abstract{
+This study examined the interactive relationship between semantic,
 thematic, and associative word pair strength in the prediction of item
 judgments and cued-recall performance. Participants were recruited from
 Amazon's Mechanical Turk and were given word pairs of varying
@@ -169,15 +143,10 @@ Overall, our findings indicate the degree to which the processing of
 associative, semantic, and thematic information impacts cognitive
 processes such as retrieval and item judgments, while also examining the
 underlying, interactive relationship that exists between these three
-types of information.}
-  \keywords{judgments, memory, association, semantics, thematics \\
-
-    
-  }
+types of information.
 
 
-
-
+}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[section]
@@ -194,12 +163,7 @@ types of information.}
 \newtheorem*{remark}{Remark}
 \newtheorem*{solution}{Solution}
 \begin{document}
-
 \maketitle
-
-\setcounter{secnumdepth}{0}
-
-
 
 The study of cognition has a rich history of exploring the role of
 association in human memory. One key finding is that elements of
@@ -400,8 +364,7 @@ of the structure and interplay between different forms of network
 relations for two cognitive tasks of judgment and retrieval and will
 shed light on the underlying processing for each task.
 
-\subsection{Application to Judgment
-Studies}\label{application-to-judgment-studies}
+\#\#Application to Judgment Studies
 
 Traditional judgment of learning tasks (JOL) can be viewed as an
 application of the PAL paradigm; participants are given pairs of items
@@ -529,9 +492,11 @@ models:
   (i.e., slopes) would impact the memory process.
 \end{enumerate}
 
-\section{Method}\label{method}
+\hypertarget{method}{%
+\section{Method}\label{method}}
 
-\subsection{Participants}\label{participants}
+\hypertarget{participants}{%
+\subsection{Participants}\label{participants}}
 
 A power analysis was conducted using the \emph{simR} package in \emph{R}
 (Green \& MacLeod, 2016). This package uses simulations to generate
@@ -552,7 +517,7 @@ responded to the cue words during the recall phase with sentences or
 phrases instead of individual words. Those that completed the study
 correctly were compensated \$1.00 for their participation.
 
-\subsection{Materials}\label{materials}
+\#\#Materials
 
 The stimuli used were sixty-three words pairs of varying associative,
 semantic, and thematic relatedness which were created from the Buchanan
@@ -619,7 +584,8 @@ LSA High & NA & NA & NA & 3 & .707 & .023 & 2 & .830 & .102\\
 \end{center}
 \end{table}
 
-\subsection{Procedure}\label{procedure}
+\hypertarget{procedure}{%
+\subsection{Procedure}\label{procedure}}
 
 The present study was divided into three phases. In the first phase,
 JORs were elicited by presenting participants with word pairs and asking
@@ -687,10 +653,12 @@ by responding with the correct target word. Participants were informed
 that they would not be penalized for guessing. The cued-recall task
 included all stimuli in a random order.
 
-\section{Results}\label{results}
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
+\hypertarget{data-processing-and-descriptive-statistics}{%
 \subsection{Data Processing and Descriptive
-Statistics}\label{data-processing-and-descriptive-statistics}
+Statistics}\label{data-processing-and-descriptive-statistics}}
 
 First, the results from the recall phase of the study was coded as zero
 for incorrect responses, one for correct responses, and NA for
@@ -726,7 +694,8 @@ Recall averaged over 60\% for all three conditions: associative \emph{M}
 = 63.40, \emph{SD} = 48.18; semantic \emph{M} = 68.02, \emph{SD} =
 46.65; thematic \emph{M} = 64.89, \emph{SD} = 47.74.
 
-\subsection{Hypothesis 1}\label{hypothesis-1}
+\hypertarget{hypothesis-1}{%
+\subsection{Hypothesis 1}\label{hypothesis-1}}
 
 \begin{table}[tbp]
 \begin{center}
@@ -812,7 +781,8 @@ provide evidence of the nature of judgments on the memory network as
 each judgment type appeared to tap each tier differently, suggesting a
 three-part system, rather than one large, encompassing memory network.
 
-\subsection{Hypothesis 2}\label{hypothesis-2}
+\hypertarget{hypothesis-2}{%
+\subsection{Hypothesis 2}\label{hypothesis-2}}
 
 \begin{table}[tbp]
 \begin{center}
@@ -922,7 +892,8 @@ increases in LSA occur with increases in FSG predictor strength.
 Therefore, the cognitive process of judgment appears to be interactive
 in nature across these three types of memory information.
 
-\subsection{Hypothesis 3}\label{hypothesis-3}
+\hypertarget{hypothesis-3}{%
+\subsection{Hypothesis 3}\label{hypothesis-3}}
 
 \begin{table}[tbp]
 \begin{center}
@@ -1020,7 +991,8 @@ average levels of cosine. The bottom left figure indicates the
 complementary effects where LSA and FSG increase together as predictors
 of recall at high COS levels.
 
-\subsection{Hypothesis 4}\label{hypothesis-4}
+\hypertarget{hypothesis-4}{%
+\subsection{Hypothesis 4}\label{hypothesis-4}}
 
 \begin{table}[tbp]
 \begin{center}
@@ -1089,7 +1061,8 @@ predicting recall), furthering Hypothesis 2 and 3 which illustrated the
 nature of those cognitive processes' relationship with the underlying
 memory network.
 
-\section{Discussion}\label{discussion}
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
 
 This study investigated the relationship between associative, semantic,
 and thematic word relations and their effect on participant JORs and
@@ -1213,316 +1186,314 @@ and associative networks.
 
 \newpage
 
-\section{References}\label{references}
+\hypertarget{references}{%
+\section{References}\label{references}}
 
-\setlength{\parindent}{-0.5in} \setlength{\leftskip}{0.5in}
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
 
 \hypertarget{refs}{}
-\hypertarget{ref-Aust2017}{}
+\leavevmode\hypertarget{ref-Aust2017}{}%
 Aust, F., \& Barth, M. (2017). papaja: Create APA manuscripts with R
 Markdown. Retrieved from \url{https://github.com/crsh/papaja}
 
-\hypertarget{ref-Bates2015}{}
+\leavevmode\hypertarget{ref-Bates2015}{}%
 Bates, D., Mächler, M., Bolker, B., \& Walker, S. (2015). Fitting linear
 mixed-effects models using lme4. \emph{Journal of Statistical Software},
 \emph{67}(1), 1--48.
 doi:\href{https://doi.org/10.18637/jss.v067.i01}{10.18637/jss.v067.i01}
 
-\hypertarget{ref-Buchanan2010}{}
+\leavevmode\hypertarget{ref-Buchanan2010}{}%
 Buchanan, E. M. (2010). Access into memory: Differences in judgments and
 priming for semantic and associative memory. \emph{Journal of Scientific
 Psychology}, \emph{March}, 1--8.
 
-\hypertarget{ref-Buchanan2013}{}
+\leavevmode\hypertarget{ref-Buchanan2013}{}%
 Buchanan, E. M., Holmes, J. L., Teasley, M. L., \& Hutchison, K. A.
 (2013). English semantic word-pair norms and a searchable Web portal for
 experimental stimulus creation. \emph{Behavior Research Methods},
 \emph{45}(3), 746--757.
 doi:\href{https://doi.org/10.3758/s13428-012-0284-z}{10.3758/s13428-012-0284-z}
 
-\hypertarget{ref-Buhrmester2011}{}
+\leavevmode\hypertarget{ref-Buhrmester2011}{}%
 Buhrmester, M., Kwang, T., \& Gosling, S. D. (2011). Amazon's Mechanical
 Turk. \emph{Perspectives on Psychological Science}, \emph{6}(1), 3--5.
 doi:\href{https://doi.org/10.1177/1745691610393980}{10.1177/1745691610393980}
 
-\hypertarget{ref-Chow2014}{}
+\leavevmode\hypertarget{ref-Chow2014}{}%
 Chow, B. W.-Y. (2014). The differential roles of paired associate
 learning in Chinese and English word reading abilities in bilingual
 children. \emph{Reading and Writing}, \emph{27}(9), 1657--1672.
 doi:\href{https://doi.org/10.1007/s11145-014-9514-3}{10.1007/s11145-014-9514-3}
 
-\hypertarget{ref-Coltheart1993}{}
+\leavevmode\hypertarget{ref-Coltheart1993}{}%
 Coltheart, M., Curtis, B., Atkins, P., \& Haller, M. (1993). Models of
 reading aloud: Dual-route and parallel-distributed-processing
 approaches. \emph{Psychological Review}, \emph{100}(4), 589--608.
 doi:\href{https://doi.org/10.1037/0033-295X.100.4.589}{10.1037/0033-295X.100.4.589}
 
-\hypertarget{ref-DeDeyne2013}{}
+\leavevmode\hypertarget{ref-DeDeyne2018}{}%
+De Deyne, S., Navarro, D. J., Perfors, A., Brysbaert, M., \& Storms, G.
+(2018). \emph{Measuring the associative structure of English: The
+``Small World of Words'' norms for word association}.
+
+\leavevmode\hypertarget{ref-DeDeyne2013}{}%
 De Deyne, S., Navarro, D. J., \& Storms, G. (2013). Better explanations
 of lexical and semantic cognition using networks derived from continued
 rather than single-word associations. \emph{Behavior Research Methods},
 \emph{45}(2), 480--498.
 doi:\href{https://doi.org/10.3758/s13428-012-0260-7}{10.3758/s13428-012-0260-7}
 
-\hypertarget{ref-DeDeyne2018}{}
-De Deyne, S., Navarro, D. J., Perfors, A., Brysbaert, M., \& Storms, G.
-(2018). \emph{Measuring the associative structure of English: The
-``Small World of Words'' norms for word association}.
-
-\hypertarget{ref-Ferrand2004}{}
+\leavevmode\hypertarget{ref-Ferrand2004}{}%
 Ferrand, L., \& New, B. (2004). Semantic and associative priming in the
 mental lexicon. In P. Bonin (Ed.), \emph{The mental lexicon} (pp.
 25--43). Hauppauge, NY: Nova Science.
 
-\hypertarget{ref-Gelman2006}{}
+\leavevmode\hypertarget{ref-Gelman2006}{}%
 Gelman, A. (2006). Multilevel (hierarchical) modeling: What it can and
 cannot do. \emph{Technometrics}, \emph{48}(3), 432--435.
 doi:\href{https://doi.org/10.1198/004017005000000661}{10.1198/004017005000000661}
 
-\hypertarget{ref-Green2016}{}
+\leavevmode\hypertarget{ref-Green2016}{}%
 Green, P., \& MacLeod, C. J. (2016). SIMR: an R package for power
 analysis of generalized linear mixed models by simulation. \emph{Methods
 in Ecology and Evolution}, \emph{7}(4), 493--498.
 doi:\href{https://doi.org/10.1111/2041-210X.12504}{10.1111/2041-210X.12504}
 
-\hypertarget{ref-Harley2008}{}
+\leavevmode\hypertarget{ref-Harley2008}{}%
 Harley, T. (2008). \emph{The psychology of language: From data to
 theory} (Third.). New York: Psychology Press.
 
-\hypertarget{ref-Harm2004}{}
+\leavevmode\hypertarget{ref-Harm2004}{}%
 Harm, M. W., \& Seidenberg, M. S. (2004). Computing the meanings of
 words in reading: Cooperative division of labor between visual and
 phonological processes. \emph{Psychological Review}, \emph{111}(3),
 662--720.
 doi:\href{https://doi.org/10.1037/0033-295X.111.3.662}{10.1037/0033-295X.111.3.662}
 
-\hypertarget{ref-Hertzog2002}{}
+\leavevmode\hypertarget{ref-Hertzog2002}{}%
 Hertzog, C., Kidder, D. P., Powell-Moman, A., \& Dunlosky, J. (2002).
 Aging and monitoring associative learning: Is monitoring accuracy spared
 or impaired? \emph{Psychology and Aging}, \emph{17}(2), 209--225.
 doi:\href{https://doi.org/10.1037/0882-7974.17.2.209}{10.1037/0882-7974.17.2.209}
 
-\hypertarget{ref-Hopfield1982}{}
+\leavevmode\hypertarget{ref-Hopfield1982}{}%
 Hopfield, J. J. (1982). Neural networks and physical systems with
 emergent collective computational abilities. \emph{Proceedings of the
 National Academy of Sciences}, \emph{79}(8), 2554--2558.
 doi:\href{https://doi.org/10.1073/pnas.79.8.2554}{10.1073/pnas.79.8.2554}
 
-\hypertarget{ref-Hutchison2003}{}
+\leavevmode\hypertarget{ref-Hutchison2003}{}%
 Hutchison, K. A. (2003). Is semantic priming due to association strength
 or feature overlap? A microanalytic review. \emph{Psychonomic Bulletin
 \& Review}, \emph{10}(4), 785--813.
 doi:\href{https://doi.org/10.3758/BF03196544}{10.3758/BF03196544}
 
-\hypertarget{ref-Hutchison2007}{}
+\leavevmode\hypertarget{ref-Hutchison2007}{}%
 Hutchison, K. A., \& Bosco, F. A. (2007). Congruency effects in the
 letter search task: Semantic activation in the absence of priming.
 \emph{Memory \& Cognition}, \emph{35}(3), 514--525.
 doi:\href{https://doi.org/10.3758/BF03193291}{10.3758/BF03193291}
 
-\hypertarget{ref-Jiang1997}{}
+\leavevmode\hypertarget{ref-Jiang1997}{}%
 Jiang, J. J., \& Conrath, D. W. (1997). Semantic similarity based on
 corpus statistics and lexical taxonomy. \emph{Proceedings of
 International Conference Research on Computational Linguistics (ROCLING
 X)}. Retrieved from \url{http://arxiv.org/abs/cmp-lg/9709008}
 
-\hypertarget{ref-Jones2012}{}
+\leavevmode\hypertarget{ref-Jones2012}{}%
 Jones, L. L., \& Golonka, S. (2012). Different influences on lexical
 priming for integrative, thematic, and taxonomic relations.
 \emph{Frontiers in Human Neuroscience}, \emph{6}(July), 1--17.
 doi:\href{https://doi.org/10.3389/fnhum.2012.00205}{10.3389/fnhum.2012.00205}
 
-\hypertarget{ref-Jones2015}{}
+\leavevmode\hypertarget{ref-Jones2015}{}%
 Jones, M. N., Willits, J., \& Dennis, S. (2015). Models of semantic
 memory. In A. T. Townsend \& J. R. Busemeyer (Eds.), \emph{Oxford
 handbook of mathematical and computational psychology} (pp. 232--254).
 Oxford University Press.
 doi:\href{https://doi.org/10.1093/oxfordhb/9780199957996.013.11}{10.1093/oxfordhb/9780199957996.013.11}
 
-\hypertarget{ref-Jouravlev2016}{}
+\leavevmode\hypertarget{ref-Jouravlev2016}{}%
 Jouravlev, O., \& McRae, K. (2016). Thematic relatedness production
 norms for 100 object concepts. \emph{Behavior Research Methods},
 \emph{48}(4), 1349--1357.
 doi:\href{https://doi.org/10.3758/s13428-015-0679-8}{10.3758/s13428-015-0679-8}
 
-\hypertarget{ref-Koriat2005}{}
+\leavevmode\hypertarget{ref-Koriat2005}{}%
 Koriat, A., \& Bjork, R. A. (2005). Illusions of competence in
 monitoring one's knowledge during study. \emph{Journal of Experimental
 Psychology: Learning, Memory, and Cognition}, \emph{31}(2), 187--194.
 doi:\href{https://doi.org/10.1037/0278-7393.31.2.187}{10.1037/0278-7393.31.2.187}
 
-\hypertarget{ref-Landauer1997}{}
+\leavevmode\hypertarget{ref-Landauer1997}{}%
 Landauer, T. K., \& Dumais, S. T. (1997). A solution to Plato's problem:
 The latent semantic analysis theory of acquisition, induction, and
 representation of knowledge. \emph{Psychological Review}, \emph{104}(2),
 211--240.
 doi:\href{https://doi.org/10.1037//0033-295X.104.2.211}{10.1037//0033-295X.104.2.211}
 
-\hypertarget{ref-Landauer1998}{}
+\leavevmode\hypertarget{ref-Landauer1998}{}%
 Landauer, T. K., Foltz, P. W., Laham, D., Folt, P. W., \& Laham, D.
 (1998). An introduction to latent semantic analysis. \emph{Discourse
 Processes}, \emph{25}(2), 259--284.
 doi:\href{https://doi.org/10.1080/01638539809545028}{10.1080/01638539809545028}
 
-\hypertarget{ref-Lucas2000}{}
+\leavevmode\hypertarget{ref-Lucas2000}{}%
 Lucas, M. (2000). Semantic priming without association: a meta-analytic
 review. \emph{Psychonomic Bulletin \& Review}, \emph{7}(4), 618--630.
 doi:\href{https://doi.org/10.3758/BF03212999}{10.3758/BF03212999}
 
-\hypertarget{ref-Lund1996}{}
+\leavevmode\hypertarget{ref-Lund1996}{}%
 Lund, K., \& Burgess, C. (1996). Producing high-dimensional semantic
 spaces from lexical co-occurrence. \emph{Behavior Research Methods,
 Instruments, \& Computers}, \emph{28}(2), 203--208.
 doi:\href{https://doi.org/10.3758/BF03204766}{10.3758/BF03204766}
 
-\hypertarget{ref-Maki2007a}{}
+\leavevmode\hypertarget{ref-Maki2007a}{}%
 Maki, W. S. (2007a). Judgments of associative memory. \emph{Cognitive
 Psychology}, \emph{54}(4), 319--353.
 doi:\href{https://doi.org/10.1016/j.cogpsych.2006.08.002}{10.1016/j.cogpsych.2006.08.002}
 
-\hypertarget{ref-Maki2007}{}
+\leavevmode\hypertarget{ref-Maki2007}{}%
 Maki, W. S. (2007b). Separating bias and sensitivity in judgments of
 associative memory. \emph{Journal of Experimental Psychology. Learning,
 Memory, and Cognition}, \emph{33}(1), 231--237.
 doi:\href{https://doi.org/10.1037/0278-7393.33.1.231}{10.1037/0278-7393.33.1.231}
 
-\hypertarget{ref-Maki2008}{}
+\leavevmode\hypertarget{ref-Maki2008}{}%
 Maki, W. S., \& Buchanan, E. M. (2008). Latent structure in measures of
 associative, semantic, and thematic knowledge. \emph{Psychonomic
 Bulletin \& Review}, \emph{15}(3), 598--603.
 doi:\href{https://doi.org/10.3758/PBR.15.3.598}{10.3758/PBR.15.3.598}
 
-\hypertarget{ref-Maki2004}{}
+\leavevmode\hypertarget{ref-Maki2004}{}%
 Maki, W. S., McKinley, L. N., \& Thompson, A. G. (2004). Semantic
 distance norms computed from an electronic dictionary (WordNet).
 \emph{Behavior Research Methods, Instruments, \& Computers},
 \emph{36}(3), 421--431.
 doi:\href{https://doi.org/10.3758/BF03195590}{10.3758/BF03195590}
 
-\hypertarget{ref-McLeod2000}{}
+\leavevmode\hypertarget{ref-McLeod2000}{}%
 McLeod, P., Shallice, T., \& Plaut, D. C. (2000). Attractor dynamics in
 word recognition: converging evidence from errors by normal subjects,
 dyslexic patients and a connectionist model. \emph{Cognition},
 \emph{74}(1), 91--114.
 doi:\href{https://doi.org/10.1016/S0010-0277(99)00067-0}{10.1016/S0010-0277(99)00067-0}
 
-\hypertarget{ref-McRae2005}{}
+\leavevmode\hypertarget{ref-McRae2005}{}%
 McRae, K., Cree, G. S., Seidenberg, M. S., \& McNorgan, C. (2005).
 Semantic feature production norms for a large set of living and
 nonliving things. \emph{Behavior Research Methods}, \emph{37}(4),
 547--559.
 doi:\href{https://doi.org/10.3758/BF03192726}{10.3758/BF03192726}
 
-\hypertarget{ref-Meyer1971}{}
+\leavevmode\hypertarget{ref-Meyer1971}{}%
 Meyer, D. E., \& Schvaneveldt, R. W. (1971). Facilitation in recognizing
 pairs of words: Evidence of a dependence between retrieval operations.
 \emph{Journal of Experimental Psychology}, \emph{90}(2), 227--234.
 doi:\href{https://doi.org/10.1037/h0031564}{10.1037/h0031564}
 
-\hypertarget{ref-Meyer1975}{}
+\leavevmode\hypertarget{ref-Meyer1975}{}%
 Meyer, D. E., Schvaneveldt, R. W., \& Ruddy, M. G. (1975). Loci of
 contextual effects on visual word-recognition. In P. M. A. Rabbitt
 (Ed.), \emph{Attention and performance v}. London, UK: Academic Press.
 
-\hypertarget{ref-Miller1995}{}
+\leavevmode\hypertarget{ref-Miller1995}{}%
 Miller, G. A. (1995). WordNet: a lexical database for English.
 \emph{Communications of the ACM}, \emph{38}(11), 39--41.
 doi:\href{https://doi.org/10.1145/219717.219748}{10.1145/219717.219748}
 
-\hypertarget{ref-Nelson2000}{}
+\leavevmode\hypertarget{ref-Nelson2000}{}%
 Nelson, D. L., McEvoy, C. L., \& Dennis, S. (2000). What is free
 association and what does it measure? \emph{Memory \& Cognition},
 \emph{28}(6), 887--899.
 doi:\href{https://doi.org/10.3758/BF03209337}{10.3758/BF03209337}
 
-\hypertarget{ref-Nelson2004}{}
+\leavevmode\hypertarget{ref-Nelson2004}{}%
 Nelson, D. L., McEvoy, C. L., \& Schreiber, T. A. (2004). The University
 of South Florida free association, rhyme, and word fragment norms.
 \emph{Behavior Research Methods, Instruments, \& Computers},
 \emph{36}(3), 402--407.
 doi:\href{https://doi.org/10.3758/BF03195588}{10.3758/BF03195588}
 
-\hypertarget{ref-Paivio1969}{}
+\leavevmode\hypertarget{ref-Paivio1969}{}%
 Paivio, A. (1969). Mental imagery in associative learning and memory.
 \emph{Psychological Review}, \emph{76}(3), 241--263.
 doi:\href{https://doi.org/10.1037/h0027272}{10.1037/h0027272}
 
-\hypertarget{ref-Pinheiro2017}{}
+\leavevmode\hypertarget{ref-Pinheiro2017}{}%
 Pinheiro, J., Bates, D., Debroy, S., Sarkar, D., \& Team, R. C. (2017).
 nlme: Linear and nonlinear mixed effects models. Retrieved from
 \url{https://cran.r-project.org/package=nlme}
 
-\hypertarget{ref-Plaut1995}{}
+\leavevmode\hypertarget{ref-Plaut1995}{}%
 Plaut, D. C. (1995). Semantic and associative priming in a distributed
 attractor network. \emph{Proceedings of the 17th Annual Conference of
 the Cognitive Science Society}, 37--42.
 
-\hypertarget{ref-Richardson1998}{}
+\leavevmode\hypertarget{ref-Richardson1998}{}%
 Richardson, J. T. E. (1998). The availability and effectiveness of
 reported mediators in associative learning: A historical review and an
 experimental investigation. \emph{Psychonomic Bulletin \& Review},
 \emph{5}(4), 597--614.
 doi:\href{https://doi.org/10.3758/BF03208837}{10.3758/BF03208837}
 
-\hypertarget{ref-Riordan2011}{}
+\leavevmode\hypertarget{ref-Riordan2011}{}%
 Riordan, B., \& Jones, M. N. (2011). Redundancy in perceptual and
 linguistic experience: Comparing feature-based and distributional models
 of semantic representation. \emph{Topics in Cognitive Science},
 \emph{3}(2), 303--345.
 doi:\href{https://doi.org/10.1111/j.1756-8765.2010.01111.x}{10.1111/j.1756-8765.2010.01111.x}
 
-\hypertarget{ref-Rogers2006}{}
+\leavevmode\hypertarget{ref-Rogers2006}{}%
 Rogers, T. T., \& McClelland, J. L. (2006). \emph{Semantic cognition}.
 Cambridge, MA: MIT Press.
 
-\hypertarget{ref-Rumelhart1986}{}
+\leavevmode\hypertarget{ref-Rumelhart1986}{}%
 Rumelhart, D. E., McClelland, J. L., \& PDP Research Group. (1986).
 \emph{Parallel distributed processing: Explorations in the
 microstructure of cognition. Volume 1}. Cambridge, MA: MIT Press.
 
-\hypertarget{ref-Schwartz2013}{}
+\leavevmode\hypertarget{ref-Schwartz2013}{}%
 Schwartz, B. L., \& Brothers, B. R. (2013). Survival processing does not
 improve paired-associate learning. In B. L. Schwartz, M. L. Howe, M. P.
 Toglia, \& H. Otgaar (Eds.), \emph{What is adaptive about adaptive
 memory?} (pp. 159--171). Oxford University Press.
 doi:\href{https://doi.org/10.1093/acprof:oso/9780199928057.003.0009}{10.1093/acprof:oso/9780199928057.003.0009}
 
-\hypertarget{ref-Seidenberg1989a}{}
+\leavevmode\hypertarget{ref-Seidenberg1989a}{}%
 Seidenberg, M. S., \& McClelland, J. L. (1989). A distributed,
 developmental model of word recognition and naming. \emph{Psychological
 Review}, \emph{96}(4), 523--568.
 doi:\href{https://doi.org/10.1037//0033-295X.96.4.523}{10.1037//0033-295X.96.4.523}
 
-\hypertarget{ref-Smythe1968}{}
+\leavevmode\hypertarget{ref-Smythe1968}{}%
 Smythe, P. C., \& Paivio, A. (1968). A comparison of the effectiveness
 of word Imagery and meaningfulness in paired-associate learning of
 nouns. \emph{Psychonomic Science}, \emph{10}(2), 49--50.
 doi:\href{https://doi.org/10.3758/BF03331401}{10.3758/BF03331401}
 
-\hypertarget{ref-Tabachnick2012}{}
+\leavevmode\hypertarget{ref-Tabachnick2012}{}%
 Tabachnick, B. G., \& Fidell, L. S. (2012). \emph{Using multivariate
 statistics} (Sixth.). Boston, MA: Pearson.
 
-\hypertarget{ref-Valentine2013}{}
+\leavevmode\hypertarget{ref-Valentine2013}{}%
 Valentine, K. D., \& Buchanan, E. M. (2013). JAM-boree: An application
 of observation oriented modelling to judgements of associative memory.
 \emph{Journal of Cognitive Psychology}, \emph{25}(4), 400--422.
 doi:\href{https://doi.org/10.1080/20445911.2013.775120}{10.1080/20445911.2013.775120}
 
-\hypertarget{ref-Vinson2008}{}
+\leavevmode\hypertarget{ref-Vinson2008}{}%
 Vinson, D. P., \& Vigliocco, G. (2008). Semantic feature production
 norms for a large set of objects and events. \emph{Behavior Research
 Methods}, \emph{40}(1), 183--190.
 doi:\href{https://doi.org/10.3758/BRM.40.1.183}{10.3758/BRM.40.1.183}
 
-\hypertarget{ref-Wickham2007}{}
+\leavevmode\hypertarget{ref-Wickham2007}{}%
 Wickham, H. (2007). Reshaping data with the reshape package.
 \emph{Journal of Statistical Software}, \emph{21}(12), 1--20.
 doi:\href{https://doi.org/10.18637/jss.v021.i12}{10.18637/jss.v021.i12}
-
-
-
-
 
 
 \end{document}
