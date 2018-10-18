@@ -4,19 +4,21 @@ shorttitle        : "Judgments and Recall"
 
 author: 
   - name          : "Nicholas P. Maxwell"
-    affiliation   : "1"
+    affiliation   : "1,2"
     corresponding : yes    # Define only one corresponding author
     address       : "901 S. National Ave, Springfield, MO, 65897"
-    email         : "maxwell270@live.missouristate.edu"
+    email         : "nicholas.maxwell@usm.edu"
   - name          : "Erin M. Buchanan"
     affiliation   : "1"
 
 affiliation:
   - id            : "1"
     institution   : "Missouri State University"
+  - id            : "2"
+    institution   : "University of Southern Mississippi"
 
 author_note: >
-  Nicholas P. Maxwell is a graduate student at Missouri State University. Erin M. Buchanan is an Associate Professor of Psychology at Missouri State University. 
+  Nicholas P. Maxwell received his masters degree at Missouri State University and is now a Ph.D. candidate at the University of Southern Mississippi. Erin M. Buchanan is an Associate Professor of Psychology at Missouri State University. 
   
   Compliance with Ethical Standards: The authors declare that they have no conflict of interest.
   
@@ -34,7 +36,7 @@ footnotelist      : no
 lineno            : yes
 
 lang              : "english"
-class             : "man, mask"
+class             : "man"
 output            : papaja::apa6_pdf
 replace_ampersands: yes
 csl               : apa6.csl
