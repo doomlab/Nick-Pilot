@@ -36,7 +36,7 @@ footnotelist      : no
 lineno            : yes
 
 lang              : "english"
-class             : "man, mask"
+class             : "man"
 output            : papaja::apa6_pdf
 replace_ampersands: yes
 csl               : apa6.csl
