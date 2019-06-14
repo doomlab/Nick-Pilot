@@ -4,21 +4,21 @@ shorttitle        : "Judgments and Recall"
 
 author: 
   - name          : "Nicholas P. Maxwell"
-    affiliation   : "1,2"
+    affiliation   : "1,"
   - name          : "Erin M. Buchanan"
-    affiliation   : "1"
+    affiliation   : "2"
     corresponding : yes    # Define only one corresponding author
-    address       : "901 S. National Ave, Springfield, MO, 65897"
-    email         : "erinbuchanan@missouristate.edu"
+    address       : "326 Market St., Harrisburg, PA, 17101"
+    email         : "ebuchanan@harrisburgu.edu"
 
 affiliation:
   - id            : "1"
-    institution   : "Missouri State University"
-  - id            : "2"
     institution   : "University of Southern Mississippi"
+  - id            : "2"
+    institution   : "Harrisburg University of Science and Technology"
 
 author_note: >
-  Nicholas P. Maxwell received his masters degree at Missouri State University and is now a Ph.D. candidate at the University of Southern Mississippi. Erin M. Buchanan is an Associate Professor of Psychology at Missouri State University. 
+  Nicholas P. Maxwell is a Ph.D. candidate at the University of Southern Mississippi. Erin M. Buchanan is an Professor of Cognitive Analytics at Harrisburg University of Science and Technology. 
   
 abstract: >
   This study examined the interactive relationship between semantic, thematic, and associative word pair strength in the prediction of item judgments and cued-recall performance. Participants were recruited from Amazon's Mechanical Turk and were given word pairs of varying relatedness to judge for their semantic, thematic, and associative strength. After completing a distractor task, participants then completed a cued recall task. First, we sought to expand previous work on judgments of associative memory (JAM) to include semantic and thematic based judgments, while also replicating bias and sensitivity findings. Next, we tested for an interaction between the three database norms (FSG, COS, and LSA) when predicting participant judgments and also extended previous work to test for interactions between the three database norms when predicting recall. Significant three-way interactions were found between FSG, COS, and LSA when predicting judgments and recall. For low semantic feature overlap, thematic and associative strength were competitive; as thematic strength increased, associative predictiveness decreased. However, this trend reversed for high semantic feature overlap, wherein thematic and associative strength were complementary as both set of simple slopes increased together. Overall, our findings indicate the degree to which the processing of associative, semantic, and thematic information impacts cognitive processes such as retrieval and item judgments, while also examining the underlying, interactive relationship that exists between these three types of information.
