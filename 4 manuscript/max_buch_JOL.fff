@@ -1,6 +1,6 @@
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
-
+[htbp]
 \centering
 \includegraphics{max_buch_JOL_files/figure-latex/makislope-1.pdf}
 \caption{\label{fig:makislope}JAM slope findings from Maki (2007a). JAM is
@@ -12,7 +12,7 @@ judgment ratings are perfectly calibrated with association norms.}
  
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
-
+[htbp]
 \centering
 \includegraphics{max_buch_JOL_files/figure-latex/hyp2graph-1.pdf}
 \caption{\label{fig:hyp2graph}Simple slopes graph displaying the slope of
@@ -23,7 +23,7 @@ average, and high COS. All variables were mean centered.}
  
 \begin{figure*}[hbt]
 \ifnextchar[{\eatarg}{}
-
+[htbp]
 \centering
 \includegraphics{max_buch_JOL_files/figure-latex/hyp3graph-1.pdf}
 \caption{\label{fig:hyp3graph}Simple slopes graph displaying the slope of

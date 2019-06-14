@@ -11,3 +11,5 @@ nlme
 MuMIn
 Matrix
 lme4
+ez
+reshape
