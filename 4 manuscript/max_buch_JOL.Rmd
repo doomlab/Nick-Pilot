@@ -443,6 +443,7 @@ r.eta = recall.model1$ANOVA$ges
 The mean JOR for the associative condition (*M* = `r apa(meanJno[1], 2)`, *SD* = `r apa(sdJno[1], 2)`) was lower than the semantic (*M* = `r apa(meanJno[2], 2)`, *SD* = `r apa(sdJno[2], 2)`) and thematic (*M* = `r apa(meanJno[3], 2)`, *SD* = `r apa(sdJno[3], 2)`) conditions. Recall averaged over 60% for all three conditions: associative *M* = `r apa(meanRno[1]*100, 2)`, *SD* = `r apa(sdRno[1]*100, 2)`; semantic *M* = `r apa(meanRno[2]*100, 2)`, *SD* = `r apa(sdRno[2]*100, 2)`; thematic *M* = `r apa(meanRno[3]*100, 2)`, *SD* = `r apa(sdRno[3]*100, 2)`. To confirm these patterns, two one-way ANOVAs were used to test for differences between mean JOR rates and mean correct percent recall for each of the three judgment conditions. Overall, a significant main effect of judgment type was detected for JORs (*F* (2, 144) = `r apa(jf, 2)`), *p* < .001, $\eta$*p^2^* = `r apa(j.eta, 2)`), and a post-hoc pairwise *t*-test indicated that all comparisons were signifcant (*t*s > 3.48, *p*s < .002) No significant difference was found between groups for mean correct recall (*F* (2, 144) = `r apa(rf, 2)`), *p* = .112, $\eta$*p^2^* = `r apa(r.eta, 2)`).
 
 ## JAM Slope Bias and Sensitivity
+
 ```{r hyp1-table1, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 ##are average slope and intercept values greater than zero?
 ##are they within the range of previous work, although maybe controlling for other variables might change them a bit
