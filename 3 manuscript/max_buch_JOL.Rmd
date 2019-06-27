@@ -60,6 +60,8 @@ library(ggplot2)
 library(ez)
 library(lsa)
 library(kableExtra)
+library(nlme)
+library(knitr)
 
 cleanup = theme(panel.grid.major = element_blank(), 
                 panel.grid.minor = element_blank(), 
@@ -82,11 +84,11 @@ Using this technique, researchers have developed databases of associative word n
 
 ## Measuring Relatedness
 
-Whereas direct associations focus on the relationships between individual words, indirect associations focus on how a concept fits into the overall structure of the semantic network [@DeDeyne2013; @Deese1965]. Because indirect associations capture information derived from the overall structure of the semantic network, these norms can also be used to represent semantic properties of item pairs and can be used to approximate links between concepts within semantic memory networks. This includes mediated associates [i.e., *lion* – *stripes* is mediated through *tiger*; see @Huff2011 for a review of mediated associates] and is one of the underlying factors behind distributional models of semantic memory [e.g., Latent Semantic Analysis, @Landauer199; Hyperspace Analogue to Language Model, @Lund1996]. These models posit that semantic representations are created through the co-occurrences of words together within a body of text and suggest that words with similar meanings will appear together in similar contexts [@Riordan2011]. On the other hand, connectionist models of semantic memory [e.g., @Rogers2006; @Rumelhart1986] portray the semantic network as a system of interconnected units representing concepts, which are linked together by weighted connections representing knowledge. By triggering the input units, activation will then spread throughout the system activating or suppressing connected units based on the weighted strength of the corresponding unit connections [@Jones2015]. 
+Whereas direct associations focus on the relationships between individual words, indirect associations focus on how a concept fits into the overall structure of the semantic network [@DeDeyne2013; @Deese1965]. Because indirect associations capture information derived from the overall structure of the semantic network, these norms can also be used to represent semantic properties of item pairs and can be used to approximate links between concepts within semantic memory networks. This includes mediated associates [i.e., *lion* – *stripes* is mediated through *tiger*; see @Huff2011 for a review of mediated associates] and is one of the underlying factors behind distributional models of semantic memory [e.g., Latent Semantic Analysis, @Landauer1997; Hyperspace Analogue to Language Model, @Lund1996]. These models posit that semantic representations are created through the co-occurrences of words together within a body of text and suggest that words with similar meanings will appear together in similar contexts [@Riordan2011]. On the other hand, connectionist models of semantic memory [e.g., @Rogers2006; @Rumelhart1986] portray the semantic network as a system of interconnected units representing concepts, which are linked together by weighted connections representing knowledge. By triggering the input units, activation will then spread throughout the system activating or suppressing connected units based on the weighted strength of the corresponding unit connections [@Jones2015]. 
 
 Semantic overlap between concepts can measured in several ways. Feature production tasks [@McRae2005; @Vinson2008; @Buchanan2013] provide one means of generating semantic word norms. In such tasks, participants are shown the name of a concept and are asked to list what they believe the concept's most important features to be [@McRae2005]. Several statistical measures have been developed which measure the degree of feature overlap between concepts. First, similarity between any two concepts can be measured by representing them as vectors and calculating the cosine value (COS) between them [@Maki2004], with COS values ranging from 0 (completely unrelated) to 1 (perfectly related). For example, the pair *hornet* - *wasp* has a COS of .88, indicating a high degree of overlap between the two concepts. Feature overlap can also be measured by JCN, which involves calculating both the information content value of each concept and the lowest super-ordinate shared by each concept using an online dictionary, such as WordNET [@Miller1995]. The JCN value is then computed by summing together the difference of each concept and its lowest super-ordinate [@Jiang1997; @Maki2004]. The advantage to using COS values over JCN values is the limitation of JCN being tied to a somewhat static dictionary database, while a semantic feature production task can be used on any concept to calculate COS values. However, JCN values are less time consuming to obtain if both concepts are in the database [@Buchanan2013]. 
 
-Finally, indirect associations computed from a large dataset can also be used as a measure semantic overlap, and indeed may provide a better measure semantic relatedness relative to feature production norms. @DeDeyne 2013 constructed a semantic network based on the distributions of associations (e.g., indirect associates) by converting free association data taken from the SWOW project into a weighted semantic network.  Computing the cosine overlap between the distribution of free association answers on any two concepts within this network provides a useful measure of meaning. Discussion of these measures then leads to the question of whether each one is truly assessing some unique concept or if they simply tap into various elements of our overall linguistic knowledge. Previous clustering and factor analyses  by @Maki2008 indicates that there are potentially three separate latent structures represented by these various measures of similarity – associative, semantic, and thematic types of relatedness. However, another interpretation of their results is that the data collection of the measurement matters – variables that are based on participant responses to cued stimuli grouped together, while text-corpora based and WordNET based similarity measures separated into separate factors. By using the participant responses from SWOW to measure indirect association,  we draw from a larger, newer set of data and resolve a potential confound of conflating measurement techniques. 
+Finally, indirect associations computed from a large dataset can also be used as a measure semantic overlap, and indeed may provide a better measure semantic relatedness relative to feature production norms. @DeDeyne2013 constructed a semantic network based on the distributions of associations (e.g., indirect associates) by converting free association data taken from the SWOW project into a weighted semantic network.  Computing the cosine overlap between the distribution of free association answers on any two concepts within this network provides a useful measure of meaning. Discussion of these measures then leads to the question of whether each one is truly assessing some unique concept or if they simply tap into various elements of our overall linguistic knowledge. Previous clustering and factor analyses  by @Maki2008 indicates that there are potentially three separate latent structures represented by these various measures of similarity – associative, semantic, and thematic types of relatedness. However, another interpretation of their results is that the data collection of the measurement matters – variables that are based on participant responses to cued stimuli grouped together, while text-corpora based and WordNET based similarity measures separated into separate factors. By using the participant responses from SWOW to measure indirect association,  we draw from a larger, newer set of data and resolve a potential confound of conflating measurement techniques. 
 
 ## Application to Judgment Studies
 
@@ -148,6 +150,34 @@ thesis$where = "thesis"
 colnames(pilot)[2] = "Judgment"
 
 master = rbind(pilot, thesis)
+```
+
+```{r power, eval = F, include = F}
+####power test####
+#library(nlmeU)
+#library(simr)
+#Pwr(overallh2)
+
+#powerest = rep(NA, 99)
+#samplesizetest = seq(1*63, 100*63, 62) ##set up sample sizes to test
+#sim = 1
+#for (i in samplesizetest){
+
+#smalldata = sample(noout, i)
+
+#testh2 = lme(Judged.Value2 ~ Judgment +
+#               ZCOS * ZLSA * ZFSG,
+#             data = smalldata,
+#             method = "ML",
+#             na.action = "na.omit",
+#             random = ~1|Partno)
+#powerest[sim] = Pwr(testh2)[9,5]
+#sim = sim + 1
+#}
+
+#powerest
+#{plot(powerest)
+#abline(h = .80)}
 ```
 
 A power analysis was conducted using the *simR* package in *R* [@Green2016]. This package uses simulations to generate power estimates for mixed linear models created from the *lme4* package in *R* [@Bates2015]. The results of this analyses suggested a minimum of 35 participants would be required to detect an effect. However, because power often tends to be underestimated, we extended participant recruitment as funding permitted. The data in this experiment was collected in two waves recruiting from Amazon's Mechanical Turk, which is a website that allows individuals to host projects and connects them with a large pool of respondents who complete them for small amounts of money [@Buhrmester2011]. In the first wave, a total of `r length(unique(master$Partno[master$where == "pilot"]))` participants were recruited, and in the second wave, `r length(unique(master$Partno[master$where == "thesis"]))` participants were recruited. Participant responses were screened for a basic understanding of the study's instructions. Responses were rejected for participants who entered related words when numerical judgment responses were required, and for participants who responded to the cue words during the recall phase with sentences or phrases instead of individual words. Those that completed the study correctly were compensated \$1.00 for their participation in wave one, and \$2.00 for their participation in wave two. The second wave of participants was sponsored by graduate thesis funding provided by the Missouri State University Graduate College. 
@@ -283,7 +313,7 @@ After completing the judgment phase, participants were then presented with a sho
 
 # Results
 
-```{r data-set-creation, eval=FALSE, include=FALSE}
+```{r data-set-creation, include=FALSE}
 ##check out our 2 datasets folder to see how these datasets were made
 ##we moved the data into long format, and combined them all together by judgment and recall
 ##then we combined these data with psycholinguistic norms (in excel, if I remember correctly)
@@ -304,7 +334,7 @@ summary(master3)
 ##fixing judged value
 badjudge = sum(!is.na(master3$Judged.Value[ master3$Judged.Value > 1 ]))
 master3$Judged.Value[ master3$Judged.Value > 1 ] = NA
-summary(master3$Judged.Value)
+#summary(master3$Judged.Value)
 
 ##missing data will be excluded below
 missingness = table("judge" = is.na(master3$Judged.Value), "recall" = is.na(master3$Recall))
@@ -322,132 +352,51 @@ noout = subset(master3, mahal < cutoff)
 cor(noout[ , c(2,6,7,55)], use = "pairwise.complete.obs")
 
 ##descriptive stats
-meanJno = tapply(noout$Judged.Value, noout$Judgment, mean, na.rm = T)
-meanRno = tapply(noout$Recall, noout$Judgment, mean, na.rm = T)
-sdJno = tapply(noout$Judged.Value, noout$Judgment, sd, na.rm = T)
-sdRno = tapply(noout$Recall, noout$Judgment, sd, na.rm = T)
+meanJno = tapply(noout$Judged.Value, noout$Judgment, mean, na.rm = T) * 100
+meanRno = tapply(noout$Recall, noout$Judgment, mean, na.rm = T) * 100
+sdJno = tapply(noout$Judged.Value, noout$Judgment, sd, na.rm = T) * 100 
+sdRno = tapply(noout$Recall, noout$Judgment, sd, na.rm = T) * 100
 ```
 
 ## Data Processing and Descriptive Statistics
 
 First, the results from the recall phase of the study were coded as zero for incorrect responses, one for correct responses, and NA for participants who did not complete the recall section (all or nearly all responses were blank). All word responses to judgment items were deleted and set to missing data. The final dataset was created by splitting the initial data file into six sections (one for each of the three experimental blocks and their corresponding recall scores). Each section was individually melted using the *reshape* package in *R* [@Wickham2007] and was written as a csv file. The six output files were then combined to form the final dataset. Code is available on our OSF page embedded inline with the manuscript in an *R* markdown document written with the *papaja* package [@Aust2017]. With `r length(unique(noout$Partno))` participants, the dataset in long format included `r length(unique(noout$Partno)) * 63` rows of potential data (i.e., `r length(unique(noout$Partno))` participants \* 63 JORs). `r badjudge` out of range JOR data points (> 100) were corrected to NA. Missing data for JORs or recall were then excluded from the analysis, which included word responses to judgment items (i.e., responding with *cat* instead of a number when prompted to provide a JOR). These items usually excluded a participant from receiving Amazon Mechanical Turk payment, but were included in the datasets found online. In total,  data points`r sum(missingness[c(2,3,4)])` were excluded (`r missingness[2]` JOR only, `r missingness[3]` recall only, `r missingness[4]` both), leading to a final *N* of `r missingness[1]` observations. Recall and JOR values were then screened for outliers using Mahalanobis distance at *p* < .001, and no outliers were found [@Tabachnick2012]. To screen for multicollinearity, we examined correlations between judgment items, DA, and IA. All correlations were *r*s < .26.
 
-```{r ANOVAs, echo=FALSE}
-####set up for ANOVA####
-library(reshape)
-
-##load in master data
-ANOVA.dat = read.csv("Melted Data.csv")
-colnames(ANOVA.dat)[2] = "Judgment.task"
-colnames(ANOVA.dat)[4] = "Judgment"
-
-##fix out of range JORs
-ANOVA.dat$Judgment[ ANOVA.dat$Judgment > 100 ] = NA
-
-##remove outliers
-mahal = mahalanobis(ANOVA.dat[ , c(4,5)],
-                    colMeans(ANOVA.dat[ , c(4,5)], na.rm = TRUE),
-                    cov(ANOVA.dat[ , c(4,5)], use = "pairwise.complete.obs"))
-cutoff = qchisq(1-.001, ncol(ANOVA.dat[ , c(4,5)]))
-cutoff;ncol(ANOVA.dat[ , c(4,5)])
-summary(mahal < cutoff)
-dat.noout = subset(ANOVA.dat, mahal < cutoff)
-
-dat.noout$Judgment = dat.noout$Judgment/100
-
-##capitalize things
-dat.noout$Judgment.task = as.numeric(dat.noout$Judgment.task)
-
-dat.noout$Judgment.task = factor(dat.noout$Judgment.task,
-                           levels = c(1, 2, 3),
-                           labels = c("Associative", "Semantic", "Thematic"))
-
-##melt the data
-long.dat = melt(dat.noout, id = c("Partno", "Judgment.task", "Word.Pair", "COS", "LSA", "FSG"))
-
-##rename columns
-colnames(long.dat)[2] = "Judgment.Type" 
-colnames(long.dat)[7] = "Task"
-colnames(long.dat)[8] = "Score"
-
-long.dat$Score = long.dat$Score * 100 ##put on correct scale
-
-##make Judgment and recall subsets for ANOVAs
-judge = subset(long.dat,
-               long.dat$Task == "Judgment")
-
-recall = subset(long.dat,
-                long.dat$Task == "Recall")
-
-##tried running an ANOVA with the screened data and it blows up
-##not all subjects have observations for each pair type
-##to fix that, I'm dropping subjects that don't have responses for all 63 pairs.
-
-temp = as.data.frame(table(judge$Partno))
-temp2 = as.data.frame(table(recall$Partno))
-
-#Returns only the subjects that have less than number of levels (Missing data)
-nrow(temp[temp$Freq < 63, ]) ##32 subjects are missing judgment observations
-nrow(temp2[temp2$Freq < 63, ]) ##the same 32 are missing observations for recall.
-
-##lets drop these people and see what happens
-keep_peoples = subset(temp,
-                      temp$Freq == 63)
-
-keep_peoples2 = keep_peoples$Var1 ##returns a factor
-keep_peoples2 = as.numeric(as.character(keep_peoples2)) ##convert it to a number
-
-##final judgement data
-judge2 = judge[judge$Partno %in% keep_peoples2, ] ##drop everyone with less than 63 observations
-
-table(judge2$Judgment.Type)
-
-##final recall data
-recall2 = recall[recall$Partno %in% keep_peoples2, ] ##drop those same people for the recall data
-
-table(recall2$Judgment.Type)
-
-####ANOVAs####
+```{r ANOVAs, include = FALSE}
 ##judgments
-judge.model1 = ezANOVA(data = judge2,
-        wid = Partno,
-        within = Judgment.Type,
-        dv = Score,
-        type = 3)
+judgment_scores = lme(Judged.Value ~ Judgment, 
+    data = noout, 
+    random = ~1|Partno, 
+    method = "ML",
+    na.action = "na.omit")
 
-judge.model1 ##sig difference between judgment ratings across groups
+noout$Judgment2 = factor(noout$Judgment, 
+                         levels = c("Semantic", "Associative", "Thematic"))
 
-source("pairwise_t.R")
-
-judge_posthoc = pairwise.t.test.with.t.and.df(judge2$Score, judge2$Judgment.Type, p.adjust.method = "bonferroni", paired = F)
-
-judge_posthoc
-
-##get t value
-judge_posthoc[[5]]
+judgment_scores2 = lme(Judged.Value ~ Judgment2, 
+    data = noout, 
+    random = ~1|Partno, 
+    method = "ML",
+    na.action = "na.omit")
 
 ##recall
-recall.model1 = ezANOVA(data = recall2,
-        wid = Partno,
-        within = Judgment.Type,
-        dv = Score,
-        type = 3)
+recall_scores = lme(Recall ~ Judgment, 
+    data = noout, 
+    random = ~1|Partno, 
+    method = "ML",
+    na.action = "na.omit")
 
-recall.model1 ##no sig difference for recall
-
-##anova statistics
-##JORS
-jf = judge.model1$ANOVA$F ##get f statistic
-
-j.eta = judge.model1$ANOVA$ges ##partial eta squared
-
-##Recall
-rf = recall.model1$ANOVA$F
-
-r.eta = recall.model1$ANOVA$ges
+recall_scores2 = lme(Recall ~ Judgment2, 
+    data = noout, 
+    random = ~1|Partno, 
+    method = "ML",
+    na.action = "na.omit")
 ```
 
-The mean JOR for the associative condition (*M* = `r apa(meanJno[1], 2)`, *SD* = `r apa(sdJno[1], 2)`) was lower than the semantic (*M* = `r apa(meanJno[2], 2)`, *SD* = `r apa(sdJno[2], 2)`) and thematic (*M* = `r apa(meanJno[3], 2)`, *SD* = `r apa(sdJno[3], 2)`) conditions. Recall averaged over 60% for all three conditions: associative *M* = `r apa(meanRno[1]*100, 2)`, *SD* = `r apa(sdRno[1]*100, 2)`; semantic *M* = `r apa(meanRno[2]*100, 2)`, *SD* = `r apa(sdRno[2]*100, 2)`; thematic *M* = `r apa(meanRno[3]*100, 2)`, *SD* = `r apa(sdRno[3]*100, 2)`. To confirm these patterns, two one-way ANOVAs were used to test for differences between mean JOR rates and mean correct percent recall for each of the three judgment conditions. Overall, a significant main effect of judgment type was detected for JORs (*F* (2, 144) = `r apa(jf, 2)`), *p* < .001, $\eta$*p^2^* = `r apa(j.eta, 2)`), and a post-hoc pairwise *t*-test indicated that all comparisons were signifcant (*t*s > 3.48, *p*s < .002) No significant difference was found between groups for mean correct recall (*F* (2, 144) = `r apa(rf, 2)`), *p* = .112, $\eta$*p^2^* = `r apa(r.eta, 2)`).
+The mean JOR for the associative condition (*M* = `r apa(meanJno[1], 2)`, *SD* = `r apa(sdJno[1], 2)`) was lower than the semantic (*M* = `r apa(meanJno[2], 2)`, *SD* = `r apa(sdJno[2], 2)`) and thematic (*M* = `r apa(meanJno[3], 2)`, *SD* = `r apa(sdJno[3], 2)`) conditions. A multilevel model was examined to determine if these JOR values were significantly different using participants as a random factor. Associative judgments were lower than both semantic (*t*(`r summary(judgment_scores)$tTable[2,3]`) = `r apa(summary(judgment_scores)$tTable[2,4],2)`, *p* `r p.value(summary(judgment_scores)$tTable[2,5])`), and thematic judgments (*t*(`r summary(judgment_scores)$tTable[3,3]`) = `r apa(summary(judgment_scores)$tTable[3,4],2)`, *p* `r p.value(summary(judgment_scores)$tTable[3,5])`). Semantic judgments in turn were lower than thematic judgments (*t*(`r summary(judgment_scores2)$tTable[3,3]`) = `r apa(summary(judgment_scores2)$tTable[3,4],2)`, *p* `r p.value(summary(judgment_scores2)$tTable[3,5])`).
+
+
+Recall averaged around 60% for all three conditions: associative *M* = `r apa(meanRno[1]*100, 2)`, *SD* = `r apa(sdRno[1]*100, 2)`; semantic *M* = `r apa(meanRno[2]*100, 2)`, *SD* = `r apa(sdRno[2]*100, 2)`; thematic *M* = `r apa(meanRno[3]*100, 2)`, *SD* = `r apa(sdRno[3]*100, 2)`. A separate multilevel model indicated that associative recall was lower than semantic recall (*t*(`r summary(recall_scores)$tTable[2,3]`) = `r apa(summary(recall_scores)$tTable[2,4],2)`, *p* `r p.value(summary(recall_scores)$tTable[2,5])`), but not thematic recall (*t*(`r summary(recall_scores)$tTable[3,3]`) = `r apa(summary(recall_scores)$tTable[3,4],2)`, *p* = `r p.value(summary(recall_scores)$tTable[3,5])`). Semantic recall scores were higher than thematic recall scores (*t*(`r summary(recall_scores2)$tTable[3,3]`) = `r apa(summary(recall_scores2)$tTable[3,4],2)`, *p* = `r p.value(summary(recall_scores2)$tTable[3,5])`).
 
 ## JAM Slope Bias and Sensitivity
 
@@ -456,41 +405,36 @@ The mean JOR for the associative condition (*M* = `r apa(meanJno[1], 2)`, *SD* =
 ##are they within the range of previous work, although maybe controlling for other variables might change them a bit
 ##frequency of strongest predictor 
 
-####try a loop####
 ##setup
 persontable = matrix(NA,
                      nrow=length(names(table(noout$Partno))),
-                     ncol=5+4+4)
-colnames(persontable) = c("Partno", "AIntercept", "ACOS", "ALSA", "AFSG",
-                          "SIntercept", "SCOS", "SLSA", "SFSG",
-                          "TIntercept", "TCOS", "TLSA", "TFSG")
-
+                     ncol=10)
+colnames(persontable) = c("Partno", "AIntercept", "ACOS", "AFSG",
+                          "SIntercept", "SCOS", "SFSG",
+                          "TIntercept", "TCOS", "TFSG")
 simnum = 1
-
-##create the right scaling 
-noout$Judged.Value2 = noout$Judged.Value/100
 
 for ( person in names(table(noout$Partno)) ){ ##loop over participants
   
-  temp1 = subset(noout, Partno == person & Judgment == "associative")
-  temp2 = subset(noout, Partno == person & Judgment == "semantic")
-  temp3 = subset(noout, Partno == person & Judgment == "thematic")
+  temp1 = subset(noout, Partno == person & Judgment == "Associative")
+  temp2 = subset(noout, Partno == person & Judgment == "Semantic")
+  temp3 = subset(noout, Partno == person & Judgment == "Thematic")
   
   persontable[ simnum , 1] = person
   
-  if (nrow(temp1) > 9) {
-    model9 = lm(Judged.Value2 ~ COS + LSA + FSG, data = temp1)
-    persontable[ simnum , 2:5] = model9$coefficients
+  if (sum(!is.na(temp1$Judged.Value)) > 9) {
+    model9 = lm(Judged.Value ~ cosine + swow_fsg, data = temp1)
+    persontable[ simnum , 2:4] = model9$coefficients
   }
   
-  if(nrow(temp2) > 9) {
-    model10 = lm(Judged.Value2 ~ COS + LSA + FSG, data = temp2)
-    persontable[ simnum , 6:9] = model10$coefficients
+  if(sum(!is.na(temp2$Judged.Value)) > 9) {
+    model10 = lm(Judged.Value ~ cosine + swow_fsg, data = temp2)
+    persontable[ simnum , 5:7] = model10$coefficients
   }
   
-  if(nrow(temp3) > 9) {
-    model11 = lm(Judged.Value2 ~ COS + LSA + FSG, data = temp3)
-    persontable[ simnum , 10:13] = model11$coefficients
+  if(sum(!is.na(temp3$Judged.Value)) > 9) {
+    model11 = lm(Judged.Value ~ cosine + swow_fsg, data = temp3)
+    persontable[ simnum , 8:10] = model11$coefficients
   }
   
   simnum = simnum + 1
@@ -512,82 +456,65 @@ hyp1results = apply(people[ , -1], 2, function (x) { d.single.t(m = mean(x, na.r
 
 ##what happened? make a table
 ##create a blank table
-tableprint = matrix(NA, nrow = 12, ncol = 8)
+tableprint = matrix(NA, nrow = 9, ncol = 8)
 colnames(tableprint) = c("Variable", "$M$", "$SD$", "$t$", "$df$", "$p$", "$d$", "$95 CI$")
 
+#associative judgment
 tableprint[1 , ] = c("Associative Intercept", apa(hyp1results$AIntercept$m, 3, F),
                      apa(hyp1results$AIntercept$sd, 3, F), apa(hyp1results$AIntercept$t, 3, T),
                      hyp1results$AIntercept$df, p.value(hyp1results$AIntercept$p),
                      apa(hyp1results$AIntercept$d, 3, T), paste(apa(hyp1results$AIntercept$dlow, 3, T), 
                                                      "-", apa(hyp1results$AIntercept$dhigh, 3, T)))
-
-tableprint[2 , ] = c("Associative COS", apa(hyp1results$ACOS$m, 3, F),
-                     apa(hyp1results$ACOS$sd, 3, F), apa(hyp1results$ACOS$t, 3, T),
-                     hyp1results$ACOS$df, p.value(hyp1results$ACOS$p),
-                     apa(hyp1results$ACOS$d, 3, T), paste(apa(hyp1results$ACOS$dlow, 3, T), 
-                                                     "-", apa(hyp1results$ACOS$dhigh, 3, T)))
-
-tableprint[3 , ] = c("Associative FSG", apa(hyp1results$AFSG$m, 3, F),
+tableprint[2 , ] = c("Associative DA", apa(hyp1results$AFSG$m, 3, F),
                      apa(hyp1results$AFSG$sd, 3, F), apa(hyp1results$AFSG$t, 3, T),
                      hyp1results$AFSG$df, p.value(hyp1results$AFSG$p),
                      apa(hyp1results$AFSG$d, 3, T), paste(apa(hyp1results$AFSG$dlow, 3, T), 
                                                      "-", apa(hyp1results$AFSG$dhigh, 3, T)))
 
-tableprint[4 , ] = c("Associative LSA", apa(hyp1results$ALSA$m, 3, F),
-                     apa(hyp1results$ALSA$sd, 3, F), apa(hyp1results$ALSA$t, 3, T),
-                     hyp1results$ALSA$df, p.value(hyp1results$ALSA$p),
-                     apa(hyp1results$ALSA$d, 3, T), paste(apa(hyp1results$ALSA$dlow, 3, T), 
-                                                     "-", apa(hyp1results$ALSA$dhigh, 3, T)))
+tableprint[3 , ] = c("Associative IA", apa(hyp1results$ACOS$m, 3, F),
+                     apa(hyp1results$ACOS$sd, 3, F), apa(hyp1results$ACOS$t, 3, T),
+                     hyp1results$ACOS$df, p.value(hyp1results$ACOS$p),
+                     apa(hyp1results$ACOS$d, 3, T), paste(apa(hyp1results$ACOS$dlow, 3, T), 
+                                                     "-", apa(hyp1results$ACOS$dhigh, 3, T)))
 
-tableprint[5 , ] = c("Semantic Intercept", apa(hyp1results$SIntercept$m, 3, F),
+#semantic judgment
+tableprint[4 , ] = c("Semantic Intercept", apa(hyp1results$SIntercept$m, 3, F),
                      apa(hyp1results$SIntercept$sd, 3, F), apa(hyp1results$SIntercept$t, 3, T),
                      hyp1results$SIntercept$df, p.value(hyp1results$SIntercept$p),
                      apa(hyp1results$SIntercept$d, 3, T), paste(apa(hyp1results$SIntercept$dlow, 3, T), 
                                                      "-", apa(hyp1results$SIntercept$dhigh, 3, T)))
 
-tableprint[6 , ] = c("Semantic COS", apa(hyp1results$SCOS$m, 3, F),
-                     apa(hyp1results$SCOS$sd, 3, F), apa(hyp1results$SCOS$t, 3, T),
-                     hyp1results$SCOS$df, p.value(hyp1results$SCOS$p),
-                     apa(hyp1results$SCOS$d, 3, T), paste(apa(hyp1results$SCOS$dlow, 3, T), 
-                                                     "-", apa(hyp1results$SCOS$dhigh, 3, T)))
-
-tableprint[7 , ] = c("Semantic FSG", apa(hyp1results$SFSG$m, 3, F),
+tableprint[5 , ] = c("Semantic DA", apa(hyp1results$SFSG$m, 3, F),
                      apa(hyp1results$SFSG$sd, 3, F), apa(hyp1results$SFSG$t, 3, T),
                      hyp1results$SFSG$df, p.value(hyp1results$SFSG$p),
                      apa(hyp1results$SFSG$d, 3, T), paste(apa(hyp1results$SFSG$dlow, 3, T), 
                                                      "-", apa(hyp1results$SFSG$dhigh, 3, T)))
 
-tableprint[8 , ] = c("Semantic LSA", apa(hyp1results$SLSA$m, 3, F),
-                     apa(hyp1results$SLSA$sd, 3, F), apa(hyp1results$SLSA$t, 3, T),
-                     hyp1results$SLSA$df, p.value(hyp1results$SLSA$p),
-                     apa(hyp1results$SLSA$d, 3, T), paste(apa(hyp1results$SLSA$dlow, 3, T), 
-                                                     "-", apa(hyp1results$SLSA$dhigh, 3, T)))
+tableprint[6 , ] = c("Semantic IA", apa(hyp1results$SCOS$m, 3, F),
+                     apa(hyp1results$SCOS$sd, 3, F), apa(hyp1results$SCOS$t, 3, T),
+                     hyp1results$SCOS$df, p.value(hyp1results$SCOS$p),
+                     apa(hyp1results$SCOS$d, 3, T), paste(apa(hyp1results$SCOS$dlow, 3, T), 
+                                                     "-", apa(hyp1results$SCOS$dhigh, 3, T)))
 
-tableprint[9 , ] = c("Thematic Intercept", apa(hyp1results$TIntercept$m, 3, F),
+#thematic judgment
+tableprint[7 , ] = c("Thematic Intercept", apa(hyp1results$TIntercept$m, 3, F),
                      apa(hyp1results$TIntercept$sd, 3, F), apa(hyp1results$TIntercept$t, 3, T),
                      hyp1results$TIntercept$df, p.value(hyp1results$TIntercept$p),
                      apa(hyp1results$TIntercept$d, 3, T), paste(apa(hyp1results$TIntercept$dlow, 3, T), 
                                                      "-", apa(hyp1results$TIntercept$dhigh, 3, T)))
 
-tableprint[10 , ] = c("Thematic COS", apa(hyp1results$TCOS$m, 3, F),
-                     apa(hyp1results$TCOS$sd, 3, F), apa(hyp1results$TCOS$t, 3, T),
-                     hyp1results$TCOS$df, p.value(hyp1results$TCOS$p),
-                     apa(hyp1results$TCOS$d, 3, T), paste(apa(hyp1results$TCOS$dlow, 3, T), 
-                                                     "-", apa(hyp1results$TCOS$dhigh, 3, T)))
 
-tableprint[11 , ] = c("Thematic FSG", apa(hyp1results$TFSG$m, 3, F),
+tableprint[8 , ] = c("Thematic DA", apa(hyp1results$TFSG$m, 3, F),
                      apa(hyp1results$TFSG$sd, 3, F), apa(hyp1results$TFSG$t, 3, T),
                      hyp1results$TFSG$df, p.value(hyp1results$TFSG$p),
                      apa(hyp1results$TFSG$d, 3, T), paste(apa(hyp1results$TFSG$dlow, 3, T), 
                                                      "-", apa(hyp1results$TFSG$dhigh, 3, T)))
 
-tableprint[12 , ] = c("Thematic LSA", apa(hyp1results$TLSA$m, 3, F),
-                     apa(hyp1results$TLSA$sd, 3, F), apa(hyp1results$TLSA$t, 3, T),
-                     hyp1results$TLSA$df, p.value(hyp1results$TLSA$p),
-                     apa(hyp1results$TLSA$d, 3, T), paste(apa(hyp1results$TLSA$dlow, 3, T), 
-                                                     "-", apa(hyp1results$TLSA$dhigh, 3, T)))
-
-##of course I figured out an easier way later... 
+tableprint[9 , ] = c("Thematic IA", apa(hyp1results$TCOS$m, 3, F),
+                     apa(hyp1results$TCOS$sd, 3, F), apa(hyp1results$TCOS$t, 3, T),
+                     hyp1results$TCOS$df, p.value(hyp1results$TCOS$p),
+                     apa(hyp1results$TCOS$d, 3, T), paste(apa(hyp1results$TCOS$dlow, 3, T), 
+                                                     "-", apa(hyp1results$TCOS$dhigh, 3, T)))
 
 apa_table(as.data.frame(tableprint), 
           align = c("l", rep("c", 7)), 
@@ -599,16 +526,16 @@ apa_table(as.data.frame(tableprint),
 
 ```
 
-First, we sought to replicate bias and sensitivity findings from previous research while expanding the JAM function to include judgments based on three types of memory. FSG, COS, and LSA were used to predict each type of relatedness judgment. JOR values were divided by 100, so as to place them on the same scale as the database norms. Slopes and intercepts were then calculated for each participant's ratings for each of the three JOR conditions, as long as they contained at least nine data points out of the twenty-one that were possible. Single sample *t*-tests were then conducted to test if slope and intercept values significantly differed from zero. See Table \@ref(tab:hyp1-table1) for means and standard deviations. Slopes were then compared to the JAM function, which is characterized by high intercepts (between 40 and 60 on a 100 point scale) and shallow slopes (between 20 and 40). Because of the scaling of our data, to replicate this function, we should expect to find intercepts ranging from .40 to .60 and slopes in the range of 0.20. to 0.40. Intercepts for associative, semantic, and thematic JORs were each significant, and all fell within or near the expected range. Overall, thematic JORs had the highest intercept at `r apa(hyp1results$TIntercept$m, 3, F)`, while JORs elicited in the associative condition had the lowest intercept at `r apa(hyp1results$AIntercept$m, 3, F)`. 
+First, we sought to replicate bias and sensitivity findings from previous research while expanding the JAM function to include judgments based on three types of memory. DA and IA were used to predict each type of relatedness judgment. JOR values were divided by 100, so as to place them on the same scale as the direct and indirect association. Slopes and intercepts were then calculated for each participant's ratings for each of the three JOR conditions, as long as they contained at least nine data points out of the twenty-one that were possible. Single sample *t*-tests were then conducted to test if slope and intercept values significantly differed from zero. See Table \@ref(tab:hyp1-table1) for means and standard deviations. Slopes were then compared to the JAM function, which is characterized by high intercepts (between 40 and 60 on a 100 point scale) and shallow slopes (between 20 and 40). Because of the scaling of our data, to replicate this function, we should expect to find intercepts ranging from .40 to .60 and slopes in the range of 0.20. to 0.40. Intercepts for associative, semantic, and thematic JORs were each significant, and all fell within or near the expected range. Overall, thematic JORs had the highest intercept at `r apa(hyp1results$TIntercept$m, 3, F)`, while JORs elicited in the semantic condition had the lowest intercept at `r apa(hyp1results$SIntercept$m, 3, F)`. 
 
-The JAM slope was successfully replicated for FSG in the associative JOR condition, with FSG significantly predicting association, although the slope was slightly higher than expected at `r apa(hyp1results$AFSG$m, 3, F)`. COS and LSA did not significantly predict association. For semantic judgments, each of the three database norms were significant predictors. However, JAM slopes were not replicated for this judgment type, as FSG had the highest slope at `r apa(hyp1results$SFSG$m, 3, F)`, followed by LSA `r apa(hyp1results$SLSA$m, 3, F)`, and then COS `r apa(hyp1results$SCOS$m, 3, F)`. These findings were mirrored for thematic JORs, as each database norm was a significant predictor, yet slopes for each predictor fell below range of the expected JAM slopes. Again, FSG had the highest slope, this time just out of range at `r apa(hyp1results$TFSG$m, 3, F)`, followed closely by LSA at `r apa(hyp1results$TLSA$m, 3, F)`. Interestingly, COS slopes were found to be negative for this judgment condition, `r apa(hyp1results$TCOS$m, 3, F)`. Overall, although JAM slopes were not successfully replicated in each JOR condition, the high intercepts and shallow slopes present across conditions are still indicative of overconfidence and insensitivity in participant JORs. 
+The JAM slope was successfully replicated for DA in all three conditions with slopes falling in the expected range of 0.20 to 0.40. For associative judgments, the indirect relation - which is thought to be representative of semantic relatedness - did not predict judgments. In the thematic judgment condition, the indirect values were positive, indicating contribution of both direct and indirect values to the judgments, which were described as a mix of both relation types. Last, the semantic judgment condition showed that both direct and indirect relations were important with the highest indirect contribution of the three judgment types, indicating differences in focus of judgment tap different relations to meet task demands. Overall, JAM slopes were successfully replicated in each JOR condition, the high intercepts and shallow slopes present across conditions were indicative of overconfidence and insensitivity in participant JORs.
 
 ```{r hyp1-part2, include=FALSE}
 ##group them all by type
 ##dropping partno column
-people_thematic = people[ , -c(1:9)]
-people_semantic = people[ , -c(1:5, 10:13)]
-people_associative = people[ , -c(1, 6:13)]
+people_thematic = people[ , 8:10]
+people_semantic = people[ , 5:7]
+people_associative = people[ , 2:4]
 
 ##getting absolute values
 people_thematic2 = abs(people_thematic)
@@ -636,11 +563,11 @@ colnames(combined) = c("Partno", "Associative", "Semantic", "Thematic")
 
 ##rename the things
 combined$Associative = factor(combined$Associative,
-                           labels = c("COS", "FSG", "LSA"))
+                           labels = c("COS", "FSG"))
 combined$Semantic = factor(combined$Semantic,
-                           labels = c("COS", "FSG", "LSA"))
+                           labels = c("COS", "FSG"))
 combined$Thematic = factor(combined$Thematic,
-                           labels = c("COS", "FSG", "LSA"))
+                           labels = c("COS", "FSG"))
 summary(combined[ , -1])
 
 ##what are the percentages on these?
@@ -654,526 +581,7 @@ p3
 
 ```
 
-Additionally, we examined the frequency that each predictor variable was the strongest predictor for each of the three JOR conditions. For the associative condition, FSG was the strongest predictor for `r apa(p1[2],1)`% of the participants, with COS and LSA being the strongest for only `r apa(p1[1],1)`% and `r apa(p1[3],1)`% of participants respectively. These differences were less distinct when examining the semantic and thematic JOR conditions. In the semantic condition, FSG was highest at `r apa(p2[2], 1)`% of participants, LSA was second at `r apa(p2[3],1)`%, and COS was least likely at `r apa(p2[1],1)`%. Finally, in the thematic condition, LSA was most likely to be the strongest predictor with `r apa(p3[3],1)`% of participants, with FSG being the second most likely at `r apa(p3[2],1)`%, and COS again being least likely at `r apa(p3[1],1)`%. Interestingly, in all three conditions, COS was least likely to be the strongest predictor, even in the semantic condition. Therefore, these results provide evidence of the nature of judgments on the memory network as each judgment type appeared to tap each tier differently, suggesting a three-part system, rather than one large, encompassing memory network. 
 
-## Interaction between Norms when Predicting Judgments of Relatedness
-```{r hyp2-table, echo=FALSE, results='asis'}
-##interaction in predicting judgments, use MLM to control for random participant intercepts 
-
-####mean center the predictor variables####
-noout$ZCOS = scale(noout$COS, scale = F)
-noout$ZLSA = scale(noout$LSA, scale = F)
-noout$ZFSG = scale(noout$FSG, scale = F)
-
-##create the right scaling 
-noout$Judged.Value2 = noout$Judged.Value/100
-
-####overall model####
-library(nlme)
-library(MuMIn)
-overallh2 = lme(Judged.Value2 ~ Judgment + 
-               ZCOS * ZLSA * ZFSG, 
-             data = noout, 
-             method = "ML", 
-             na.action = "na.omit",
-             random = ~1|Partno)
-#summary(overallh2) ##everything is significant
-#r.squaredGLMM(overallh2) ##use R2m to talk about variance predicted
-
-
-####power test####
-#library(nlmeU)
-#library(simr)
-#Pwr(overallh2)
-
-#powerest = rep(NA, 99)
-#samplesizetest = seq(1*63, 100*63, 62) ##set up sample sizes to test
-#sim = 1
-#for (i in samplesizetest){
-
-#smalldata = sample(noout, i)
-
-#testh2 = lme(Judged.Value2 ~ Judgment + 
-#               ZCOS * ZLSA * ZFSG, 
-#             data = smalldata, 
-#             method = "ML", 
-#             na.action = "na.omit",
-#             random = ~1|Partno)
-#powerest[sim] = Pwr(testh2)[9,5]
-#sim = sim + 1
-#}
-
-#powerest
-#{plot(powerest)
-#abline(h = .80)}
-
-
-####table set up####
-##create a blank table
-tableprint = matrix(NA, nrow = 22, ncol = 5)
-colnames(tableprint) = c("Variable", "$beta$", "$SE$", "$t$", "$p$")
-
-tableprint[1:10 , 2:5] = summary(overallh2)$tTable[ , -3]
-tableprint[1:10, 1] = c("Intercept", "Semantic Judgments", "Thematic Judgments", dimnames(summary(overallh2)$tTable[ , -3])[[1]][4:10] )
-
-####examine three way interaction by breaking down the COS variable first####
-##setup
-noout$ZCOS_low = noout$ZCOS + sd(noout$ZCOS, na.rm = TRUE)
-noout$ZCOS_high = noout$ZCOS - sd(noout$ZCOS, na.rm = TRUE)
-
-##low cosine
-lowcos = lme(Judged.Value2 ~ Judgment +
-               ZCOS_low * ZLSA * ZFSG, 
-             data = noout, 
-             method = "ML", 
-             na.action = "na.omit",
-             random = ~1|Partno)
-#summary(lowcos) ##two way interaction is significant
-tableprint[11:13 , 2:5] = summary(lowcos)$tTable[ c(5,6,9), -3]
-tableprint[11:13, 1] = c("Low COS ZLSA", 
-                         "Low COS ZFSG", 
-                         "Low COS ZLSA:ZFSG")
-
-##high cosine
-highcos = lme(Judged.Value2 ~ Judgment +
-                ZCOS_high * ZLSA * ZFSG, 
-              data = noout, 
-              method = "ML", 
-              na.action = "na.omit",
-              random = ~1|Partno)
-#summary(highcos) ##two way interaction is significant
-
-tableprint[14:16 , 2:5] = summary(highcos)$tTable[ c(5,6,9), -3]
-tableprint[14:16, 1] = c("High COS ZLSA", 
-                         "High COS ZFSG", 
-                         "High COS ZLSA:ZFSG")
-
-
-####examine the two way interactions by splitting LSA####
-##setup
-noout$ZLSA_low = noout$ZLSA + sd(noout$ZLSA, na.rm = TRUE)
-noout$ZLSA_high = noout$ZLSA - sd(noout$ZLSA, na.rm = TRUE)
-
-##low cosine, low lsa
-lowcoslowlsa = lme(Judged.Value2 ~ Judgment +
-               ZCOS_low * ZLSA_low * ZFSG, 
-               data = noout, 
-               method = "ML", 
-             na.action = "na.omit",
-             random = ~1|Partno)
-#summary(lowcoslowlsa) ##fsg is sig
-tableprint[17, ] = c("Low COS Low LSA ZFSG",
-                     summary(lowcoslowlsa)$tTable[6, -3])
-
-##low cos, avg lsa is low cosine overall model
-
-##low cos, high lsa
-lowcoshighlsa = lme(Judged.Value2 ~ Judgment +
-                ZCOS_low  * ZLSA_high * ZFSG, 
-              data = noout, 
-              method = "ML", 
-              na.action = "na.omit",
-              random = ~1|Partno)
-#summary(lowcoshighlsa) ##fsg is not sig
-tableprint[18, ] = c("Low COS High LSA ZFSG",
-                     summary(lowcoshighlsa)$tTable[6, -3])
-
-##avg cos, low lsa
-acgcoslowlsa = lme(Judged.Value2 ~ Judgment +
-               ZCOS * ZLSA_low * ZFSG, 
-               data = noout, 
-               method = "ML", 
-             na.action = "na.omit",
-             random = ~1|Partno)
-#summary(acgcoslowlsa) ##fsg is sig
-tableprint[19, ] = c("Avg COS Low LSA ZFSG",
-                     summary(acgcoslowlsa)$tTable[6, -3])
-
-##avg cos, avg lsa is overall model overallh2
-
-##avg cos, high lsa
-avgcoshighlsa = lme(Judged.Value2 ~ Judgment +
-                ZCOS  * ZLSA_high * ZFSG, 
-              data = noout, 
-              method = "ML", 
-              na.action = "na.omit",
-              random = ~1|Partno)
-#summary(avgcoshighlsa) ##fsg is sig
-tableprint[20, ] = c("Avg COS High LSA ZFSG",
-                     summary(avgcoshighlsa)$tTable[6, -3])
-
-##high cos, low lsa
-highcoslowlsa = lme(Judged.Value2 ~ Judgment +
-                     ZCOS_high * ZLSA_low * ZFSG, 
-                   data = noout, 
-                   method = "ML", 
-                   na.action = "na.omit",
-                   random = ~1|Partno)
-#summary(highcoslowlsa) ##fsg is not sig
-tableprint[21, ] = c("High COS Low LSA ZFSG",
-                     summary(highcoslowlsa)$tTable[6, -3])
-
-##high cos, avg lsa is the overall high cosine model
-
-##high cos, high lsa
-highcoshighlsa = lme(Judged.Value2 ~ Judgment +
-                      ZCOS_high  * ZLSA_high * ZFSG, 
-                    data = noout, 
-                    method = "ML", 
-                    na.action = "na.omit",
-                    random = ~1|Partno)
-#summary(highcoshighlsa) ##fsg is sig
-tableprint[22, ] = c("High COS High LSA ZFSG",
-                     summary(highcoshighlsa)$tTable[6, -3])
-tableprint[ , 2] = apa(as.numeric(tableprint[ , 2]),3,T) 
-tableprint[ , 3] = apa(as.numeric(tableprint[ , 3]),3,T)
-tableprint[ , 4] = apa(as.numeric(tableprint[ , 4]),3,T)
-tableprint[ , 5] =  apply(as.data.frame(as.numeric(tableprint[ , 5])), 1, p.value)
-
-apa_table(as.data.frame(tableprint),
-          align = c("l", rep("c", 4)), 
-          small = T,
-          caption = "MLM Statistics for Hypothesis 2",
-          note = "Database norms were mean centered. The table shows main effects and interactions for database norms at low, average, and high levels of COS and LSA when predicting participant judgments.",
-          escape = FALSE
- )
-
-```
-
-```{r hyp2graph, echo=FALSE, fig.cap = "Simple slopes graph displaying the slope of FSG when predicting JORs at low, average, and high LSA split by low, average, and high COS. All variables were mean centered.", fig.height=6, fig.width=6}
-##hyp 2 graphs
-####setup####
-dat = noout
-
-##low cos
-plot1 = ggplot(dat, aes(x = ZCOS_low, y = Judged.Value2)) +
-  labs(x = "ZFSG", y = "Judgments") +
-  scale_size_continuous(guide = FALSE) +
-  geom_abline(aes(intercept = .607, slope = .663, linetype = "-1SD ZLSA")) +
-  geom_abline(aes(intercept = .632, slope = .375, linetype = "Average ZLSA")) +
-  geom_abline(aes(intercept = .657, slope = .087, linetype = "+1SD ZLSA")) +
-  scale_linetype_manual(values = c("dotted", "dashed", "solid"),
-                        breaks = c("-1SD ZLSA", "Average ZLSA", "+1SD ZLSA"),
-                        name = "Simple Slope") +
-  coord_cartesian(xlim = c(-.20, .60), ylim = c(.1, 1)) +
-  geom_vline(xintercept = -.30) +
-  geom_hline(yintercept = 0) +
-  cleanup + 
-  labs(title="Low ZCOS") 
-
-##avg cos
-plot2 = ggplot(dat, aes(x = ZCOS_low, y = Judged.Value2)) +
-  labs(x = "ZFSG", y = "Judgments") +
-  scale_size_continuous(guide = FALSE) +
-  geom_abline(aes(intercept = .586, slope = .381, linetype = "-1SD ZLSA")) +
-  geom_abline(aes(intercept = .603, slope = .271, linetype = "Average ZLSA")) +
-  geom_abline(aes(intercept = .621, slope = .161, linetype = "+1SD ZLSA")) +
-  scale_linetype_manual(values = c("dotted", "dashed", "solid"),
-                        breaks = c("-1SD ZLSA", "Average ZLSA", "+1SD ZLSA"),
-                        name = "Simple Slope") +
-  coord_cartesian(xlim = c(-.20, .60), ylim = c(.1, 1)) +
-  geom_vline(xintercept = -.30) +
-  geom_hline(yintercept = 0) +
-  cleanup + 
-  labs(title="Average ZCOS") 
-
-##high cos
-plot3 = ggplot(dat, aes(x = ZCOS_low, y = Judged.Value2)) +
-  labs(x = "ZFSG", y = "Judgments") +
-  scale_size_continuous(guide = FALSE) +
-  geom_abline(aes(intercept = .564, slope = .099, linetype = "-1SD ZLSA")) +
-  geom_abline(aes(intercept = .575, slope = .167, linetype = "Average ZLSA")) +
-  geom_abline(aes(intercept = .586, slope = .236, linetype = "+1SD ZLSA")) +
-  scale_linetype_manual(values = c("dotted", "dashed", "solid"),
-                        breaks = c("-1SD ZLSA", "Average ZLSA", "+1SD ZLSA"),
-                        name = "Simple Slope") +
-  coord_cartesian(xlim = c(-.20, .60), ylim = c(.1, 1)) +
-  geom_vline(xintercept = -.30) +
-  geom_hline(yintercept = 0) +
-  cleanup + 
-  labs(title="High ZCOS") 
-
-# arrange plots together
-legend = get_legend(plot1)
-hyp2graphout <- plot_grid( plot1 + theme(legend.position="none"),
-                   plot2 + theme(legend.position="none"),
-                   plot3 + theme(legend.position="none"),
-                   legend,
-                   hjust = -1,
-                   nrow = 2
-)
-hyp2graphout
-
-#tiff(filename = "hyp2graph.tiff", res = 300, width = 6, 
-#     height = 6, units = 'in', compression = "lzw")
-#plot(hyp2graphout)
-#dev.off()
-```
-
-The goal of next analysis was to test for an interaction between the three overlap norms when predicting participant JORs to examine the bidirectional network model. First, the database norms were mean centered to control for multicollinearity. The *nlme* package and *lme* function were used to calculate these analyses [@Pinheiro2017]. A maximum likelihood multilevel model was used to test the interaction between FSG, COS, and LSA when predicting JOR values, with participant number used as the random intercept factor. The type of JOR being elicited was controlled for, so as to better assess the impact of each word overlap measure regardless of JOR condition. Multilevel models were used to retain all data points (rather than averaging over items and conditions) while controlling for correlated error due to participants, which makes these models advantageous for multiway repeated measures designs [@Gelman2006]. This analysis resulted in a significant three-way interaction between FSG, COS, and LSA ($\beta$ = `r tableprint[10 , 2]`, *p* `r tableprint[10 , 5]`), which is examined below in a simple slopes analysis. Table \@ref(tab:hyp2-table) includes values for main effects, two-way, and three-way interactions.
-
-To investigate this interaction, simple slopes were calculated for low, average, and high levels of COS. This variable was chosen for two reasons: first, it was found to be the weakest of the three predictors in hypothesis one, and second, manipulating COS would allow us to track changes across FSG and LSA. Significant two-way interactions were found between FSG and LSA at both low COS ($\beta$ = `r tableprint[13 , 2]`, *p* `r tableprint[13 , 5]`), average COS ($\beta$ =`r tableprint[9 , 2]`, *p* `r tableprint[9 , 5]`), and high COS ($\beta$ = `r tableprint[16 , 2]`, *p* = `r tableprint[16 , 5]`). A second level was then added to the analysis in which simple slopes were created for each level of LSA, allowing us to assess the effects of LSA at different levels of COS on FSG. When both COS and LSA were low, FSG significantly predicted JOR values ($\beta$ = `r tableprint[17 , 2]`, *p* `r tableprint[17 , 5]`). At low COS and average LSA, FSG decreased but still significantly predicted JORs ($\beta$ = `r tableprint[12 , 2]`, *p* `r tableprint[12 , 5]`). However, when COS was low and LSA was high, FSG was not a significant predictor ($\beta$ = `r tableprint[18 , 2]`, *p* = `r tableprint[18 , 5]`). A similar set of results was found at the average COS level. When COS was average and LSA was LOW, FSG was a significant predictor, ($\beta$ = `r tableprint[19 , 2]`, *p* `r tableprint[19 , 5]`). As LSA increased at average COS levels, FSG decreased in strength: average COS, average LSA FSG ($\beta$ = `r tableprint[16 , 2]`, *p* = `r tableprint[16 , 5]`) and average COS, high LSA FSG ($\beta$ = `r tableprint[20 , 2]`, *p* `r tableprint[20 , 5]`). This finding suggests that at low COS, LSA and FSG create a seesaw effect in which increasing levels of thematics is counterbalanced by decreasing importance of association when predicting JORs. FSG was not a significant predictor when COS was high and LSA was low (`r tableprint[21 , 2]`, *p* = `r tableprint[21, 5]`). At high COS and average LSA, FSG significantly predicted JORs ($\beta$ = `r tableprint[15 , 2]`, *p* `r tableprint[15 , 5]`), and finally when both COS and LSA were high, FSG increased and was a significant predictor of JOR values ($\beta$ = `r tableprint[22 , 2]`, *p* `r tableprint[22 , 5]`). Thus, at high levels of semantic overlap, associative and thematic overlap are complementary when predicting JOR ratings, increasing together as semantic strength increases. Figure \@ref(fig:hyp2graph) displays the three-way interaction wherein the top row of figures indicates the seesaw effect, as thematic strength increases, the predictive ability of associative overlap decreases in strength. The bottom row indicates the complementary effect where increases in LSA occur with increases in FSG predictor strength. Therefore, the cognitive process of judgment appears to be interactive in nature across these three types of memory information.
-
-## Interaction between Norms when Predicting Recall
-```{r hyp3-table, echo=FALSE, results='asis'}
-##old hypothesis 1
-##using recall as the DV, CV judgment type, rating, IVs three database norms
-##use zscores created for hyp 2
-
-##overall model
-library(lme4)
-overallh3 = glmer(Recall ~ (1|Partno) + Judgment + 
-                    Judged.Value2 + ZCOS * ZLSA * ZFSG,
-               data = noout,
-               family = binomial,
-               control = glmerControl(optimizer = "bobyqa"),
-               nAGQ = 1)
-
-#summary(overallh3)
-#r.squaredGLMM(overallh3)
-
-####table set up####
-##create a blank table
-tableprint = matrix(NA, nrow = 21, ncol = 5)
-colnames(tableprint) = c("Variable", "$beta$", "$SE$", "$z$", "$p$")
-
-tableprint[1:11 , 2:5] = coef(summary(overallh3))
-tableprint[1:11, 1] = c("Intercept", "Semantic Judgments", "Thematic Judgments", "Judged Values", dimnames(coef(summary(overallh3)))[[1]][5:11])
-
-#low cosine
-lowcos2 = glmer(Recall ~ (1|Partno) +
-                  Judgment + Judged.Value2 + ZCOS_low * ZLSA * ZFSG,
-               data = noout,
-               family = binomial,
-               control = glmerControl(optimizer = "bobyqa"),
-               nAGQ = 1)
-
-tableprint[12:14 , 2:5] = coef(summary(lowcos2))[c(6,7,10), ]
-tableprint[12:14, 1] = c("Low COS ZLSA", 
-                         "Low COS ZFSG", 
-                         "Low COS ZLSA:ZFSG")
-
-##high cosine
-hicos2 = glmer(Recall ~ (1|Partno) + 
-                 Judgment + Judged.Value2 + ZCOS_high * ZLSA * ZFSG,
-                        data = noout,
-                        family = binomial,
-                        control = glmerControl(optimizer = "bobyqa"),
-                        nAGQ = 1)
-
-tableprint[15:17, 2:5] = coef(summary(hicos2))[c(6,7,10), ]
-tableprint[15:17, 1] = c("High COS ZLSA", 
-                         "High COS ZFSG", 
-                         "High COS ZLSA:ZFSG")
-
-####splitting lsa by cosine strength####
-##low cosine low lsa
-lowcoslowlsa2 = glmer(Recall ~ (1|Partno) + 
-                        Judgment + Judged.Value2 + ZCOS_low * ZLSA_low * ZFSG,
-                      data = noout,
-                      family = binomial,
-                      control = glmerControl(optimizer = "bobyqa"),
-                      nAGQ = 1)
-
-tableprint[18, ] = c("Low COS Low LSA ZFSG", coef(summary(lowcoslowlsa2))[7,])
-
-##low cosine high lsa
-lowcoshighlsa2 = glmer(Recall ~ (1|Partno) + 
-                        Judgment + Judged.Value2 + ZCOS_low * ZLSA_high * ZFSG,
-                      data = noout,
-                      family = binomial,
-                      control = glmerControl(optimizer = "bobyqa"),
-                      nAGQ = 1)
-
-tableprint[19, ] = c("Low COS High LSA ZFSG", coef(summary(lowcoshighlsa2))[7,])
-
-##high cos low lsa
-highcoslowlsa2 = glmer(Recall ~ (1|Partno) + 
-                        Judgment + Judged.Value2 + ZCOS_high * ZLSA_low * ZFSG,
-                      data = noout,
-                      family = binomial,
-                      control = glmerControl(optimizer = "bobyqa"),
-                      nAGQ = 1)
-
-tableprint[20, ] = c("High COS Low LSA ZFSG", coef(summary(highcoslowlsa2))[7,])
-
-##high cosine high lsa
-highcoshighlsa2 = glmer(Recall ~ (1|Partno) + 
-                        Judgment + Judged.Value2 + ZCOS_high * ZLSA_high * ZFSG,
-                      data = noout,
-                      family = binomial,
-                      control = glmerControl(optimizer = "bobyqa"),
-                      nAGQ = 1)
-
-tableprint[21, ] = c("High COS High LSA ZFSG", coef(summary(highcoshighlsa2))[7,])
-
-tableprint[ , 2] = apa(as.numeric(tableprint[ , 2]),3,T) 
-tableprint[ , 3] = apa(as.numeric(tableprint[ , 3]),3,T)
-tableprint[ , 4] = apa(as.numeric(tableprint[ , 4]),3,T)
-tableprint[ , 5] = apply(as.data.frame(as.numeric(tableprint[ , 5])), 1, p.value)
-
-
-apa_table(as.data.frame(tableprint),
-          align = c("l", rep("c", 4)), 
-          small = T,
-          caption = "MLM Statistics for Hypothesis 3",
-          note = "Database norms were mean centered. The table shows main effects and interactions for database norms at low, average, and high levels of COS and LSA when predicting recall.",
-          escape = FALSE
- )
-
-```
-
-```{r hyp3graph, echo=FALSE, fig.cap = "Simple slopes graph displaying the slope of FSG when predicting recall at low, average, and high LSA split by low, average, and high COS. All variables were mean centered.", fig.height=6, fig.width=6}
-
-##low cos
-plot4 = ggplot(dat, aes(x = ZCOS_low, y = Judged.Value2)) +
-  labs(x = "ZFSG", y = "Recall") +
-  scale_size_continuous(guide = FALSE) +
-  geom_abline(aes(intercept = 0.316, slope = 4.116, linetype = "-1SD ZLSA")) +
-  geom_abline(aes(intercept = 0.136, slope = 2.601, linetype = "Average ZLSA")) +
-  geom_abline(aes(intercept = -0.044, slope = 1.086, linetype = "+1SD ZLSA")) +
-  scale_linetype_manual(values = c("dotted", "dashed", "solid"),
-                        breaks = c("-1SD ZLSA", "Average ZLSA", "+1SD ZLSA"),
-                        name = "Simple Slope") +
-  coord_cartesian(xlim = c(-.20, .60), ylim = c(.1, 1)) +
-  geom_vline(xintercept = -.30) +
-  geom_hline(yintercept = 0) +
-  cleanup + 
-  labs(title="Low ZCOS") 
-
-##avg cos
-plot5 = ggplot(dat, aes(x = ZCOS_low, y = Judged.Value2)) +
-  labs(x = "ZFSG", y = "Recall") +
-  scale_size_continuous(guide = FALSE) +
-  geom_abline(aes(intercept = 0.369, slope = 3.281, linetype = "-1SD ZLSA")) +
-  geom_abline(aes(intercept = 0.301, slope = 3.084, linetype = "Average ZLSA")) +
-  geom_abline(aes(intercept = 0.234, slope = 2.889, linetype = "+1SD ZLSA")) +
-  scale_linetype_manual(values = c("dotted", "dashed", "solid"),
-                        breaks = c("-1SD ZLSA", "Average ZLSA", "+1SD ZLSA"),
-                        name = "Simple Slope") +
-  coord_cartesian(xlim = c(-.20, .60), ylim = c(.1, 1)) +
-  geom_vline(xintercept = -.30) +
-  geom_hline(yintercept = 0) +
-  cleanup + 
-  labs(title="Average ZCOS") 
-
-##high cos
-plot6 = ggplot(dat, aes(x = ZCOS_low, y = Judged.Value2)) +
-  labs(x = "ZFSG", y = "Recall") +
-  scale_size_continuous(guide = FALSE) +
-  geom_abline(aes(intercept = .421, slope = 2.44, linetype = "-1SD ZLSA")) +
-  geom_abline(aes(intercept = .466, slope = 3.569, linetype = "Average ZLSA")) +
-  geom_abline(aes(intercept = .511, slope = 4.692, linetype = "+1SD ZLSA")) +
-  scale_linetype_manual(values = c("dotted", "dashed", "solid"),
-                        breaks = c("-1SD ZLSA", "Average ZLSA", "+1SD ZLSA"),
-                        name = "Simple Slope") +
-  coord_cartesian(xlim = c(-.20, .60), ylim = c(.1, 1)) +
-  geom_vline(xintercept = -.30) +
-  geom_hline(yintercept = 0) +
-  cleanup + 
-  labs(title="High ZCOS") 
-
-legend = get_legend(plot4)
-hyp3graphout <- plot_grid( plot4 + theme(legend.position="none"),
-                   plot5 + theme(legend.position="none"),
-                   plot6 + theme(legend.position="none"),
-                   legend,
-                   hjust = -1,
-                   nrow = 2
-)
-hyp3graphout
-
-#tiff(filename = "hyp3graph.tiff", res = 300, width = 6, 
-#     height = 6, units = 'in', compression = "lzw")
-#plot(hyp3graphout)
-#dev.off()
-
-```
-
-Given the results of Hypothesis 2, we then sought to extend the analysis to participant recall scores. A multilevel logistic regression was used with the *lme4* package and *glmer()* function [@Pinheiro2017], testing the interaction between FSG, COS, and LSA when predicting participant recall. As with the previous hypothesis, we controlled for JOR condition and, additionally, covaried JOR ratings. Participants were used as a random intercept factor. Judged values were a significant predictor of recall, ($\beta$ = `r tableprint[4, 2]`, *p* `r tableprint[4, 5]`) where increases in judged strength predicted increases in recall. A significant three-way interaction was detected between FSG, COS, and LSA ($\beta$ = `r tableprint[11, 2]`, *p* `r tableprint[11, 5]`). See Table \@ref(tab:hyp3-table) for main effects, two-way, and three-way interaction values. 
-
-The same moderation process used in Hypothesis 2 was then repeated, with simple slopes first calculated at low, average, and high levels of COS. This set of analyses resulted in significant two-way interactions between LSA and FSG at low COS ($\beta$ = `r tableprint[14, 2]`, *p* `r tableprint[14, 5]`) and high COS ($\beta$ = `r tableprint[17, 2]`, *p* = `r tableprint[17, 5]`). No significant two-way interaction was found at average COS ($\beta$ = `r tableprint[10, 2]`, *p* = `r tableprint[10, 5]`). Following the design used when predicting JORs, simple slopes were then calculated for low, average, and high levels of LSA at the low and high levels of COS, allowing us to assess how FSG affects recall at varying levels of both COS and LSA. When both COS and LSA were low, FSG was a significant predictor of recall ($\beta$ = `r tableprint[18, 2]`, *p* `r tableprint[18, 5]`). At low COS and average LSA, FSG decreased from both low levels, but was still a significant predictor ($\beta$ = `r tableprint[13, 2]`, *p* `r tableprint[13, 5]`), and finally, low COS and high LSA, FSG was the weakest predictor of the three ($\beta$ = `r tableprint[19, 2]`, *p* = `r tableprint[19, 5]`). As with Hypothesis 2, LSA and FSG counterbalanced one another, wherein the increasing levels of thematics led to a decrease in the importance of association in predicting recall. At high COS and low LSA, FSG was a significant predictor ($\beta$ = `r tableprint[20, 2]`, *p* = `r tableprint[20, 5]`). When COS was high and LSA was average, FSG increased as a predictor and remained significant ($\beta$ = `r tableprint[16, 2]`, *p* `r tableprint[16, 5]`). This finding repeated when both COS and LSA were high, with FSG increasing as a predictor of recall ($\beta$ = `r tableprint[21, 2]`, *p* `r tableprint[21, 5]`). Therefore, at high levels of at high levels of semantics, thematics and association are complementary predictors of recall, increasing together and extending the findings of Hypothesis 2 to participant recall. Figure \@ref(fig:hyp3graph) displays the three-way interaction. The top left figure indicates the counterbalancing effect of recall of LSA and FSG, while the top right figure shows no differences in simple slopes for average levels of cosine. The bottom left figure indicates the complementary effects where LSA and FSG increase together as predictors of recall at high COS levels. 
-
-## Predicting Recall with JAM Slopes
-
-```{r hyp4-table, echo=FALSE, results='asis'}
-##do the slopes from hyp 1 predict recall 
-
-##merge recall back with slopes from the people dataset
-hyp4data = merge(people, noout, by = "Partno")
-
-##association
-assoch4 = glmer(Recall ~ (1|Partno) + ACOS + ALSA + AFSG + AIntercept,
-                data = hyp4data,
-                family = binomial,
-                control = glmerControl(optimizer = "bobyqa"),
-                nAGQ = 1)
-
-##semantics
-semh4 = glmer(Recall ~ (1|Partno) + SCOS + SLSA + SFSG + SIntercept,
-                data = hyp4data,
-                family = binomial,
-                control = glmerControl(optimizer = "bobyqa"),
-                nAGQ = 1)
-
-##thematics
-themeh4 = glmer(Recall ~ (1|Partno) + TCOS + TLSA + TFSG + TIntercept,
-                data = hyp4data,
-                family = binomial,
-                control = glmerControl(optimizer = "bobyqa"),
-                nAGQ = 1)
-
-####table set up####
-##create a blank table
-tableprint = matrix(NA, nrow = 15, ncol = 5)
-colnames(tableprint) = c("Variable", "$b$", "$SE$", "$z$", "$p$")
-
-tableprint[1:5, 2:5] = coef(summary(assoch4))
-tableprint[1:5, 1] = dimnames(coef(summary(assoch4)))[[1]]
-
-tableprint[6:10, 2:5] = coef(summary(semh4))
-tableprint[6:10, 1] = dimnames(coef(summary(semh4)))[[1]]
-
-tableprint[11:15, 2:5] = coef(summary(themeh4))
-tableprint[11:15, 1] = dimnames(coef(summary(themeh4)))[[1]]
-
-tableprint[ , 2] = apa(as.numeric(tableprint[ , 2]),3,T) 
-tableprint[ , 3] = apa(as.numeric(tableprint[ , 3]),3,T)
-tableprint[ , 4] = apa(as.numeric(tableprint[ , 4]),3,T)
-tableprint[ , 5] = apply(as.data.frame(as.numeric(tableprint[ , 5])), 1, p.value)
-
-apa_table(as.data.frame(tableprint),
-          align = c("l", rep("c", 4)), 
-          caption = "MLM Statistics for Hypothesis 4",
-          note = "Each judgment-database bias and sensitivity predicting recall for corresponding judgment block. A: Associative, S: Semantic, T: Thematic.",
-          escape = FALSE
- )
-
-```
-
-In our fourth and final hypothesis, we investigated whether the JOR slopes and intercepts obtained in Hypothesis 1 would be predictive of recall ability. Whereas Hypothesis 3 indicated that word relatedness was directly related to recall performance, this hypothesis instead looked at whether or not participants' sensitivity and bias to word relatedness could be used a predictor of recall [@Maki2007]. This analysis was conducted with a multilevel logistic regression, as described in Hypothesis 3, where each database slope and intercept was used as predictors of recall using participant as a random intercept factor. These analyses were separated by judgment condition, so that each set of JOR slopes and intercepts were used to predict recall. The separation controlled for the number of variables in the equation, as all slopes and intercepts would have resulted in overfitting. These values were obtained from Hypothesis 1 where each participant's individual slopes and intercepts were calculated for associative, semantic, and thematic JOR conditions. Table \@ref(tab:hyp1-table1) shows average slopes and intercepts for recall for each of the three types of memory, and Table \@ref(tab:hyp4-table) portrays the regression coefficients and statistics. In the associative condition, FSG slope significantly predicted recall (*b* = `r tableprint[4, 2]`, *p* = `r tableprint[4, 5]`), while COS slope (*b* = `r tableprint[2, 2]`, *p* = `r tableprint[2, 5]`) and LSA slope (*b* = `r tableprint[3, 2]`, *p* = `r tableprint[3, 5]`) were non-significant. In the semantic condition, COS slope (*b* = `r tableprint[7, 2]`, *p* `r tableprint[7, 5]`) and LSA slope (*b* = `r tableprint[8, 2]`, *p* = `r tableprint[8, 5]`) were both found to be significant predictors of recall. FSG slope was non-significant in this condition (*b* = `r tableprint[9, 2]`, *p* = `r tableprint[9, 5]`). Finally, no predictors were significant in the thematic condition, though LSA slope was found to be the strongest (*b* = `r tableprint[13, 2]`, *p* = `r tableprint[13, 5]`). This analysis indicated the extent to which the cognitive processes are related to each other as part of the memory network (i.e., judgment sensitivity predicting recall), furthering the previous two analyses, which illustrated the nature of those cognitive processes' relationship with the underlying memory network. 
-
-# Discussion
-
-This study investigated the relationship between associative, semantic, and thematic word relations and their effect on participant JORs and recall performance through the testing of four hypotheses. In our first hypothesis, we show that bias and sensitivity findings first proposed by @Maki2007a successfully replicated in the associative condition, with slope and intercept values falling within the expected range. While these findings were not fully replicated when extending the analysis to include semantic and thematic JORs (as slopes in these conditions did not fall within the appropriate range), participants still displayed high intercepts and shallow slopes, suggesting overconfidence in judgment making and an insensitivity to changes in strength between pairs. Additionally, when looking at the frequency that each predictor was the strongest in making JORs, FSG was the best predictor for both the associative and semantic conditions, while LSA was the best predictor in the thematic condition. In each of the three conditions, COS was the weakest predictor, even when participants were asked to make semantic judgments. This finding suggests that associative relationships seem to take precedence over semantic relationships when judging pair relatedness, regardless of what type of JOR is being elicited. Additionally, this finding may be taken as further evidence of a separation between associative information and semantic information, in which associative information is always processed, while semantic information may be suppressed due to task demands [@Buchanan2010; @Hutchison2007]. 
-
-Our second hypothesis examined the three-way interaction between FSG, COS, and LSA when predicting participant JORs. At low semantic overlap, a seesaw effect was found in which increases in thematic strength led to decreases in associative predictiveness. This finding was then replicated in Hypothesis 3 when extending the analysis to predict recall. By limiting the semantic relationships between pairs, an increased importance is placed on the role of associations and thematics when making relatedness judgments or retrieving pairs. In such cases, increasing the amount of thematic overlap between pairs results in thematic relationships taking precedent over associative relationships. However, when semantic overlap was high, a complementary relationship was found in which increases in thematic strength in turn led to increases in the strength of FSG as a predictor. This result suggests that at high semantic overlap, associations and thematic relations build upon one another. Because thematics is tied to both semantic overlap and item associations, the presence of strong thematic relationships between pairs during conditions of high semantic overlap boosts the predictive ability of associative word norms for both recall and JORs. 
-
-Finally, our fourth hypothesis used the JOR slopes and intercepts calculated in Hypothesis 1 to investigate whether participants' bias and sensitivity to word relatedness could be used to predict recall. For the associative condition, the FSG slope significantly predicted recall. In the semantic condition, recall was significantly predicted by both the COS and LSA slopes, with COS being the strongest. However, for the thematic condition, although the LSA slope was the strongest, no predictors were significant. One explanation for this finding is that thematic relationships between item pairs act as a blend between associations and semantics. As such, LSA faces increased competition from the associative and semantic database norms when predicting recall in this manner. Additionally, the dominance of FSG when predicting recall in the associative condition may be attributed to word associations being more accessible (and, thus, easier to process) than semantic or thematic relations between pairs.
-
-Overall, our findings indicated the degree to which the processing of associative, semantic, and thematic information impacts retrieval and judgment making tasks and the interactive relationship that exists between these three types of lexical information. While previous research has shown that memory networks are divided into separate systems which handle storage and processing for meaning and association [see @Ferrand2004 for a review], the presence of these interactions suggests that connections exist between these individual memory networks, linking them to one another. As such, we suggest that these memory systems may be connected in such a way as to form a three-tiered, interconnected system. Within this framework, information enters the semantic memory network, which processes features of concepts and provides a means of categorizing items based on the similarity of their features. The associative network adds information for items based on contexts generated by reading or speech. The thematic network then pulls in information based on semantic and associative input to create a mental representation of both the item and its place in the world relative to other concepts.
-
-While this study did not explore the timing or order in which information is input from each of these systems of concept information, it may be comparable to the dual-route model of reading and naming [@Coltheart1993], in that each system runs in parallel when contributing to the judgment and recall process [See also @Coltheart2001]. Alternatively, prevous research on early linguistic access suggests that these three systems may be operating simultaneously. For example, The Language and Situated Simulation Theory (LASS, see @Barsalou2008 for a review) proposes that meaning is derived from the concurrent processing of both linguistic information (e.g., visual stimuli) and modal simulations (i.e., mental imagery related to the stimulus object). According to this theory, when an object is read, both systems become imemediately engaged, though the linguistic system is assumed to be faster, because mental representations of linguistic forms are more accessible in memory relative to simulations (Barsalou et al., 2008, @Thomson1973). As the linguistic system becomes activated, it in turn activates related linguistic forms (i.e., associated words). Because word associations play a key role within this linguistic system, associative information may then come online first relative to semantic concept information.
-
-Viewing this model purely through the lens of semantic memory, it draws comparison to dynamic attractor models [@Jones2015; @Hopfield1982; @McLeod2000]. One of the defining features of dynamic attractor models is that they allow for some type of bidirectionally or feedback between connections in the network. In the study of semantic memory, these models are useful for taking into account multiple restraints such as links between semantics and the orthography of the concept in question. Our hypothesis extends this notion as a means of framing how these three memory systems are connected. The underlying meaning of a concept is linked with both information pertaining to its co-occurrences in everyday language and information relating to the general contexts in which it typically appears.
-
-How then does this hypothesis lend itself towards the broader context of psycholinguistic research? One application of this hypothesis may be found when examining models of word recognition. One popular class of word recognition models are those based upon the "triangle model" first proposed by @Seidenberg1989a [see @Harley2008 for a review]. The key feature of these models is that they recognize speech and reading based upon the orthography, phonology, and meaning of words in a bidirectional manner, similar to the models described above. @Harm2004 developed a version which included a focus on semantics, with word meaning being related to input from the orthography and phonology components of the model. As our findings from the present study suggest that thematic and associative knowledge is integrated with meaning, one way of framing our results within this literature is to consider the semantic section of the triangle model as being comprised of this interconnected system,with concept information processed to some degree on each of these domains. Thus, one area for future studies of this nature may be investigating how aspects of orthography and phonology impact these memory networks. 
-
-Finally, future studies may wish to consider elements of thematic and associative knowledge when examining semantic based tasks (such as word recognition and reading), as thematic and associative information is interconnected with the semantic network. To fully understand the interplay of associatitive, semantic, and thematic networks, it will be necessary to control for several types of word properties (e.g., item frequency, concreteness, etc.), as these properties have been shown to influence judgments and recall. Ultimately, our findings show that these three lexical networks are highly related suggest they are individual components of an interconnected system.
-
-## Compliance with Ethical Standards
-
-The authors declare that they have no conflict of interest. The study was approved by the Institutional Review Board at Missouri State University. Particiants filled out an informed consent at the beginning of the study, after accepting the HIT on Mechanical Turk. The complete study with consent form can be found on our OSF page: http://osf.io/y8h7v.
 
 \newpage
 

@@ -1,0 +1,53 @@
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[t]
+
+\caption{\label{tab:stim-table}Summary Statistics for Stimuli}
+\centering
+\begin{tabular}{llll}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{3}{c}{Semantic Feature Overlap COS} \\
+\cmidrule(l{3pt}r{3pt}){2-4}
+Variable & Low & Average & High\\
+\midrule
+Semantic Feature Overlap COS & .09 (.10) & .45 (.09) & .75 (.05)\\
+Forward Strength FSG & .08 (.11) & .15 (.17) & .19 (.24)\\
+Latent Semantic Analysis LSA & .25 (.17) & .39 (.18) & .47 (.18)\\
+Direct Association DA & .12 (.16) & .23 (.23) & .27 (.29)\\
+Direct Association IA & .10 (.14) & .25 (.17) & .39 (.18)\\
+\bottomrule
+\multicolumn{4}{l}{\textsuperscript{} $Note$. Standard deviation values are in parentheses.}\\
+\end{tabular}
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:hyp1-table1}Summary Statistics for Hypothesis 1 t-Tests}
+\begin{tabular}{lccccccc}
+\toprule
+Variable & $M$ & $SD$ & $t$ & $df$ & $p$ & $d$ & $95\% CI$\\
+\midrule
+Associative Intercept & .522 & .201 & 45.905 & 311 & < .001 & 2.599 & 2.364 - 2.829\\
+Associative DA & .326 & .299 & 19.269 & 311 & < .001 & 1.091 & 0.950 - 1.231\\
+Associative IA & .027 & .293 & 1.624 & 311 & .105 & 0.092 & -0.019 - 0.203\\
+Semantic Intercept & .518 & .205 & 44.635 & 312 & < .001 & 2.523 & 2.294 - 2.748\\
+Semantic DA & .315 & .301 & 18.469 & 312 & < .001 & 1.044 & 0.906 - 1.181\\
+Semantic IA & .243 & .324 & 13.305 & 312 & < .001 & 0.752 & 0.626 - 0.877\\
+Thematic Intercept & .606 & .182 & 59.245 & 315 & < .001 & 3.333 & 3.048 - 3.613\\
+Thematic DA & .277 & .266 & 18.536 & 315 & < .001 & 1.043 & 0.905 - 1.179\\
+Thematic IA & .137 & .282 & 8.653 & 315 & < .001 & 0.487 & 0.370 - 0.603\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Confidence interval for $d$ was calculated using the non-central $t$-distribution. }
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\efloatseparator
+ 

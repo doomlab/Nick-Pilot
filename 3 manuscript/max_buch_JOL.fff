@@ -1,0 +1,9 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{max_buch_JOL_files/figure-latex/makislope-1.pdf}
+\caption{\label{fig:makislope}JAM slope findings from Maki (2007a). JAM is characterized by a high intercept (between 40 and 60) and a shallow slope (between 0.20 and 0.40). The solid line shows expected results if judgment ratings are perfectly calibrated with association norms.}
+\end{figure*}
+\efloatseparator
+ 
