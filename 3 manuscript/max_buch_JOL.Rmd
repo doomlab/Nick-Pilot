@@ -42,15 +42,24 @@ csl               : apa6.csl
 
 ```{r libraries, include = FALSE}
 knitr::opts_chunk$set(cache = TRUE)
-library("papaja")
+
 p.value = function(x){
   if (x < .001) { return("< .001")}
   else { return(apa(x, 3, F))}
 }
+
+pasteit = function(M, SD){
+  return(paste(printnum(M, gt1 = F), " (",
+        printnum(SD, gt1 = F), ")", sep = ""))
+}
+
+library(papaja)
 library(cowplot)
 library(MOTE)
 library(ggplot2)
 library(ez)
+library(lsa)
+library(kableExtra)
 
 cleanup = theme(panel.grid.major = element_blank(), 
                 panel.grid.minor = element_blank(), 
@@ -61,33 +70,31 @@ cleanup = theme(panel.grid.major = element_blank(),
                 text = element_text(size = 15))
 ```
 
-  The study of cognition has a rich history of exploring the role of association in human memory. One key finding is that elements of cognitive processing play a critical role in how well an individual retains learned information. Throughout the mid-20th century, researchers investigated this notion, particularly through the use of paired-associate learning (PAL). In this paradigm, participants are presented with a pair of items and are asked to make connections between them so that the presentation of one item (the cue) will in turn trigger the recall of the other (the target). Early studies of this nature focused primarily on the effects of meaning and imagery on recall performance. For example, @Smythe1968 found that noun imagery played a crucial role in PAL performance; subjects were much more likely to remember word-pairs that were low in meaning similarity if imagery between the two was high. Subsequent studies in this area focused on the effects of mediating variables on PAL tasks as well as the effects of imagery and meaningfulness on associative learning [@Richardson1998], with modern studies shifting their focus towards a broad range of applied topics such as how PAL is affected by aging [@Hertzog2002], its impacts on second language acquisition [@Chow2014], and even in evolutionary psychology [@Schwartz2013]. 
-	
-  Early PAL studies routinely relied on stimuli generated from word lists that focused extensively on measures of word frequency, concreteness, meaningfulness, and imagery [@Paivio1969]. However, the word pairs in these lists were typically created due to their apparent relatedness or frequency of occurrence in text. While lab self-generation appears face valid, one finds that this method of selection lacks a decisive method of defining the underlying relationships between the pairs [@Buchanan2010], as these variables only capture psycholinguistic measurements of an individual concept (i.e., how concrete is *cat* and word occurrence). PAL is, by definition, used on word pairs, which requires examining concept relations in a reliable manner. As a result, free association norms have become a common means of indexing associative strength between word pairs. 
-  
-  As we will use several related variables, it is important to first define association as the context-based relation between concepts, usually found in text or popular culture [@Nelson2000]. These word associations may arise in several different ways. Such associations may develop through their co-occurrence together in language. The terms *peanut* and *butter* have become associated over time through their joint use to depict a particular type of food, though separately, the two concepts share very little overlap in terms of meaning. However, associations can also come about through shared meaning. For example, they capture the knowledge that fish live in water and that dogs and cats share many similiar features. To generate these norms, participants engage in a free association task, in which they are presented with a cue word and are asked to list the first related target word that comes to mind. The probability of producing a given response to a particular cue word, or forward strength, can then be determined by dividing the number of participants who produced the response in question by the total number of responses generated for that word [FSG; @Nelson2000]. Thus, the free association process can be thought of as generating an index that contains the relative accessibility of related words in memory [@Nelson2004]. Using this technique, researchers have developed databases of associative word norms that can be used to generate stimuli with a high degree of reliability. Many of these databases are now readily available online, with the largest one consisting of over 72,000 associates generated from more than 5,000 cue words [@Nelson2004]. More recently, the Small World of Words project [SWOW; @DeDeyne2013] has sought to capture associations between Dutch words by employing a multiple response technique in contrast to the traditional single response free association task used by @Nelson2004. These norms are now being collected for English words [@DeDeyne2018].
+The study of cognition has a rich history of exploring the way in which associations affect human memory. One key finding is that associations between items influence cognitive processing and play a critical role in how well an individual retains learned information. Throughout the mid-20th century, researchers investigated this notion, particularly through the use of paired-associate learning (PAL). In this paradigm, participants are presented with a pair of items and are asked to make connections between them so that the presentation of one item (the cue) will in turn trigger the recall of the other (the target). Early studies of this nature focused primarily on the effects of meaning and imagery on recall performance. For example, @Smythe1968 found that noun imagery played a crucial role in PAL performance; subjects were much more likely to remember word-pairs that were low in meaning similarity if imagery between the two was high. Subsequent studies in this area focused on the effects of mediating variables on PAL tasks as well as the effects of imagery and meaningfulness on associative learning [@Richardson1998], with modern studies shifting their focus towards a broad range of applied topics such as how PAL is affected by aging [@Hertzog2002], its impacts on second language acquisition [@Chow2014], and even in evolutionary psychology [@Schwartz2013]. 
 
-  Similar to association norms, semantic word norms provide researchers with another option of constructing stimuli for use in word-pair tasks. These norms measure the underlying concepts represented by words and allow researchers to tap into aspects of semantic memory. Semantic memory is best described as an organized collection of our general knowledge and contains information regarding a concept's meaning [@Hutchison2003]. Models of semantic memory broadly fall into one of two categories. Connectionist models [e.g., @Rogers2006; @Rumelhart1986] portray semantic memory as a system of interconnected units representing concepts, which are linked together by weighted connections representing knowledge. By triggering the input units, activation will then spread throughout the system activating or suppressing connected units based on the weighted strength of the corresponding unit connections [@Jones2015]. On the other hand, distributional models of semantic memory posit that semantic representations are created through the co-occurrences of words together in a body of text and suggest that words with similar meanings will appear together in similar contexts [@Riordan2011]. Popular distributional models of semantic memory include Latent Semantic Analysis [LSA; @Landauer1997] and the Hyperspace Analogue to Language [HAL; @Lund1996].
-	
-  Feature production tasks are a common means of producing semantic word norms [@McRae2005; @Vinson2008; @Buchanan2013]  In such tasks, participants are shown the name of a concept and are asked to list what they believe the concept's most important features to be [@McRae2005]. Several statistical measures have been developed which measure the degree of feature overlap between concepts. Similarity between any two concepts can be measured by representing them as vectors and calculating the cosine value (COS) between them [@Maki2004]. Cosine values range from 0 (unrelated) to 1 (perfectly related). For example, the pair *hornet* - *wasp* has a COS of .88, indicating a high degree of overlap between the two concepts. Feature overlap can also be measured by JCN, which involves calculating the information content value of each concept and the lowest super-ordinate shared by each concept using an online dictionary, such as WordNET [@Miller1995]. The JCN value is then computed by summing together the difference of each concept and its lowest super-ordinate [@Jiang1997; @Maki2004]. The advantage to using COS values over JCN values is the limitation of JCN being tied to a somewhat static dictionary database, while a semantic feature production task can be used on any concept to calculate COS values. However, JCN values are less time consuming to obtain if both concepts are in the database [@Buchanan2013]. 
+Early PAL studies routinely relied on stimuli generated from word lists that focused extensively on measures of word frequency, concreteness, meaningfulness, and imagery [@Paivio1969]. However, the word pairs in these lists were typically created due to their apparent relatedness or frequency of occurrence in text. While lab self-generation appears face valid, one finds that this method of selection lacks a decisive method of defining the underlying relationships between the pairs [@Buchanan2010], as these variables only capture psycholinguistic measurements of an individual concept (i.e., how concrete is *cat* and word occurrence). PAL is, by definition, used on word pairs, which requires examining concept relations in a reliable manner. As a result, free association norms have become a common means of indexing associative strength between word pairs [@Nelson2000]. 
 
-  Semantic relations can be broadly described as being taxonomic or thematic in nature. Whereas taxonomic relationships focus on the connections between features and concepts within categories (e.g., *bird* - *pigeon*), thematic relationships center around the links between concepts and an overarching theme or scenario [e.g., *bird* - *nest*; @Jones2012]. @Jouravlev2016 provide a list of 100 thematic relatedness production norms, which were generated through a task similar to feature production in which participants were presented with a concept and were asked to list names of other concepts they believed to be related. Distributional models of semantic memory also lend themselves well to the study of thematic word relations. Because these models are text-based and score word pair relations in regard to their overall context within a document, they assess thematic knowledge as well as semantic knowledge. Additionally, text-based models such as LSA are able to account for both the effects of context and similarity of meaning, bridging the gap between associations and semantics [@Landauer1998].
-	
-  Discussion of these measures then leads to the question of whether each one truly assesses some unique concept or if they simply tap into our overall linguistic knowledge. Taken at face value, word pair associations and semantic word relations appear to be vastly different, yet the line between semantics/associations and thematics is much more blurred. While thematic word relations are indeed an aspect of semantic memory and include word co-occurrence as an integral part of their creation, themes also appear to be indicative of a separate area of linguistic processing. Previous research by @Maki2008 appears to confirm this theory. Using clustering and factor analysis techniques, they analyzed multiple associative, semantic, and text-based measures of associative and semantic knowledge. First, their findings suggested associative measures to be separate from semantic measures. Additionally, semantic information derived from lexical measures (e.g., COS, JCN) was found to be separate from measures generated from analysis of text corpora, suggesting that text-based measures may be more representative of thematic information. 
-  
-  While it is apparent that these word relation measures are assessing different domains of our linguistic knowledge, care must be taken when building experimental stimuli through the use of normed databases, as many word pairs overlap on multiple types of measurements. For example, some of the first studies on semantic priming used association word norms for stimuli creation [@Meyer1971; @Meyer1975; @Lucas2000]. This observation becomes strikingly apparent when one desires the creation of word pairs related on only one dimension. One particular difficulty faced by researchers comes when attempting to separate association strength from feature overlap, as highly associated items tend to be semantically related as well. Additionally, a lack of association strength between two items may not necessarily be indicative of a total lack of association, as traditional norming tasks typically do not produce a large enough set of responses to capture all available associations between items. Some items with extremely weak associations may inevitably slip through the cracks [@Hutchison2003]. As such, the present study seeks to provide further insight by examining how different levels of associative overlap (measured in FSG), semantic overlap (feature overlap measured with COS), and thematic overlap (measured with LSA) affect cognitive tasks such as short term item retrieval and item relatedness judgments. Instead of focusing solely on one variable or trying to create stimuli that represent only one form of relatedness, we included a range of each of these variables to explore their potential interaction.
-  
-  Specifically, this research was conceptualized within the framework of a three-tiered view of the interconnections between these systems as it relates to processing concept information. The three-tiered view is inspired by models of reading and naming, particularly the triangle models presented by @Seidenberg1989a and @Plaut1995. These models explored the nature of reading as bidirectional relations between semantics, orthography, and phonology. In this research, we examine if the associative, semantic, and thematic systems are interactive for judgment and recall processes, much like the proposed interactive nature of phonology, orthographics, and semantics for reading and naming processes. Potentially, association, semantic, and thematic facets of word relation each provide a unique contribution that can be judged and used for memory, thus, suggesting three separate networks of independent information. This view seems unlikely, in that research indicates that there is often overlap in the information provided by each measure of word-pair relatedness. Instead, dynamic attractor networks, as proposed by @Hopfield1982 and @McLeod2000 may better represent the interplay between these representations of concepts, as these models posit a similar feedback relationship between concepts in a network. Using these models as a theoretical framework for our study, we sought to understand how these three types of word-pair information may interact when judgment and recall processes were applied to concept networks, and use it as a framework for exploring how associative, semantic, and thematic memory networks share interconnections. Therefore, this study provides evidence of the structure and interplay between different forms of network relations for two cognitive tasks of judgment and retrieval and will shed light on the underlying processing for each task. 
+## Measuring Association
 
-##Application to Judgment Studies
+Within cognitive psychology, word associations have been conceptualized differently across various lines of research (i.e., direct word associations, mediated associates, etc.; see @DeDeyne2013 for a review).  For the present study, we focus on two types of associations: direct associations and indirect associations. Direct word associations are traditionally viewed as the context-based relation between concepts, usually found in text or popular culture [@Nelson2000]. Within this framework, word associations are thought to arise in several different ways. Such associations may develop through their co-occurrence together in either written or spoken language. The terms *peanut* and *butter* have become associated over time through their joint use to depict a particular type of food, though separately, the two concepts share very little overlap in terms of meaning. However, this separation is not the case for all associative pairs. For example, word associations capture the knowledge that fish live in water (e.g., *fish* – *swim*) and that dogs and cats share many similar features. To generate norms measuring direct associations, participants engage in a free association task, in which they are presented with a cue word and are asked to list the first related target word that comes to mind. The probability of producing a given response to a particular cue word (i.e., the pair’s normed forward strength, FSG) can then be determined by dividing the number of participants who produced the response in question by the total number of responses generated for that word [@Nelson2000]. Thus, the free association process can be thought of as generating an index that contains the relative accessibility of related words in memory [@Nelson2004]. 
 
-  Traditional judgment of learning tasks (JOL) can be viewed as an application of the PAL paradigm; participants are given pairs of items and are asked to judge how accurately they would be able to correctly respond with the target with the cue on a recall task. Judgments are typically made out of 100, with a participant response of 100 indicating full confidence in recall ability. In their 2005 study, Koriat and Bjork examined overconfidence in JOLs by manipulating associative relations (FSG) between word-pairs and found that subjects were more likely to overestimate recall for pairs with little or no associative relatedness. Additionally, this study found that when accounting for associative direction, subjects were more likely to overestimate recall for pairs that were high in backwards strength but low in forward strength. To account for this finding, the authors suggested that JOLs may rely more heavily on overlap between cue and target with the direction of the associative relationship being secondary. Take for example the pair *feather* - *bird*, which has a FSG of .051 and a BSG of .359. This item pair also has a cosine value of .272 (suggesting low to moderate feature overlap) and an LSA score of .517 (suggesting moderate thematic overlap). As such, some of the overconfidence in JOLs may be attributed to more than just item associations. Paired items may also be connected by similar themes or share certain features, resulting in inflated JOLs. 
+Using this technique, researchers have developed databases of associative word norms that can be used to generate stimuli, generally with a high degree of reliability [e.g., The University of South Florida Free Association Norms; @Nelson2004]. However, this reliability becomes questionable for weak associates. Because the traditional free association task focuses only the first word that is provided the cue, target items that are more weakly associated may become underrepresented in the dataset, as the inclination to respond with stronger associates may disrupt access to weaker associates (i.e., the availability heuristic]. Recently, The Small World of Words project [SWOW, @DeDeyne2013; @DeDeyne2018] has sought to correct for this sampling issue by employing a multiple response free association task. In this modified free association task, subjects are asked to generate three target items in response to the cue. The updated SWOW association norms provide several advantages when compared to other collections of free association norms. First, this norm set is the largest to date, consisting of approximately 12,000 cue items (for comparison, the USF norms consist of 5,400 cue items). Because of its large size, the SWOW norms provide a better approximation of natural language. Second, the use of a multiple response technique allows for greater reliability of weak associates, resulting in more weak associations being captured by the network, as weak associates are rarely given as the first response and thus may be under represented when only one response is elicited [@DeDeyne2013]. 
 
-  Expanding upon this research, the traditional judgment of learning task (JOL) can be manipulated to investigate perceptions of word pair relationships by having participants judge how related they believe the cue and target items to be [@Maki2007a; @Maki2007]. The judged values generated from this task can then be compared to the normed databases to create a similar accuracy function or correlation as is created in JOL studies. When presented with the item pair, participants are asked to estimate the number of people out of 100 who would provide the target word when shown only the cue [@Maki2007], which mimics how association word norms are created through free association tasks. @Maki2007a investigated such judgments within the context of associative memory by having participants rate how much associative overlap was shared between normed item pairs and found that responses were greatly overestimated relative to the actual normed overlap strength for pairs that were weak associates, while underestimated for strong associates, thus replicating the @Koriat2005 findings for relatedness judgments based upon associative memory, rather than judgments based on learning.
-  
-This discrepency between free association strength and JAM ratings is noteworthy because on the surface, the two tasks should each be tapping into the concept of associative overlap. One explanation for this provided by Maki (2007a) is that judgment tasks are more easily influenced by outside factors such as the availability heuristic. Alternatively, it may be that viewing the cue-target pair together at the time of judgment interferes with individuals' ability to consider other target words that are related to the cue, thereby inflating (or reducing) the percieved relatedness between the items (Maki, 2007a). Indeed, work by [@Nelson1991] has shown this to be the case when eliciting judgments of learning, as JOLs made after a delay tend to be more accurate relative to those made immediately in the presence of the studied information. 
+## Measuring Relatedness
 
-The judgment of associative memory (JAM) function provides one means of visualizing the influence various cognitive biases have on associative memory judgments. By plotting the judged values against the word pair's normed associative strength, a fit line can be calculated which displays the calibration of JAM ratings relative to normed associative strenth. This JAM function characteristically has a high intercept (bias) with a shallow slope (sensitivity). Figure \@ref(fig:makislope) illustrates this function. Overall, the JAM function has been found to be highly reliable and generalized well across multiple variations of the study, with item characteristics such as word frequency, cue set size (QSS), and semantic similarity all having a minimal influence on it [@Maki2007]. Furthermore, an applied meta-analysis of more than ten studies on JAM indicated that bias and sensitivity are nearly unchangeable, often hovering around 40-60 points for the intercept and .20-.30 for the slope [@Valentine2013]. Additionally, @Valentine2013 extended this research to include judgments of semantic memory with the same results. 
+Whereas direct associations focus on the relationships between individual words, indirect associations focus on how a concept fits into the overall structure of the semantic network [@DeDeyne2013; @Deese1965]. Because indirect associations capture information derived from the overall structure of the semantic network, these norms can also be used to represent semantic properties of item pairs and can be used to approximate links between concepts within semantic memory networks. This includes mediated associates [i.e., *lion* – *stripes* is mediated through *tiger*; see @Huff2011 for a review of mediated associates] and is one of the underlying factors behind distributional models of semantic memory [e.g., Latent Semantic Analysis, @Landauer199; Hyperspace Analogue to Language Model, @Lund1996]. These models posit that semantic representations are created through the co-occurrences of words together within a body of text and suggest that words with similar meanings will appear together in similar contexts [@Riordan2011]. On the other hand, connectionist models of semantic memory [e.g., @Rogers2006; @Rumelhart1986] portray the semantic network as a system of interconnected units representing concepts, which are linked together by weighted connections representing knowledge. By triggering the input units, activation will then spread throughout the system activating or suppressing connected units based on the weighted strength of the corresponding unit connections [@Jones2015]. 
+
+Semantic overlap between concepts can measured in several ways. Feature production tasks [@McRae2005; @Vinson2008; @Buchanan2013] provide one means of generating semantic word norms. In such tasks, participants are shown the name of a concept and are asked to list what they believe the concept's most important features to be [@McRae2005]. Several statistical measures have been developed which measure the degree of feature overlap between concepts. First, similarity between any two concepts can be measured by representing them as vectors and calculating the cosine value (COS) between them [@Maki2004], with COS values ranging from 0 (completely unrelated) to 1 (perfectly related). For example, the pair *hornet* - *wasp* has a COS of .88, indicating a high degree of overlap between the two concepts. Feature overlap can also be measured by JCN, which involves calculating both the information content value of each concept and the lowest super-ordinate shared by each concept using an online dictionary, such as WordNET [@Miller1995]. The JCN value is then computed by summing together the difference of each concept and its lowest super-ordinate [@Jiang1997; @Maki2004]. The advantage to using COS values over JCN values is the limitation of JCN being tied to a somewhat static dictionary database, while a semantic feature production task can be used on any concept to calculate COS values. However, JCN values are less time consuming to obtain if both concepts are in the database [@Buchanan2013]. 
+
+Finally, indirect associations computed from a large dataset can also be used as a measure semantic overlap, and indeed may provide a better measure semantic relatedness relative to feature production norms. @DeDeyne 2013 constructed a semantic network based on the distributions of associations (e.g., indirect associates) by converting free association data taken from the SWOW project into a weighted semantic network.  Computing the cosine overlap between the distribution of free association answers on any two concepts within this network provides a useful measure of meaning. Discussion of these measures then leads to the question of whether each one is truly assessing some unique concept or if they simply tap into various elements of our overall linguistic knowledge. Previous clustering and factor analyses  by @Maki2008 indicates that there are potentially three separate latent structures represented by these various measures of similarity – associative, semantic, and thematic types of relatedness. However, another interpretation of their results is that the data collection of the measurement matters – variables that are based on participant responses to cued stimuli grouped together, while text-corpora based and WordNET based similarity measures separated into separate factors. By using the participant responses from SWOW to measure indirect association,  we draw from a larger, newer set of data and resolve a potential confound of conflating measurement techniques. 
+
+## Application to Judgment Studies
+
+Traditional judgment of learning tasks (JOL) can be viewed as an application of the PAL paradigm; participants are given pairs of items and are asked to judge how accurately they would be able to correctly respond with the target with the cue on a recall task. Judgments are typically made out of 100, with a participant response of 100 indicating full confidence in recall ability. In their 2005 study, Koriat and Bjork examined overconfidence in JOLs by manipulating associative relations (forward strength from @Nelson2004) between word-pairs and found that subjects were more likely to overestimate recall for pairs with little or no associative relatedness. Additionally, this study found that when accounting for associative direction, subjects were more likely to overestimate recall for pairs that were high in backwards strength (i.e., the likelihood of the target when shown the cue) but low in forward strength. To account for this finding, the authors suggested that JOLs may rely more heavily on overlap between cue and target with the direction of the associative relationship being secondary. For example, the pair *bird* - *feather* in the SWOW norms appears to have a low forward strength (.031) and a higher backward strength (.199). However,  the indirect relation between *bird* and *feather is .063. Therefore, it is important to investigate what may lead to the perceived relatedness between the item pairs and resulting in inflated JOLs.
+
+The JOL task can then be manipulated to investigate perceptions of word pair relation by having participants judge how related they believe the cue and target items to be [@Maki2007a; @Maki2007]. The judged values generated from this task can then be compared to the normed databases to create a similar accuracy function or correlation as is created in JOL studies. When presented with the item pair, participants are asked to estimate the number of people out of 100 who would provide the target word when shown only the cue [@Maki2007], which mimics how association word norms are created through free association tasks. @Maki2007a investigated such judgments within the context of associative memory by having participants rate how much associative overlap was shared between normed item pairs and found that responses were greatly overestimated relative to the actual normed overlap strength for pairs that were weak associates, while underestimated for strong associates, thus replicating the @Koriat2005 findings for relatedness judgments based upon associative memory, rather than judgments based on learning.
+
+The judgment of associative memory (JAM) function provides one means of visualizing the influence various cognitive biases have on associative memory judgments. By plotting the judged values against the word pair's normed associative strength, a fit line can be calculated which displays the calibration of JAM ratings relative to normed associative strength. When plotted, these judgments characteristically have a high intercept (an overestimation bias) along with a shallow slope (low sensitivity to changes in normed pair strength). Figure \@ref(fig:makislope) illustrates this function. Overall, the JAM function has been shown to be highly reliable and generalizes well across multiple variations of the study, with item characteristics such as word frequency, cue set size (QSS), and semantic similarity all having a minimal influence on it [@Maki2007]. Furthermore, an applied meta-analysis of more than ten studies on JAM indicated that bias and sensitivity are nearly unchangeable, often hovering around 40-60 points for the intercept and .20-.30 for the slope [@Valentine2013]. Additionally, the @Valentine2013 study extended this research to include judgments of semantic memory with the same results. Finally, @DeDeyne2013a found that JAM ratings for weak and moderate associates are best predicted by continuous response association norms relative to traditional free association norms.
 
 ```{r makislope, echo=FALSE, fig.cap = "JAM slope findings from Maki (2007a). JAM is characterized by a high intercept (between 40 and 60) and a shallow slope (between 0.20 and 0.40). The solid line shows expected results if judgment ratings are perfectly calibrated with association norms.", fig.height=6, fig.width=6}
 
@@ -113,206 +120,206 @@ plot1 + theme(legend.position = c(.75, .25))
 
 ```
 
-The present study combined the paradigms of PAL, JOLs, and JAM to examine item recall and judgments for three types of judgments of relatedness (JORs) with the goal of exploring the underlying memory network that is used for each of these cognitive processes as described above. To date, no study has examined the effects of these three types of information on cognitive processes like judgments and recall within the context of one unified study. As such, we tested four hypotheses based on previous research on JAM and semantic memory models.
+The discrepancy between direct association strength and JAM ratings is noteworthy because on the surface, the two tasks should each be tapping into the same concept of associative overlap. One explanation for this provided by @Maki2007a is that judgment tasks are more easily influenced by outside factors such as the availability heuristic. Thus, it may be that the act of viewing the cue-target pair together at the time of judgment interferes with individuals' ability to consider other target words that are related to the cue, thereby inflating (or reducing) the perceived relatedness between the items [@Maki2007a]. Indeed, work by [@Nelson1991] has shown this to be the case when eliciting judgments of learning, as JOLs made after a delay tend to be more accurate relative to those made immediately in the presence of the studied information. Further, the influence of indirect relations and their potential interaction on judgments have not been investigated.
 
-First, we sought to expand previous @Maki2007, @Maki2007a, @Buchanan2010, and @Valentine2013 research to include three types of JORs in one experiment, while replicating JAM bias and sensitivity findings. We used the three database norms for association, semantics, and thematics to predict each type of JOR and calculated average slope and intercept values for each participant. We expected to find slope and intercept values that were significantly different from zero. Though the three types of word relations are distinct from one another, we should expect to find slopes and intercepts for semantic and thematic JORs to be within the range of previous JAM findings if these memory systems are interconnected. We also examined the frequency of each predictor being the strongest variable to predict its own judgment condition (i.e., how often association was the strongest predictor of associative JORs, etc.). Thus, we are interested in exploring whether judgment findings replicate across a range of variables and covariates (rather than each individually, as tested in previous JOL and JAM publications), which expands our knowledge on how the judgment process taps into the underlying memory network.
+The present study expanded upon previous JAM studies by examining recall and judgments for three types of judgments of relatedness (JORs) with the goal of exploring the underlying memory network that is used for each of these cognitive processes as described above. To date, no study has investigated the how three types of concept information affect these judgment and recall processes within the context of one unified study. As such, we tested four hypotheses, which were based upon previous research on JAM and semantic memory models.
 
-Next, we explored the predictions from semantic network models that the relation between association, semantics, and thematics would be bidirectional in nature (i.e., the three-tiered hypothesis of each type of knowledge interconnected in memory). Therefore, we expected to find an interaction between database norms when predicting JORs. We used multilevel modeling to examine the interaction of database norms for association, semantics, and thematics in relation to participant judgments.  
+First, we sought to expand upon previous @Maki2007, @Maki2007a, @Buchanan2010, and @Valentine2013 research by including three types of JORs in one experiment, while replicating JAM bias and sensitivity findings. We used the SWOW norms calculating direct and indirect relations to best capture the continuum of similarity between concepts. These values were used to predict each type of JOR, and we calculated average slope and intercept values for each participant. We expected to find slope and intercept values that were significantly different from zero. Though the three types of word relations are distinct from one another, we should expect to find slopes and intercepts for semantic and thematic JORs to be within the range of previous JAM findings if these memory systems are interconnected. We also examined the frequency of each predictor being the strongest variable to predict an individual judgment condition. Thus, we are interested in exploring whether judgment findings replicate across judgment type and with new measurement variables available through SWOW (rather than each individually, as tested in previous JOL and JAM publications), which expands our knowledge on how the judgment process taps into the underlying memory network.
+
+Next, we explored the predictions from semantic network models that the relation between associations and semantics would be bidirectional in nature (i.e., both types of knowledge interconnected in memory). Therefore, we expected to find an interaction between direct and indirect association norms when predicting JORs. We used multilevel modeling to examine the interaction of these norms in relation to participant judgments.  
 
 We then extended these analyses to include recall as the dependent variable of interest. We tested for the interaction of database norms in predicting recall by using a multilevel logistic regression, while controlling for judgment condition and rating. We expected to find that database norms would show differences in recall based on the levels of other variables (the interaction would be significant), and that ratings would also positively predict recall (i.e., words that participants thought were more related would be remembered better). Because judgment and recall are different cognitive processes, we used this hypothesis to examine how memory networks may be differently interactive for memory in comparison to judgment. 
 
-Finally, we examined if the judgment slopes from Hypothesis 1 would be predictive of recall. Whereas the recall model examined the direct relationship of word relatedness on recall, the goal of this hypothesis was to explore whether participant sensitivity to word relatedness was could also predict recall. For this analysis, we used a multilevel logistic regression to control for multiple judgment slope conditions. This hypothesis combines both cognitive processes into one analysis, to explore how judgment ability (i.e., slopes) would impact the memory process. 
+Finally, we examined if the judgment slopes from Hypothesis 1 would be predictive of recall. Whereas the recall model used to test our third hypothesis examined the direct relationship of word relatedness on recall, the goal of this analysis was to explore whether participant sensitivity to word relatedness was could also be used to predict recall. For this analysis, we used a multilevel logistic regression to control for multiple judgment slope conditions. This hypothesis combines both cognitive processes into one analysis, to explore how judgment ability (i.e., slopes) would impact the memory process.
 
 # Method
 
 ## Participants
 
-A power analysis was conducted using the *simR* package in *R* [@Green2016]. This package uses simulations to generate power estimates for mixed linear models created from the *lme4* package in *R* [@Bates2015]. The results of this analyses suggested a minimum of 35 participants would be required to detect an effect. However, because power often tends to be underestimated, we extended participant recruitment as funding permitted. In total, 112 participants took part in this study. Participants were recruited from Amazon's Mechanical Turk, which is a website that allows individuals to host projects and connects them with a large pool of respondents who complete them for small amounts of money [@Buhrmester2011]. Participant responses were screened for a basic understanding of the study's instructions. Responses were rejected for participants who entered related words when numerical judgment responses were required, and for participants who responded to the cue words during the recall phase with sentences or phrases instead of individual words. Those that completed the study correctly were compensated $1.00 for their participation. 
+```{r data_import, include = F}
 
-##Materials
+pilot = read.csv("data/Melted Data pilot.csv", stringsAsFactors = F)
+thesis = read.csv("data/Melted Data Thesis.csv", stringsAsFactors = F)
 
-The stimuli used were sixty-three words pairs of varying associative, semantic, and thematic relatedness which were created from the @Buchanan2013 word norm database and website. Associative relatedness was measured with Forward Strength (FSG), which is the probability that a cue word will elicit a desired target word [@Nelson2004]. This variable ranges from zero to one wherein zero indicates no association, while one indicates that participants would always give a target word in response to the cue word. Semantic relatedness was measured with cosine (COS), which is a measure of semantic feature overlap [@McRae2005; @Vinson2008; @Buchanan2013]. This variable ranges from zero to one where zero indicates no shared semantic features between concepts and higher numbers indicate more shared features between concepts. Thematic relatedness was calculated with Latent Semantic Analysis (LSA), which generates a score based upon the co-occurrences of words within a document [@Landauer1998; @Landauer1997]. LSA values also range from zero to one, indicates no co-occurrence at the low end and higher co-occurrence with higher values. These values were chosen to represent these categories based on face validity and previous research on how word pair psycholinguistic variables overlap [@Maki2008].
+thesis$Partno = thesis$Partno + 1000
+pilot$where = "pilot"
+thesis$where = "thesis"
 
-The selected stimuli included a range of values for each variable. Table \@ref(tab:stim-table) displays stimuli averages, *SD*, and ranges. A complete list of stimuli can be found at http://osf.io/y8h7v. The stimuli were arranged into three blocks for each judgment condition described below wherein each block contained 21 word pairs. Due to limitations of the available stimuli, blocks were structured so that each one contained seven word pairs of low (0-.33), medium (.34-.66), and high (.67-1.00) COS relatedness. Because of this selection process, FSG and LSA strengths are contingent upon the selected stimuli's COS strengths. We selected stimuli within the cosine groupings to cover a range of FSG and LSA values, but certain combinations are often difficult to achieve. For example, there are only four word-pairs that are both high COS and high FSG, thus limiting the ability to manipulate LSA. The study was built online using Qualtrics, and three surveys were created to counter-balance the order in which judgment conditions appeared. Each word pair appeared counter-balanced across each judgment condition, and stimuli were randomized within each block.
+colnames(pilot)[2] = "Judgment"
+
+master = rbind(pilot, thesis)
+```
+
+A power analysis was conducted using the *simR* package in *R* [@Green2016]. This package uses simulations to generate power estimates for mixed linear models created from the *lme4* package in *R* [@Bates2015]. The results of this analyses suggested a minimum of 35 participants would be required to detect an effect. However, because power often tends to be underestimated, we extended participant recruitment as funding permitted. The data in this experiment was collected in two waves recruiting from Amazon's Mechanical Turk, which is a website that allows individuals to host projects and connects them with a large pool of respondents who complete them for small amounts of money [@Buhrmester2011]. In the first wave, a total of `r length(unique(master$Partno[master$where == "pilot"]))` participants were recruited, and in the second wave, `r length(unique(master$Partno[master$where == "thesis"]))` participants were recruited. Participant responses were screened for a basic understanding of the study's instructions. Responses were rejected for participants who entered related words when numerical judgment responses were required, and for participants who responded to the cue words during the recall phase with sentences or phrases instead of individual words. Those that completed the study correctly were compensated \$1.00 for their participation in wave one, and \$2.00 for their participation in wave two. The second wave of participants was sponsored by graduate thesis funding provided by the Missouri State University Graduate College. 
+
+## Materials
+
+The stimuli used were `r length(unique(master$Word.Pair))` words pairs of varying relatedness which were created from the @Buchanan2013 word norm database and website. These pairs were evenly split into sixty-three for wave one and wave two of the study.  Pairs were originally selected by using forward strength [FSG; @Nelson2004], semantic feature overlap cosine values (COS) from @Buchanan2013, and Latent Semantic Analysis cosine values [@Landauer1998; @Landauer1997] based on previous research on how word pair psycholinguistic variables overlap [@Maki2008]. The selected stimuli included a range of values for each variable. Table \@ref(tab:stim-table) displays stimuli averages, *SD*, and ranges. A complete list of stimuli can be found at http://osf.io/y8h7v. 
+
+The stimuli were arranged into three blocks for each judgment condition described below wherein each block contained 21 word pairs. Due to limitations of the available stimuli, blocks were structured so that each one contained seven word pairs of low (0-.33), medium (.34-.66), and high (.67-1.00) COS relatedness. Pairs with low, medium, and high FSG and LSA were then selected, when avaliable. Given the measurement questions raised in the introduction, the direct association from the SWOW norms will be used as the measure of first order association. Given @DeDeyne2013a's work on continuous association, the response set from all three responses were used. The direct association provided in these norms is calculated as the number of participants who provided the target to the cue divided by the number of possible answers (i.e., participants * responses). This calculation, therefore, has an upper limit of approximately ~33%, even if every participant listed a target word to a cue. The JOR task assumes the range of direct association is 0 to 100 (or 0-1 proportion), and the SWOW direct association (DA) was normalized using: 
+
+$$\frac{DA - Min(DA)} {Max(DA) - Min(DA)}$$
+
+Indirect association (IA) was calculated by comparing the distribution of responses for each concept. Therefore, if the concepts were *bird* and *feather*, the two association sets were combined and the cosine between the response frequencies was calculated. Cosine indicates a measure of overlap in the response distributions, where 0 indicates no overlapping responses, while 1 indicates perfectly overlapping response frequencies [see @Buchanan2019 for more on cosine feature overlap]. DA and IA averages are provided in \@ref(tab:stim-table). The study was built online using Qualtrics, and three surveys were created to counter-balance the order in which judgment conditions appeared. Each word pair appeared counter-balanced across each judgment condition, and stimuli were randomized within each block.
+
+```{r direct_association, include = F}
+
+swow = read.csv("data/strength.SWOW-EN.R123.csv", stringsAsFactors = F)
+
+swow$pair = paste(swow$cue, swow$response, sep = "_")
+swow$pair = tolower(swow$pair)
+swow$cue = tolower(swow$cue)
+swow$response = tolower(swow$response)
+swow = swow[-c(1001283) , ] #remove the dup
+
+master$pair = gsub("...", "_", master$Word.Pair, fixed = T)
+master$pair = tolower(master$pair)
+
+master2 = merge(master, swow, by = "pair", all.x = T)
+nrow(master2)
+##red yellow is duplicating - removing the duplicate line from swow
+
+#normalize SWOW as the score is not number of participants who said X / number of participants, but instead is number of participants who said X / number of answers
+#normalized = (x-min(x)) / (max(x) - min(x))
+
+master2$swow_fsg = (master2$R123.Strength - min(master2$R123.Strength, na.rm = T)) / (max(master2$R123.Strength, na.rm = T) - min(master2$R123.Strength, na.rm = T))
+
+master2$swow_fsg[is.na(master2$swow_fsg)] = 0
+```
+
+```{r indirect_association, include = F}
+
+paired = unique(master2$pair)
+paired = as.data.frame(paired)
+paired$paired = as.character(paired$paired)
+paired$cosine = NA
+
+for (i in 1:length(paired$paired)){ #loop over each word
+  
+  words = strsplit(paired$paired[i], "_")
+  temp1 = swow[tolower(swow$cue) == words[[1]][1], ]
+  temp2 = swow[tolower(swow$cue) == words[[1]][2], ]
+  
+  temp_merge = merge(temp1, temp2, by = "response", all = T)
+  temp_merge$R123.Strength.x[is.na(temp_merge$R123.Strength.x)] = 0
+  temp_merge$R123.Strength.y[is.na(temp_merge$R123.Strength.y)] = 0
+  
+  paired$cosine[i] = lsa::cosine(temp_merge$R123.Strength.x, temp_merge$R123.Strength.y)
+
+}
+
+#merge with  our data
+colnames(paired)[1] = "pair"
+master3 = merge(paired, master2, by = "pair")
+```
 
 ```{r stim-table, echo=FALSE, results='asis'}
-##create a table here of the stimuli
-
-##read in the table of stimuli
-stimuli = read.csv("stimuli.csv")
-
 ##create blank table
-tableprint = matrix(NA, nrow = 8, ncol = 10)
-colnames(tableprint) = c("Variable", " ", "COS Low", " ",
-                         " ", "COS Average", " ", 
-                         " ", "COS High", " ")
+tableprint = matrix(NA, nrow = 5, ncol = 4)
+colnames(tableprint) = c("Variable", "Low", "Average", "High")
+
+##create a unique dataset
+stimuli = master3[!duplicated(master3$pair), ]
+
+##add cosine labels
+stimuli$range = NA
+stimuli$range[stimuli$COS < .33] = "low"
+stimuli$range[stimuli$COS >= .33 & stimuli$COS < .66] = "med"
+stimuli$range[stimuli$COS >= .66] = "high"
+stimuli$range = factor(stimuli$range,
+                       levels = c("low", "med", "high"))
 
 ##calculate means and sds
-##apa function is apa(numbers, decimals, leading zero T or F)
-cosmean = apa(tapply(stimuli$cos, stimuli$cosg, mean), 3, F)
-fsgmean = matrix(apa(
-  tapply(stimuli$fsg, list("cos" = stimuli$cosg, "fsg" = stimuli$fsgg), mean), 3, F), 
-  3, 3)
-lsamean = matrix(apa(
-  tapply(stimuli$lsa, list("cos" = stimuli$cosg, "lsa" = stimuli$lsag), mean), 3, F),
-  3,3)
+COSM = tapply(stimuli$COS, stimuli$range, mean)
+COSSD = tapply(stimuli$COS, stimuli$range, sd)
+tableprint[ 1, ] = c("Semantic Feature Overlap COS", 
+                     pasteit(COSM[1], COSSD[1]),
+                     pasteit(COSM[2], COSSD[2]),
+                     pasteit(COSM[3], COSSD[3]))
 
-cossd = apa(tapply(stimuli$cos, stimuli$cosg, sd), 3, F)
-fsgsd = matrix(apa(
-  tapply(stimuli$fsg, list("cos" = stimuli$cosg, "fsg" = stimuli$fsgg), sd), 3, F),
-  3,3)
-lsasd = matrix(apa(
-  tapply(stimuli$lsa, list("cos" = stimuli$cosg, "lsa" = stimuli$lsag), sd), 3, F),
-  3,3)
+FSGM = tapply(stimuli$FSG, stimuli$range, mean)
+FSGSD = tapply(stimuli$FSG, stimuli$range, sd)
+tableprint[ 2, ] = c("Forward Strength FSG", 
+                     pasteit(FSGM[1], FSGSD[1]),
+                     pasteit(FSGM[2], FSGSD[2]),
+                     pasteit(FSGM[3], FSGSD[3]))
 
-cosN = tapply(stimuli$cos, stimuli$cosg, length)
-fsgN = tapply(stimuli$fsg, list("cos" = stimuli$cosg, "fsg" = stimuli$fsgg), length)
-lsaN = tapply(stimuli$lsa, list("cos" = stimuli$cosg, "lsa" = stimuli$lsag), length)
+LSAM = tapply(stimuli$LSA, stimuli$range, mean)
+LSASD = tapply(stimuli$LSA, stimuli$range, sd)
+tableprint[ 3, ] = c("Latent Semantic Analysis LSA", 
+                     pasteit(LSAM[1], LSASD[1]),
+                     pasteit(LSAM[2], LSASD[2]),
+                     pasteit(LSAM[3], LSASD[3]))                     
+                     
+DAM = tapply(stimuli$swow_fsg, stimuli$range, mean)
+DASD = tapply(stimuli$swow_fsg, stimuli$range, sd)
+tableprint[ 4, ] = c("Direct Association DA", 
+                     pasteit(DAM[1], DASD[1]),
+                     pasteit(DAM[2], DASD[2]),
+                     pasteit(DAM[3], DASD[3]))                     
+                     
+IAM = tapply(stimuli$cosine, stimuli$range, mean)
+IASD = tapply(stimuli$cosine, stimuli$range, sd)
+tableprint[ 5, ] = c("Direct Association IA", 
+                     pasteit(IAM[1], IASD[1]),
+                     pasteit(IAM[2], IASD[2]),
+                     pasteit(IAM[3], IASD[3]))  
 
-tableprint[1, ] = c(" ", "$N$", "$M$", "$SD$", "$N$", "$M$", "$SD$", "$N$", "$M$", "$SD$")
-tableprint[2, ] = c("COS", cosN[2], cosmean[2], cossd[2],
-                    cosN[3], cosmean[3], cossd[3],
-                    cosN[1], cosmean[1], cossd[1])
-
-##apply creates rows cos h l m
-##apply creates columns fsg h l m
-
-tableprint[3, ] = c("FSG Low", fsgN[2,2], fsgmean[2,2], fsgsd[2,2],
-                    fsgN[3,2], fsgmean[3,2], fsgsd[3,2],
-                    fsgN[1,2], fsgmean[1,2], fsgsd[1,2])
-tableprint[4, ] = c("FSG Average", fsgN[2,3], fsgmean[2,3], fsgsd[2,3],
-                    fsgN[3,3], fsgmean[3,3], fsgsd[3,3],
-                    fsgN[1,3], fsgmean[1,3], fsgsd[1,3])
-tableprint[5, ] = c("FSG High", fsgN[2,1], fsgmean[2,1], fsgsd[2,1],
-                    fsgN[3,1], fsgmean[3,1], fsgsd[3,1],
-                    fsgN[1,1], fsgmean[1,1], fsgsd[1,1])
-tableprint[6, ] = c("LSA Low", lsaN[2,2], lsamean[2,2], lsasd[2,2],
-                    lsaN[3,2], lsamean[3,2], lsasd[3,2],
-                    lsaN[1,2], lsamean[1,2], lsasd[1,2])
-tableprint[7, ] = c("LSA Average", lsaN[2,3], lsamean[2,3], lsasd[2,3],
-                    lsaN[3,3], lsamean[3,3], lsasd[3,3],
-                    lsaN[1,3], lsamean[1,3], lsasd[1,3])
-tableprint[8, ] = c("LSA High", lsaN[2,1], lsamean[2,1], lsasd[2,1],
-                    lsaN[3,1], lsamean[3,1], lsasd[3,1],
-                    lsaN[1,1], lsamean[1,1], lsasd[1,1])
-
-apa_table(as.data.frame(tableprint),
-          align = c("l", rep("c", 9)), 
-          caption = "Summary Statistics for Stimuli",
-          note = "COS: Cosine, FSG: Forward Strength, LSA: Latent Semantic Analysis.",
-          escape = FALSE,
-          col.names = c("Variable", " ", "COS Low", " ", " ", "COS Average", " ", " ", "COS High", " ")
- )
-
+kable(tableprint, "latex", booktabs = T, row.names = F, 
+      caption = "Summary Statistics for Stimuli") %>%  
+  add_header_above(c(" " = 1, "Semantic Feature Overlap COS" = 3)) %>% 
+  add_footnote("$Note$. Standard deviation values are in parentheses.", notation="none", escape = F)
 ```
 
 ## Procedure
 
-The present study was divided into three phases. In the first phase, JORs were elicited by presenting participants with word pairs and asking them to make judgments of how related they believed the words in each pair to be. This judgment phase consisted of three blocks of 21 word pairs which corresponded to one of three types of word pair relationships: associative, semantic, or thematic. Each block was preceded by a set of instructions explaining one of the three types of relationships, and participants were provided with examples which illustrated the type of relationship to be judged. Participants were then presented with the word pairs to be judged. The associative block began by explaining associative memory and the role of free association tasks. Participants were provided with examples of both strong and weak associates. For example, *lost* and *found* and were presented as an example of a strongly associated pair, while *article* was paired with *newspaper*, *the*, and *clothing* to illustrate that words can have many weak associates. The semantic judgment block provided participants with a brief overview of how words are related by meaning and showed examples of concepts with both high and low feature overlap. *Tortoise* and *turtle* were provided as an example of two concepts with significant overlap. Other examples were then provided to illustrate concepts with little or no overlap. For the thematic judgments, participants were provided with an explanation of thematic relatedness. *Tree* is explained to be related to *leaf*, *fruit*, and *branch*, but not *computer*. Participants were then given three concepts (*lost*, *old*, *article*) and were asked to come up with words that they feel are thematically related.
+The present study was divided into three phases. In the first phase, JORs were elicited by presenting participants with word pairs and asking them to make judgments of how related they believed the words in each pair to be. This judgment phase consisted of three blocks of 21 word pairs which corresponded to one of three types of described word pair relationships: associative, semantic, or thematic. Each block was preceded by a set of instructions explaining one of the three types of relationships, and participants were provided with examples which illustrated the type of relationship to be judged. Participants were then presented with the word pairs to be judged. The associative block began by explaining associative memory and the role of free association tasks. Participants were provided with examples of both strong and weak associates. For example, *lost* and *found* and were presented as an example of a strongly associated pair, while *article* was paired with *newspaper*, *the*, and *clothing* to illustrate that words can have many weak associates. The semantic judgment block provided participants with a brief overview of how words are related by meaning and showed examples of concepts with both high and low feature overlap. *Tortoise* and *turtle* were provided as an example of two concepts with significant overlap. Other examples were then provided to illustrate concepts with little or no overlap. For the thematic judgments, participants were provided with an explanation of thematic relatedness. *Tree* is explained to be related to *leaf*, *fruit*, and *branch*, but not *computer*. In each judgment, participants were then given three concepts (*lost*, *old*, *article*) and were asked to come up with words that they felt were related to that type of relation. 
 
 After viewing the examples at the start of the block, participants completed the JOR task. Each block contained a set of instructions which were contingent upon the type of JOR being elicited. For example, instructions in the associative block asked participants to estimate how many individuals out of 100 they expect would respond to the cue word with a given target, instructions for semantic JORs asked participants to indicate the percent of features shared between two concepts, and instructions for the thematic JOR task asked participants to base ratings on how likely to words would be used together in the same story. The complete experiment can be found at http://osf.io/y8h7v, which contains the exact instructions given to participants for each block and displays the structure of the study. All instructions were modeled after @Buchanan2010 and @Valentine2013.
 
 In accordance with previous work on JOLs and JAM, participants made JOR ratings using a scale of zero to one hundred, with zero indicating no relationship, and one hundred indicating a perfect relationship. Participants typed their responses into the survey. Once completed, participants then completed the remaining judgment blocks in the same manner. Each subsequent judgment block changed the type of JOR being made. Three versions of the study were created, which counter-balanced the order in which the judgment blocks appeared, and participants were randomly assigned to a survey version. This resulted in each word pair receiving a relatedness judgments on each of the three types relationships. 
 
-After completing the judgment phase, participants were then presented with a short distractor task to account for recency effects. In this section, participants were presented with a randomized list of the fifty U.S. states and were asked to arrange them in alphabetical order. This task was timed to last two minutes. Once time had elapsed, participants automatically progressed to the final phase, which consisted of a cued-recall task. Participants were presented with each of the 63 cue words from the judgment phase and were asked to complete each word pair by responding with the correct target word. Participants were informed that they would not be penalized for guessing. The cued-recall task included all stimuli in a random order.
+After completing the judgment phase, participants were then presented with a short distractor task to account for recency effects. In this section, participants were presented with a randomized list of the fifty U.S. states and were asked to arrange them in alphabetical order. This task was timed to last two minutes. Once time had elapsed, participants automatically progressed to the final phase, which consisted of a cued-recall task. Participants were presented with each of the sixty-three cue words from the judgment phase and were asked to complete each word pair by responding with the correct target word. Participants were informed that they would not be penalized for guessing. The cued-recall task included all stimuli in a random order.
 
 # Results
 
 ```{r data-set-creation, eval=FALSE, include=FALSE}
-####creating final data set####
-##getting first block
-block1 = read.csv("block1.csv")
-View(block1)
-library(reshape)
+##check out our 2 datasets folder to see how these datasets were made
+##we moved the data into long format, and combined them all together by judgment and recall
+##then we combined these data with psycholinguistic norms (in excel, if I remember correctly)
+##then we merged them together in this file 
 
-longdata = melt(block1,
-                id = c("Partno", "Judgment1"))
-View(longdata)
+#scaling judgments
+master3$Judged.Value = master3$Judged.Value / 100
 
-colnames(longdata)[3] = "Word Pair"
-colnames(longdata)[4] = "Judged Value"
-write.csv(longdata, "block1 melted.csv")
-
-##recall for first block
-block1_recall = read.csv("block1 recall.csv")
-longdata2 = melt(block1_recall,
-                 id = "Partno")
-View(longdata2)
-
-colnames(longdata2)[2] = "Recall Pair"
-colnames(longdata2)[3] = "Recall"
-write.csv(longdata2, "block1 recall melted.csv")
-
-##second block
-block2 = read.csv("block2.csv")
-View(block2)
-longdata3 = melt(block2,
-                id = c("Partno", "Judgment2"))
-View(longdata3)
-
-colnames(longdata3)[3] = "Word Pair"
-colnames(longdata3)[4] = "Judged Value"
-write.csv(longdata3, "block2 melted.csv")
-
-##block2 recall
-block2_recall = read.csv("block2 recall.csv")
-longdata4 = melt(block2_recall,
-                 id = "Partno")
-View(longdata4)
-
-colnames(longdata4)[2] = "Recall Pair"
-colnames(longdata4)[3] = "Recall"
-write.csv(longdata4, "block2 recall melted.csv")
-
-##block3
-block3 = read.csv("block3.csv")
-View(block3)
-longdata5 = melt(block3,
-                 id = c("Partno", "Judgment3"))
-View(longdata5)
-
-colnames(longdata5)[3] = "Word Pair"
-colnames(longdata5)[4] = "Judged Value"
-write.csv(longdata5, "block3 melted.csv")
-
-##block3 recall
-block3_recall = read.csv("block3 recall.csv")
-longdata6 = melt(block3_recall,
-                 id = "Partno")
-View(longdata6)
-
-colnames(longdata6)[2] = "Recall Pair"
-colnames(longdata6)[3] = "Recall"
-write.csv(longdata6, "block3 recall melted.csv")
+#clean up judgment type
+master3$Judgment = gsub("semantic", "Semantic", master3$Judgment)
+master3$Judgment = gsub("associative", "Associative", master3$Judgment)
+master3$Judgment = gsub("thematic", "Thematic", master3$Judgment)
 ```
 
 ```{r data-screening, include=FALSE}
-##set up data
-####import file####
-master = read.csv("Melted Data.csv")
-colnames(master)[2] = "Judgment"
-
-####data screening####
 ##accuracy
-summary(master)
+summary(master3)
 ##fixing judged value
-master$Judged.Value[ master$Judged.Value > 100 ] = NA
-summary(master$Judged.Value)
+badjudge = sum(!is.na(master3$Judged.Value[ master3$Judged.Value > 1 ]))
+master3$Judged.Value[ master3$Judged.Value > 1 ] = NA
+summary(master3$Judged.Value)
 
 ##missing data will be excluded below
-table("judge" = is.na(master$Judged.Value), "recall" = is.na(master$Recall))
+missingness = table("judge" = is.na(master3$Judged.Value), "recall" = is.na(master3$Recall))
 
 ##outliers based on recall and judgment
-mahal = mahalanobis(master[ , c(4,5)],
-                    colMeans(master[ , c(4,5)], na.rm = TRUE),
-                    cov(master[ , c(4,5)], use = "pairwise.complete.obs"))
-cutoff = qchisq(1-.001, ncol(master[ , c(4,5)]))
-cutoff;ncol(master[ , c(4,5)])
+mahal = mahalanobis(master[ , c(6,7)],
+                    colMeans(master[ , c(6,7)], na.rm = TRUE),
+                    cov(master[ , c(6,7)], use = "pairwise.complete.obs"))
+cutoff = qchisq(1-.001, ncol(master[ , c(6,7)]))
+cutoff;ncol(master[ , c(6,7)])
 summary(mahal < cutoff)
-noout = subset(master, mahal < cutoff)
+noout = subset(master3, mahal < cutoff)
 
 ##additivity
-cor(noout[ , 4:8], use = "pairwise.complete.obs")
+cor(noout[ , c(2,6,7,55)], use = "pairwise.complete.obs")
 
 ##descriptive stats
 meanJno = tapply(noout$Judged.Value, noout$Judgment, mean, na.rm = T)
@@ -323,7 +330,7 @@ sdRno = tapply(noout$Recall, noout$Judgment, sd, na.rm = T)
 
 ## Data Processing and Descriptive Statistics
 
-First, the results from the recall phase of the study were coded as zero for incorrect responses, one for correct responses, and NA for participants who did not complete the recall section (all or nearly all responses were blank). All word responses to judgment items were deleted and set to missing data. The final dataset was created by splitting the initial data file into six sections (one for each of the three experimental blocks and their corresponding recall scores). Each section was individually melted using the *reshape* package in *R* [@Wickham2007] and was written as a csv file. The six output files were then combined to form the final dataset. Code is available on our OSF page embedded inline with the manuscript in an *R* markdown document written with the *papaja* package [@Aust2017]. With 112 participants, the dataset in long format included 7,056 rows of potential data (i.e., 112 participants \* 63 JORs). One out of range JOR data point (> 100) was corrected to NA. Missing data for JORs or recall were then excluded from the analysis, which included word responses to judgment items (i.e., responding with *cat* instead of a number when prompted to provide a JOR). These items usually excluded a participant from receiving Amazon Mechanical Turk payment, but were included in the datasets found online. In total, 787 data points were excluded (188 JOR only, 279 recall only, 320 both), leading to a final *N* of 105 participants and 6,269 observations. Recall and JOR values were then screened for outliers using Mahalanobis distance at *p* < .001, and no outliers were found [@Tabachnick2012]. To screen for multicollinearity, we examined correlations between judgment items, COS, LSA, and FSG. All correlations were *r*s < .50.
+First, the results from the recall phase of the study were coded as zero for incorrect responses, one for correct responses, and NA for participants who did not complete the recall section (all or nearly all responses were blank). All word responses to judgment items were deleted and set to missing data. The final dataset was created by splitting the initial data file into six sections (one for each of the three experimental blocks and their corresponding recall scores). Each section was individually melted using the *reshape* package in *R* [@Wickham2007] and was written as a csv file. The six output files were then combined to form the final dataset. Code is available on our OSF page embedded inline with the manuscript in an *R* markdown document written with the *papaja* package [@Aust2017]. With `r length(unique(noout$Partno))` participants, the dataset in long format included `r length(unique(noout$Partno)) * 63` rows of potential data (i.e., `r length(unique(noout$Partno))` participants \* 63 JORs). `r badjudge` out of range JOR data points (> 100) were corrected to NA. Missing data for JORs or recall were then excluded from the analysis, which included word responses to judgment items (i.e., responding with *cat* instead of a number when prompted to provide a JOR). These items usually excluded a participant from receiving Amazon Mechanical Turk payment, but were included in the datasets found online. In total,  data points`r sum(missingness[c(2,3,4)])` were excluded (`r missingness[2]` JOR only, `r missingness[3]` recall only, `r missingness[4]` both), leading to a final *N* of `r missingness[1]` observations. Recall and JOR values were then screened for outliers using Mahalanobis distance at *p* < .001, and no outliers were found [@Tabachnick2012]. To screen for multicollinearity, we examined correlations between judgment items, DA, and IA. All correlations were *r*s < .26.
 
 ```{r ANOVAs, echo=FALSE}
 ####set up for ANOVA####
