@@ -581,6 +581,8 @@ p3
 
 ```
 
+Additionally, we examined the frequency that each predictor variable was the strongest predictor for each of the three JOR conditions. For the associative condition, the direct association was the strongest predictor for `r apa(p1[2],1)`% of the participants. This distinction was less pronounced when examining the semantic and thematic JOR conditions. In the semantic condition, DA was `r apa(p2[2], 1)`% of participants, and in the thematic condition, DA was `r apa(p3[2],1)`% of participants. These results mirror the slope values, such that direct association is strongest when asked to judge associative relations, while a more even split between direct and indirect predictors was found when asked to consider semantic and thematic relations. 
+
 
 
 \newpage
