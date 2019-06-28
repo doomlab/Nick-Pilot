@@ -62,6 +62,7 @@ library(lsa)
 library(kableExtra)
 library(nlme)
 library(knitr)
+library(lme4)
 
 cleanup = theme(panel.grid.major = element_blank(), 
                 panel.grid.minor = element_blank(), 
@@ -671,7 +672,140 @@ The goal of next analysis was to test for an interaction between direct and indi
 
 To investigate this interaction, simple slopes were calculated for low, average, and high levels of indirect association. This variable was chosen for to show the effects of direct associations across levels of indirect association. At low levels of indirect relation, and thus low levels of the semantic network, we found the largest $\beta$ for direct association, `r tableprint[7,2]`. As indirect relation increases, we found decreasing predictiveness of direct relation, average direct $\beta$ = `r tableprint[4,2]`, and high direct $\beta$ = `r tableprint[8,2]`. Figure \@ref(fig:hyp2graph) displays the two-way interaction with this seesaw type effect, indicating that higher semantic network relation results in lower usefulness of direct associative relation.
 
+## Interaction between Relation when Predicting Recall
 
+```{r hyp3-table, echo=FALSE, results='asis'}
+
+recalloverall = glmer(Recall ~ (1|Partno) + Judgment + 
+                        Judged.Value + zfsg*zcosine,
+                      data = noout,
+                      family = binomial,
+                      control = glmerControl(optimizer = "bobyqa"),
+                      nAGQ = 0)
+#summary(recalloverall) ##1.63
+
+recalloverall_low = glmer(Recall ~ (1|Partno) + Judgment + 
+                        Judged.Value + zfsg*low_cosine,
+                      data = noout,
+                      family = binomial,
+                      control = glmerControl(optimizer = "bobyqa"),
+                      nAGQ = 0)
+
+#summary(recalloverall_low) #1.89
+
+recalloverall_high = glmer(Recall ~ (1|Partno) + Judgment + 
+                        Judged.Value + zfsg*high_cosine,
+                      data = noout,
+                      family = binomial,
+                      control = glmerControl(optimizer = "bobyqa"),
+                      nAGQ = 0)
+
+#summary(recalloverall_high) #1.37
+
+tableprint = matrix(NA, nrow = 9, ncol = 4)
+
+tableprint[ , 1] = c("Intercept", "Semantic Judgment", "Thematic Judgment", "Judged Value",
+                     "Z Direct", "Z Indirect", "Z Interaction", "Z Direct Low", "Z Direct High")
+tableprint[1:7 , 2:4] = coef(summary(recalloverall))[ , -2]
+
+tableprint[8, 2:4] = coef(summary(recalloverall_low))[5 , c(1,3,4)]
+tableprint[9, 2:4] = coef(summary(recalloverall_high))[5 , c(1,3,4)]
+
+tableprint[ , c(2,3)] = printnum(as.numeric(tableprint[ , c(2,3)]))
+tableprint[ , 4] = printp(as.numeric(tableprint[ , 4]))
+
+colnames(tableprint) = c("Statistic", "Coefficient", "$Z$", "$p$")
+
+
+apa_table(as.data.frame(tableprint),
+          align = c("l", rep("c", 4)), 
+          caption = "MLM Statistics for Hypothesis 3",
+          note = "Direct and indirect association  were mean centered. The table shows main effects and interactions predicting recall.",
+          escape = FALSE
+)
+
+```
+
+```{r hyp3graph, echo=FALSE, fig.cap = "Simple slopes graph displaying the slope of direct association when predicting recall at low, average, and high indirect association. All variables were mean centered.", fig.height=6, fig.width=6}
+
+plot1 = ggplot(noout, aes(x = swow_fsg, y = Recall)) +
+  labs(x = "Direct Association", y = "Recall") +
+  scale_size_continuous(guide = FALSE) +
+  geom_abline(aes(intercept = coef(summary(recalloverall_low))[1,1], slope = coef(summary(recalloverall_low))[5,1], linetype = "-1SD Z-IA")) +
+  geom_abline(aes(intercept = coef(summary(recalloverall))[1,1], slope = coef(summary(recalloverall))[5,1], linetype = "Average Z-IA")) +
+  geom_abline(aes(intercept = coef(summary(recalloverall_high))[1,1], slope = coef(summary(recalloverall_high))[5,1], linetype = "+1SD Z-IA")) +
+  scale_linetype_manual(values = c("dotted", "dashed", "solid"),
+                        breaks = c("-1SD Z-IA", "Average Z-IA", "+1SD Z-IA"),
+                        name = "Simple Slope") +
+  coord_cartesian(xlim = c(0, 1), ylim = c(.1, 1)) +
+  geom_vline(xintercept = -.10) +
+  geom_hline(yintercept = 0) +
+  cleanup + 
+  NULL
+
+plot1
+```
+
+Given the results of Hypothesis 2, we then sought to extend the analysis to participant recall scores. A multilevel logistic regression was used with the *lme4* package and *glmer()* function [@Bates2015], testing the interaction between DA and IA when predicting participant recall. As with the previous hypothesis, we controlled for JOR condition and, additionally, covaried JOR ratings. Participants were used as a random intercept factor. Judged values were not a significant predictor of recall, ($\beta$ = `r tableprint[4, 2]`, *p* `r tableprint[4, 4]`). A significant  interaction was detected between direct and indirect relations ($\beta$ = `r tableprint[7, 2]`, *p* `r tableprint[7, 4]`). See Table \@ref(tab:hyp3-table) for main effects, interaction, and simple slopes. 
+
+The same moderation process used in Hypothesis 2 was then repeated, with simple slopes calculated at low, average, and high levels of indirect association. The same pattern of results emerged where low levels of indirect association resulted in the largest contribution of direct association $\beta$ = `r tableprint[8, 2]`. As indirect association increased, direct association coefficients decreased, average direct $\beta$ = `r tableprint[5,2]`, and high direct $\beta$ = `r tableprint[9,2]`. Thus, the cognitive processes of recall and judgment appear to operate similiarly on the memory network. 
+
+## Predicting Recall with JAM Slopes
+
+```{r hyp4-table, echo=FALSE, results='asis'}
+##do the slopes from hyp 1 predict recall 
+
+##merge recall back with slopes from the people dataset
+hyp4data = merge(people, noout, by = "Partno")
+
+##association
+assoch4 = glmer(Recall ~ (1|Partno) + ACOS + ALSA + AFSG + AIntercept,
+                data = hyp4data,
+                family = binomial,
+                control = glmerControl(optimizer = "bobyqa"),
+                nAGQ = 1)
+
+##semantics
+semh4 = glmer(Recall ~ (1|Partno) + SCOS + SLSA + SFSG + SIntercept,
+              data = hyp4data,
+              family = binomial,
+              control = glmerControl(optimizer = "bobyqa"),
+              nAGQ = 1)
+
+##thematics
+themeh4 = glmer(Recall ~ (1|Partno) + TCOS + TLSA + TFSG + TIntercept,
+                data = hyp4data,
+                family = binomial,
+                control = glmerControl(optimizer = "bobyqa"),
+                nAGQ = 1)
+
+####table set up####
+##create a blank table
+tableprint = matrix(NA, nrow = 15, ncol = 5)
+colnames(tableprint) = c("Variable", "$b$", "$SE$", "$z$", "$p$")
+
+tableprint[1:5, 2:5] = coef(summary(assoch4))
+tableprint[1:5, 1] = dimnames(coef(summary(assoch4)))[[1]]
+
+tableprint[6:10, 2:5] = coef(summary(semh4))
+tableprint[6:10, 1] = dimnames(coef(summary(semh4)))[[1]]
+
+tableprint[11:15, 2:5] = coef(summary(themeh4))
+tableprint[11:15, 1] = dimnames(coef(summary(themeh4)))[[1]]
+
+tableprint[ , 2] = apa(as.numeric(tableprint[ , 2]),3,T) 
+tableprint[ , 3] = apa(as.numeric(tableprint[ , 3]),3,T)
+tableprint[ , 4] = apa(as.numeric(tableprint[ , 4]),3,T)
+tableprint[ , 5] = apply(as.data.frame(as.numeric(tableprint[ , 5])), 1, p.value)
+
+apa_table(as.data.frame(tableprint),
+          align = c("l", rep("c", 4)), 
+          caption = "MLM Statistics for Hypothesis 4",
+          note = "Each judgment-database bias and sensitivity predicting recall for corresponding judgment block. A: Associative, S: Semantic, T: Thematic.",
+          escape = FALSE
+)
+
+```
 
 \newpage
 
