@@ -624,15 +624,21 @@ overallh2_high = lme(Judged.Value ~ Judgment +
 
 #summary(overallh2_high) ##.22 
 
-tableprint = matrix(NA, nrow = 10, ncol = 10)
+tableprint = matrix(NA, nrow = 8, ncol = 4)
 
-tableprint[1, ] = c()
+tableprint[ , 1] = c("Intercept", "Semantic Judgment", "Thematic Judgment", 
+                     "Z Direct", "Z Indirect", "Z Interaction", "Z Direct Low", "Z Direct High")
+tableprint[1:6 , 2:4] = summary(overallh2)$tTable[ , c(1,4,5)]
+
+tableprint[7, 2:4] = summary(overallh2_low)$tTable[5, c(1,4,5)]
+tableprint[8, 2:4] = summary(overallh2_high)$tTable[5, c(1,4,5)]
+
+colnames(tableprint) = c("Statistic", "Coefficient", "$t$", "$p$")
 
 apa_table(as.data.frame(tableprint),
-          align = c("l", rep("c", 4)), 
-          small = T,
+          align = c("l", rep("c", 3)), 
           caption = "MLM Statistics for Hypothesis 2",
-          note = "Database norms were mean centered. The table shows main effects and interactions for database norms at low, average, and high levels of COS and LSA when predicting participant judgments.",
+          note = "Direct and indirect association  were mean centered. The table shows main effects and interactions predicting participant judgments. $df$ = 19404",
           escape = FALSE
 )
 

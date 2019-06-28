@@ -464,7 +464,8 @@ kable(tableprint)
 
 
 
-## Interaction between Norms when Predicting Judgments of Relatedness
+
+
 ```{r hyp2-table, echo=FALSE, results='asis'}
 ##interaction in predicting judgments, use MLM to control for random participant intercepts 
 
