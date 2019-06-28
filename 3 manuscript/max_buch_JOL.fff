@@ -7,3 +7,12 @@
 \end{figure*}
 \efloatseparator
  
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{max_buch_JOL_files/figure-latex/hyp2graph-1.pdf}
+\caption{\label{fig:hyp2graph}Simple slopes graph displaying the slope of direct association when predicting JORs at low, average, and high indirect association. All variables were mean centered.}
+\end{figure*}
+\efloatseparator
+ 

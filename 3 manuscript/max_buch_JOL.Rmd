@@ -393,7 +393,7 @@ recall_scores2 = lme(Recall ~ Judgment2,
     na.action = "na.omit")
 ```
 
-The mean JOR for the associative condition (*M* = `r apa(meanJno[1], 2)`, *SD* = `r apa(sdJno[1], 2)`) was lower than the semantic (*M* = `r apa(meanJno[2], 2)`, *SD* = `r apa(sdJno[2], 2)`) and thematic (*M* = `r apa(meanJno[3], 2)`, *SD* = `r apa(sdJno[3], 2)`) conditions. A multilevel model was examined to determine if these JOR values were significantly different using participants as a random factor. Associative judgments were lower than both semantic (*t*(`r summary(judgment_scores)$tTable[2,3]`) = `r apa(summary(judgment_scores)$tTable[2,4],2)`, *p* `r p.value(summary(judgment_scores)$tTable[2,5])`), and thematic judgments (*t*(`r summary(judgment_scores)$tTable[3,3]`) = `r apa(summary(judgment_scores)$tTable[3,4],2)`, *p* `r p.value(summary(judgment_scores)$tTable[3,5])`). Semantic judgments in turn were lower than thematic judgments (*t*(`r summary(judgment_scores2)$tTable[3,3]`) = `r apa(summary(judgment_scores2)$tTable[3,4],2)`, *p* `r p.value(summary(judgment_scores2)$tTable[3,5])`).
+The mean JOR for the associative condition (*M* = `r apa(meanJno[1], 2)`, *SD* = `r apa(sdJno[1], 2)`) was lower than the semantic (*M* = `r apa(meanJno[2], 2)`, *SD* = `r apa(sdJno[2], 2)`) and thematic (*M* = `r apa(meanJno[3], 2)`, *SD* = `r apa(sdJno[3], 2)`) conditions. A multilevel model was examined to determine if these JOR values were significantly different using participants as a random factor. Multilevel models were used to retain all data points (rather than averaging over items and conditions) while controlling for correlated error due to participants, which makes these models advantageous for multiway repeated measures designs [@Gelman2006]. Associative judgments were lower than both semantic (*t*(`r summary(judgment_scores)$tTable[2,3]`) = `r apa(summary(judgment_scores)$tTable[2,4],2)`, *p* `r p.value(summary(judgment_scores)$tTable[2,5])`), and thematic judgments (*t*(`r summary(judgment_scores)$tTable[3,3]`) = `r apa(summary(judgment_scores)$tTable[3,4],2)`, *p* `r p.value(summary(judgment_scores)$tTable[3,5])`). Semantic judgments in turn were lower than thematic judgments (*t*(`r summary(judgment_scores2)$tTable[3,3]`) = `r apa(summary(judgment_scores2)$tTable[3,4],2)`, *p* `r p.value(summary(judgment_scores2)$tTable[3,5])`).
 
 
 Recall averaged around 60% for all three conditions: associative *M* = `r apa(meanRno[1]*100, 2)`, *SD* = `r apa(sdRno[1]*100, 2)`; semantic *M* = `r apa(meanRno[2]*100, 2)`, *SD* = `r apa(sdRno[2]*100, 2)`; thematic *M* = `r apa(meanRno[3]*100, 2)`, *SD* = `r apa(sdRno[3]*100, 2)`. A separate multilevel model indicated that associative recall was lower than semantic recall (*t*(`r summary(recall_scores)$tTable[2,3]`) = `r apa(summary(recall_scores)$tTable[2,4],2)`, *p* `r p.value(summary(recall_scores)$tTable[2,5])`), but not thematic recall (*t*(`r summary(recall_scores)$tTable[3,3]`) = `r apa(summary(recall_scores)$tTable[3,4],2)`, *p* = `r p.value(summary(recall_scores)$tTable[3,5])`). Semantic recall scores were higher than thematic recall scores (*t*(`r summary(recall_scores2)$tTable[3,3]`) = `r apa(summary(recall_scores2)$tTable[3,4],2)`, *p* = `r p.value(summary(recall_scores2)$tTable[3,5])`).
@@ -630,8 +630,11 @@ tableprint[ , 1] = c("Intercept", "Semantic Judgment", "Thematic Judgment",
                      "Z Direct", "Z Indirect", "Z Interaction", "Z Direct Low", "Z Direct High")
 tableprint[1:6 , 2:4] = summary(overallh2)$tTable[ , c(1,4,5)]
 
-tableprint[7, 2:4] = summary(overallh2_low)$tTable[5, c(1,4,5)]
-tableprint[8, 2:4] = summary(overallh2_high)$tTable[5, c(1,4,5)]
+tableprint[7, 2:4] = summary(overallh2_low)$tTable[4, c(1,4,5)]
+tableprint[8, 2:4] = summary(overallh2_high)$tTable[4, c(1,4,5)]
+
+tableprint[ , c(2,3)] = printnum(as.numeric(tableprint[ , c(2,3)]))
+tableprint[ , 4] = printp(as.numeric(tableprint[ , 4]))
 
 colnames(tableprint) = c("Statistic", "Coefficient", "$t$", "$p$")
 
@@ -643,6 +646,31 @@ apa_table(as.data.frame(tableprint),
 )
 
 ```
+
+```{r hyp2graph, echo=FALSE, fig.cap = "Simple slopes graph displaying the slope of direct association when predicting JORs at low, average, and high indirect association. All variables were mean centered.", fig.height=6, fig.width=6}
+
+plot1 = ggplot(noout, aes(x = swow_fsg, y = Judged.Value)) +
+  labs(x = "Direct Association", y = "Judgments") +
+  scale_size_continuous(guide = FALSE) +
+  geom_abline(aes(intercept = summary(overallh2_low)$tTable[1,1], slope = summary(overallh2_low)$tTable[4,1], linetype = "-1SD Z-IA")) +
+  geom_abline(aes(intercept = summary(overallh2)$tTable[1,1], slope = summary(overallh2)$tTable[4,1], linetype = "Average Z-IA")) +
+  geom_abline(aes(intercept = summary(overallh2_high)$tTable[1,1], slope = summary(overallh2_high)$tTable[4,1], linetype = "+1SD Z-IA")) +
+  scale_linetype_manual(values = c("dotted", "dashed", "solid"),
+                        breaks = c("-1SD Z-IA", "Average Z-IA", "+1SD Z-IA"),
+                        name = "Simple Slope") +
+  coord_cartesian(xlim = c(0, 1), ylim = c(.1, 1)) +
+  geom_vline(xintercept = -.10) +
+  geom_hline(yintercept = 0) +
+  cleanup + 
+  NULL
+
+plot1
+```
+
+The goal of next analysis was to test for an interaction between direct and indirect association when predicting participant JORs. First, the database norms were mean centered aide in interpretation. The *nlme* package and *lme* function were used to calculate these analyses [@Pinheiro2017]. A maximum likelihood multilevel model was used to test the interaction between DA and IA when predicting JOR values, with participant number used as the random intercept factor. The type of JOR being elicited was controlled for, so as to better assess the impact of each word overlap measure regardless of JOR condition. This analysis resulted in a significant interaction between DA and IA ($\beta$ = `r tableprint[6, 2]`, *p* `r tableprint[6, 4]`), which is examined below in a simple slopes analysis. Table \@ref(tab:hyp2-table) includes values for main effects, two-way interaction, and the simple slopes.
+
+To investigate this interaction, simple slopes were calculated for low, average, and high levels of indirect association. This variable was chosen for to show the effects of direct associations across levels of indirect association. At low levels of indirect relation, and thus low levels of the semantic network, we found the largest $\beta$ for direct association, `r tableprint[7,2]`. As indirect relation increases, we found decreasing predictiveness of direct relation, average direct $\beta$ = `r tableprint[4,2]`, and high direct $\beta$ = `r tableprint[8,2]`. Figure \@ref(fig:hyp2graph) displays the two-way interaction with this seesaw type effect, indicating that higher semantic network relation results in lower usefulness of direct associative relation.
+
 
 
 \newpage
