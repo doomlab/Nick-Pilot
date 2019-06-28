@@ -181,7 +181,7 @@ A power analysis was conducted using the \emph{simR} package in \emph{R} (Green 
 
 The stimuli used were 126 words pairs of varying relatedness which were created from the Buchanan et al. (2013) word norm database and website. These pairs were evenly split into sixty-three for wave one and wave two of the study. Pairs were originally selected by using forward strength (FSG; Nelson et al., 2004), semantic feature overlap cosine values (COS) from Buchanan et al. (2013), and Latent Semantic Analysis cosine values (Landauer \& Dumais, 1997; Landauer, Foltz, Laham, Folt, \& Laham, 1998) based on previous research on how word pair psycholinguistic variables overlap (Maki \& Buchanan, 2008). The selected stimuli included a range of values for each variable. Table \ref{tab:stim-table} displays stimuli averages, \emph{SD}, and ranges. A complete list of stimuli can be found at \url{http://osf.io/y8h7v}.
 
-The stimuli were arranged into three blocks for each judgment condition described below wherein each block contained 21 word pairs. Due to limitations of the available stimuli, blocks were structured so that each one contained seven word pairs of low (0-.33), medium (.34-.66), and high (.67-1.00) COS relatedness. Pairs with low, medium, and high FSG and LSA were then selected, when avaliable. Given the measurement questions raised in the introduction, the direct association from the SWOW norms will be used as the measure of first order association. Given De Deyne et al. (2013a)'s work on continuous association, the response set from all three responses were used. The direct association provided in these norms is calculated as the number of participants who provided the target to the cue divided by the number of possible answers (i.e., participants * responses). This calculation, therefore, has an upper limit of approximately \textasciitilde{}33\%, even if every participant listed a target word to a cue. The JOR task assumes the range of direct association is 0 to 100 (or 0-1 proportion), and the SWOW direct association (DA) was normalized using:
+The stimuli were arranged into three blocks for each judgment condition described below wherein each block contained 21 word pairs. Due to limitations of the available stimuli, blocks were structured so that each one contained seven word pairs of low (0-.33), medium (.34-.66), and high (.67-1.00) COS relatedness. Pairs with low, medium, and high FSG and LSA were then selected, when available. Given the measurement questions raised in the introduction, the direct association from the SWOW norms will be used as the measure of first order association. Given De Deyne et al. (2013a)'s work on continuous association, the response set from all three responses were used. The direct association provided in these norms is calculated as the number of participants who provided the target to the cue divided by the number of possible answers (i.e., participants * responses). This calculation, therefore, has an upper limit of approximately \textasciitilde{}33\%, even if every participant listed a target word to a cue. The JOR task assumes the range of direct association is 0 to 100 (or 0-1 proportion), and the SWOW direct association (DA) was normalized using:
 
 \[\frac{DA - Min(DA)} {Max(DA) - Min(DA)}\]
 
@@ -347,7 +347,7 @@ Z Direct High & 1.37 & 0.12 & 11.09 & < .001\\
 
 Given the results of Hypothesis 2, we then sought to extend the analysis to participant recall scores. A multilevel logistic regression was used with the \emph{lme4} package and \emph{glmer()} function (Bates et al., 2015), testing the interaction between DA and IA when predicting participant recall. As with the previous hypothesis, we controlled for JOR condition and, additionally, covaried JOR ratings. Participants were used as a random intercept factor. Judged values were not a significant predictor of recall, (\(\beta\) = 0.04, \emph{p} .512). A significant interaction was detected between direct and indirect relations (\(\beta\) = -1.30, \emph{p} .008). See Table \ref{tab:hyp3-table} for main effects, interaction, and simple slopes.
 
-The same moderation process used in Hypothesis 2 was then repeated, with simple slopes calculated at low, average, and high levels of indirect association. The same pattern of results emerged where low levels of indirect association resulted in the largest contribution of direct association \(\beta\) = 1.90. As indirect association increased, direct association coefficients decreased, average direct \(\beta\) = 1.63, and high direct \(\beta\) = 1.37. Thus, the cognitive processes of recall and judgment appear to operate similiarly on the memory network.
+The same moderation process used in Hypothesis 2 was then repeated, with simple slopes calculated at low, average, and high levels of indirect association. The same pattern of results emerged where low levels of indirect association resulted in the largest contribution of direct association \(\beta\) = 1.90. As indirect association increased, direct association coefficients decreased, average direct \(\beta\) = 1.63, and high direct \(\beta\) = 1.37. Thus, the cognitive processes of recall and judgment appear to operate similarly on the memory network.
 
 \hypertarget{predicting-recall-with-jam-slopes}{%
 \subsection{Predicting Recall with JAM Slopes}\label{predicting-recall-with-jam-slopes}}
@@ -361,17 +361,17 @@ The same moderation process used in Hypothesis 2 was then repeated, with simple 
 Variable & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$z$} & \multicolumn{1}{c}{$p$}\\
 \midrule
 (Intercept) & -0.108 & 0.270 & -0.399 & .690\\
-ACOS & -0.098 & 0.232 & -0.423 & .673\\
-AFSG & 1.168 & 0.257 & 4.543 & < .001\\
-AIntercept & 0.487 & 0.392 & 1.241 & .214\\
+A-Direct & 1.168 & 0.257 & 4.543 & < .001\\
+A-Indirect & -0.098 & 0.232 & -0.423 & .673\\
+A-Intercept & 0.487 & 0.392 & 1.241 & .214\\
 (Intercept) & -1.159 & 0.313 & -3.709 & < .001\\
-SCOS & 1.266 & 0.230 & 5.497 & < .001\\
-SFSG & 1.313 & 0.253 & 5.185 & < .001\\
-SIntercept & 1.799 & 0.428 & 4.199 & < .001\\
+S-Direct & 1.313 & 0.253 & 5.185 & < .001\\
+S-Indirect & 1.266 & 0.230 & 5.497 & < .001\\
+S-Intercept & 1.799 & 0.428 & 4.199 & < .001\\
 (Intercept) & -1.004 & 0.319 & -3.149 & .002\\
-TCOS & 1.054 & 0.253 & 4.170 & < .001\\
-TFSG & 1.089 & 0.265 & 4.109 & < .001\\
-TIntercept & 1.738 & 0.424 & 4.094 & < .001\\
+T-Direct & 1.089 & 0.265 & 4.109 & < .001\\
+T-Indirect & 1.054 & 0.253 & 4.170 & < .001\\
+T-Intercept & 1.738 & 0.424 & 4.094 & < .001\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -381,6 +381,28 @@ TIntercept & 1.738 & 0.424 & 4.094 & < .001\\
 \end{threeparttable}
 \end{center}
 \end{table}
+
+In our fourth and final hypothesis, we investigated whether the JOR slopes and intercepts obtained in Hypothesis 1 would be predictive of recall ability. Whereas Hypothesis 3 indicated that word relatedness was directly related to recall performance, this hypothesis instead looked at whether or not participants' sensitivity and bias to word relatedness could be used a predictor of recall (Maki, 2007b). This analysis was conducted with a multilevel logistic regression, as described in Hypothesis 3, where each direct and indirect slope and intercept was used as predictors of recall using participant as a random intercept factor. These analyses were separated by judgment condition, so that each set of JOR slopes and intercepts were used to predict recall. The separation controlled for the number of variables in the equation, as all slopes and intercepts would have resulted in overfitting. These values were obtained from Hypothesis 1 where each participant's individual slopes and intercepts were calculated for associative, semantic, and thematic JOR conditions. Table \ref{tab:hyp1-table1} shows average slopes and intercepts for recall for each of the three types of memory, and Table \ref{tab:hyp4-table} portrays the regression coefficients and statistics.
+
+In the associative condition, the direct association slope significantly predicted recall (\emph{b} = 1.168, \emph{p} = \textless{} .001), while the indirect association did not predict recall (\emph{b} = -0.098, \emph{p} = .673). However, in both of the semantic and thematic conditions, the direct and indirect relations are both predictors, along with the intercepts (see Table \ref{tab:hyp4-table}). In each of these judgment conditions, the direct and indirect association predictors have similar coefficients, showing equal weight in the prediction of recall. Therefore, higher levels of sensitivity in judgments contribute to higher recall, and higher bias in judgments also leaders to more recall. These results mimic the results from across our hypotheses, wherein the associative condition was predicted by direct associations, while the semantic and thematic conditions were predicted by both direct and indirect associations. This analysis indicated the extent to which the cognitive processes are related to each other as part of the memory network (i.e., judgment sensitivity predicting recall), furthering the previous two analyses, which illustrated the nature of those cognitive processes' relationship with the underlying memory network.
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+This study investigated the relationship between direct (associative) and indirect (semantic) relations and their effect on participant JORs and recall performance through the testing of four hypotheses. In our first hypothesis, we show that bias and sensitivity findings first proposed by Maki (2007a) successfully replicated in all three judgment conditions. Participants displayed high intercepts and shallow slopes, suggesting overconfidence in judgment making and an insensitivity to changes in strength between pairs. Additionally, when looking at the frequency that each predictor was the strongest in making JORs, direct association was the strongest predictor for the associative condition, with a nearly even split between direct and indirect association for the semantic and thematic conditions. In contrast to De Deyne et al. (2013a), we found bias in judgments for pairs with no direct relation across all three judgment conditions (average judgment = 50.36); however, only 5 pairs were available for comparison to their results.
+
+Our second hypothesis examined the interaction between direct and indirect association when predicting participant JORs. The interaction was present as a seesaw effect wherein increasing levels of indirect association lead to decreasing predictiveness of direct association. Therefore, as semantic connections become stronger in the memory network, the direct associative connections become less useful for judgments. This finding was extended to recall in Hypothesis 3, supporting the notion that recall and judgment cognitive processes draw in similar ways on the memory network.
+
+Finally, our fourth hypothesis used the JOR slopes and intercepts calculated in Hypothesis 1 to investigate whether participants' bias and sensitivity to word relatedness could be used to predict recall. For the associative condition, the only the direct association slope significantly predicted recall. In the semantic and thematic conditions, both direct and indirect associations, along with their intercepts, predicted recall. These results mirror results from Hypothesis 1 suggesting that task demands from the judgment instructions carry over into recall processes.
+
+Overall, our findings indicated the degree to which the processing of direct and indirect word-pair network information impacts retrieval and judgment making tasks. Previous research has shown the effects of direct associations on priming (Buchanan, 2010; Hutchison, 2003), cued-recall ({\textbf{???}}; {\textbf{???}}), judgments of associative memory (De Deyne et al., 2013a; Maki, 2007b, 2007a; Valentine \& Buchanan, 2013) and response latencies (De Deyne et al., 2013b) to name a few. Our results suggest a competitive network based on task-demand. When directed to focus on direct association, direct association was a strong, and often only, predictor of judgment or recall. When directed to focus on semantic or thematic type relations, both indirect and direct association play a role in judgments and recall. Further, this effect was interactive, wherein different levels of indirect semantic strength lead to different activation of the direct associative network. As indirect strength increases, the effect of direct strength decreases, albeit does not completely diminish.
+
+Finally, future studies may wish to consider the effect of each concept's linguistic features (frequency, orthography, part of speech, etc.), as these properties have been shown to influence judgments and recall. The type, or ontology ({\textbf{???}}), of the relation may provide clues as to judgments and recall. ({\textbf{???}}) illustrated how a spreading activation model with random walks can account for participant's understanding of similarity, even when word-pair relation would be considered very weak. These models provide future avenues for application to judgment and recall processes, as we have shown they are related to the same direct and indirect network of association.
+
+\hypertarget{compliance-with-ethical-standards}{%
+\subsection{Compliance with Ethical Standards}\label{compliance-with-ethical-standards}}
+
+The authors declare that they have no conflict of interest. The study was approved by the Institutional Review Board at Missouri State University. Participants filled out an informed consent at the beginning of the study, after accepting the HIT on Mechanical Turk. The complete study with consent form can be found on our OSF page: \url{http://osf.io/y8h7v}.
 
 \newpage
 
@@ -435,6 +457,9 @@ Hertzog, C., Kidder, D. P., Powell-Moman, A., \& Dunlosky, J. (2002). Aging and 
 
 \leavevmode\hypertarget{ref-Huff2011}{}%
 Huff, M. J., \& Hutchison, K. A. (2011). The effects of mediated word lists on false recall and recognition. \emph{Memory \& Cognition}, \emph{39}(6), 941--953. doi:\href{https://doi.org/10.3758/s13421-011-0077-0}{10.3758/s13421-011-0077-0}
+
+\leavevmode\hypertarget{ref-Hutchison2003}{}%
+Hutchison, K. A. (2003). Is semantic priming due to association strength or feature overlap? A microanalytic review. \emph{Psychonomic Bulletin \& Review}, \emph{10}(4), 785--813. doi:\href{https://doi.org/10.3758/BF03196544}{10.3758/BF03196544}
 
 \leavevmode\hypertarget{ref-Jiang1997}{}%
 Jiang, J. J., \& Conrath, D. W. (1997). Semantic similarity based on corpus statistics and lexical taxonomy. \emph{Proceedings of International Conference Research on Computational Linguistics (ROCLING X)}. Retrieved from \url{http://arxiv.org/abs/cmp-lg/9709008}
