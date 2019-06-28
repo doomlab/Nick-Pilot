@@ -57,23 +57,86 @@ Thematic IA & .137 & .282 & 8.653 & 315 & < .001 & 0.487 & 0.370 - 0.603\\
 \begin{center}
 \begin{threeparttable}
 \caption{\label{tab:hyp2-table}MLM Statistics for Hypothesis 2}
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \toprule
-Statistic & \multicolumn{1}{c}{Coefficient} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$p$}\\
+Statistic & \multicolumn{1}{c}{Coefficient} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$p$}\\
 \midrule
-Intercept & 0.59 & 77.47 & < .001\\
-Semantic Judgment & 0.05 & 10.73 & < .001\\
-Thematic Judgment & 0.10 & 23.11 & < .001\\
-Z Direct & 0.29 & 38.98 & < .001\\
-Z Indirect & 0.14 & 15.92 & < .001\\
-Z Interaction & -0.19 & -3.86 & < .001\\
-Z Direct Low & 0.33 & 26.40 & < .001\\
-Z Direct High & 0.25 & 20.58 & < .001\\
+Intercept & 0.59 & 0.01 & 77.47 & < .001\\
+Semantic Judgment & 0.05 & 0.00 & 10.73 & < .001\\
+Thematic Judgment & 0.10 & 0.00 & 23.11 & < .001\\
+Z Direct & 0.29 & 0.01 & 38.98 & < .001\\
+Z Indirect & 0.14 & 0.01 & 15.92 & < .001\\
+Z Interaction & -0.19 & 0.05 & -3.86 & < .001\\
+Z Direct Low & 0.33 & 0.01 & 26.40 & < .001\\
+Z Direct High & 0.25 & 0.01 & 20.58 & < .001\\
 \bottomrule
 \addlinespace
 \end{tabular}
 \begin{tablenotes}[para]
 \normalsize{\textit{Note.} Direct and indirect association  were mean centered. The table shows main effects and interactions predicting participant judgments. $df$ = 19404}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:hyp3-table}MLM Statistics for Hypothesis 3}
+\begin{tabular}{lcccc}
+\toprule
+Statistic & \multicolumn{1}{c}{Coefficient} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$Z$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 0.42 & 0.08 & 5.09 & < .001\\
+Semantic Judgment & 0.18 & 0.04 & 4.38 & < .001\\
+Thematic Judgment & 0.05 & 0.04 & 1.10 & .270\\
+Judged Value & 0.04 & 0.07 & 0.66 & .512\\
+Z Direct & 1.63 & 0.08 & 20.32 & < .001\\
+Z Indirect & 0.32 & 0.09 & 3.71 & < .001\\
+Z Interaction & -1.30 & 0.49 & -2.67 & .008\\
+Z Direct Low & 1.90 & 0.13 & 14.58 & < .001\\
+Z Direct High & 1.37 & 0.12 & 11.09 & < .001\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Direct and indirect association  were mean centered. The table shows main effects and interactions predicting recall.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\efloatseparator
+ 
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:hyp4-table}MLM Statistics for Hypothesis 4}
+\begin{tabular}{lcccc}
+\toprule
+Variable & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$z$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+(Intercept) & -0.108 & 0.270 & -0.399 & .690\\
+ACOS & -0.098 & 0.232 & -0.423 & .673\\
+AFSG & 1.168 & 0.257 & 4.543 & < .001\\
+AIntercept & 0.487 & 0.392 & 1.241 & .214\\
+(Intercept) & -1.159 & 0.313 & -3.709 & < .001\\
+SCOS & 1.266 & 0.230 & 5.497 & < .001\\
+SFSG & 1.313 & 0.253 & 5.185 & < .001\\
+SIntercept & 1.799 & 0.428 & 4.199 & < .001\\
+(Intercept) & -1.004 & 0.319 & -3.149 & .002\\
+TCOS & 1.054 & 0.253 & 4.170 & < .001\\
+TFSG & 1.089 & 0.265 & 4.109 & < .001\\
+TIntercept & 1.738 & 0.424 & 4.094 & < .001\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Each judgment-database bias and sensitivity predicting recall for corresponding judgment block. A: Associative, S: Semantic, T: Thematic.}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}

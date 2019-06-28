@@ -226,7 +226,7 @@ After completing the judgment phase, participants were then presented with a sho
 
 First, the results from the recall phase of the study were coded as zero for incorrect responses, one for correct responses, and NA for participants who did not complete the recall section (all or nearly all responses were blank). All word responses to judgment items were deleted and set to missing data. The final dataset was created by splitting the initial data file into six sections (one for each of the three experimental blocks and their corresponding recall scores). Each section was individually melted using the \emph{reshape} package in \emph{R} (Wickham, 2007) and was written as a csv file. The six output files were then combined to form the final dataset. Code is available on our OSF page embedded inline with the manuscript in an \emph{R} markdown document written with the \emph{papaja} package (Aust \& Barth, 2017). With 333 participants, the dataset in long format included 20979 rows of potential data (i.e., 333 participants * 63 JORs). 15 out of range JOR data points (\textgreater{} 100) were corrected to NA. Missing data for JORs or recall were then excluded from the analysis, which included word responses to judgment items (i.e., responding with \emph{cat} instead of a number when prompted to provide a JOR). These items usually excluded a participant from receiving Amazon Mechanical Turk payment, but were included in the datasets found online. In total, data points2266 were excluded (679 JOR only, 1019 recall only, 568 both), leading to a final \emph{N} of 18713 observations. Recall and JOR values were then screened for outliers using Mahalanobis distance at \emph{p} \textless{} .001, and no outliers were found (Tabachnick \& Fidell, 2012). To screen for multicollinearity, we examined correlations between judgment items, DA, and IA. All correlations were \emph{r}s \textless{} .26.
 
-The mean JOR for the associative condition (\emph{M} = 59.40, \emph{SD} = 29.52) was lower than the semantic (\emph{M} = 64.15, \emph{SD} = 29.74) and thematic (\emph{M} = 69.50, \emph{SD} = 28.20) conditions. A multilevel model was examined to determine if these JOR values were significantly different using participants as a random factor. Associative judgments were lower than both semantic (\emph{t}(19407) = 10.40, \emph{p} \textless{} .001), and thematic judgments (\emph{t}(19407) = 22.25, \emph{p} \textless{} .001). Semantic judgments in turn were lower than thematic judgments (\emph{t}(19407) = 11.85, \emph{p} \textless{} .001).
+The mean JOR for the associative condition (\emph{M} = 59.40, \emph{SD} = 29.52) was lower than the semantic (\emph{M} = 64.15, \emph{SD} = 29.74) and thematic (\emph{M} = 69.50, \emph{SD} = 28.20) conditions. A multilevel model was examined to determine if these JOR values were significantly different using participants as a random factor. Multilevel models were used to retain all data points (rather than averaging over items and conditions) while controlling for correlated error due to participants, which makes these models advantageous for multiway repeated measures designs (Gelman, 2006). Associative judgments were lower than both semantic (\emph{t}(19407) = 10.40, \emph{p} \textless{} .001), and thematic judgments (\emph{t}(19407) = 22.25, \emph{p} \textless{} .001). Semantic judgments in turn were lower than thematic judgments (\emph{t}(19407) = 11.85, \emph{p} \textless{} .001).
 
 Recall averaged around 60\% for all three conditions: associative \emph{M} = 5903.95, \emph{SD} = 4917.99; semantic \emph{M} = 6256.76, \emph{SD} = 4839.85; thematic \emph{M} = 6011.76, \emph{SD} = 4896.94. A separate multilevel model indicated that associative recall was lower than semantic recall (\emph{t}(19064) = 4.63, \emph{p} \textless{} .001), but not thematic recall (\emph{t}(19064) = 1.37, \emph{p} = .169). Semantic recall scores were higher than thematic recall scores (\emph{t}(19064) = -3.25, \emph{p} = .001).
 
@@ -277,18 +277,18 @@ Additionally, we examined the frequency that each predictor variable was the str
 \begin{center}
 \begin{threeparttable}
 \caption{\label{tab:hyp2-table}MLM Statistics for Hypothesis 2}
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \toprule
-Statistic & \multicolumn{1}{c}{Coefficient} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$p$}\\
+Statistic & \multicolumn{1}{c}{Coefficient} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$p$}\\
 \midrule
-Intercept & 0.59 & 77.47 & < .001\\
-Semantic Judgment & 0.05 & 10.73 & < .001\\
-Thematic Judgment & 0.10 & 23.11 & < .001\\
-Z Direct & 0.29 & 38.98 & < .001\\
-Z Indirect & 0.14 & 15.92 & < .001\\
-Z Interaction & -0.19 & -3.86 & < .001\\
-Z Direct Low & 0.33 & 26.40 & < .001\\
-Z Direct High & 0.25 & 20.58 & < .001\\
+Intercept & 0.59 & 0.01 & 77.47 & < .001\\
+Semantic Judgment & 0.05 & 0.00 & 10.73 & < .001\\
+Thematic Judgment & 0.10 & 0.00 & 23.11 & < .001\\
+Z Direct & 0.29 & 0.01 & 38.98 & < .001\\
+Z Indirect & 0.14 & 0.01 & 15.92 & < .001\\
+Z Interaction & -0.19 & 0.05 & -3.86 & < .001\\
+Z Direct Low & 0.33 & 0.01 & 26.40 & < .001\\
+Z Direct High & 0.25 & 0.01 & 20.58 & < .001\\
 \bottomrule
 \addlinespace
 \end{tabular}
@@ -304,6 +304,83 @@ Z Direct High & 0.25 & 20.58 & < .001\\
 \includegraphics{max_buch_JOL_files/figure-latex/hyp2graph-1.pdf}
 \caption{\label{fig:hyp2graph}Simple slopes graph displaying the slope of direct association when predicting JORs at low, average, and high indirect association. All variables were mean centered.}
 \end{figure}
+
+The goal of next analysis was to test for an interaction between direct and indirect association when predicting participant JORs. First, the database norms were mean centered aide in interpretation. The \emph{nlme} package and \emph{lme} function were used to calculate these analyses (Pinheiro, Bates, Debroy, Sarkar, \& Team, 2017). A maximum likelihood multilevel model was used to test the interaction between DA and IA when predicting JOR values, with participant number used as the random intercept factor. The type of JOR being elicited was controlled for, so as to better assess the impact of each word overlap measure regardless of JOR condition. This analysis resulted in a significant interaction between DA and IA (\(\beta\) = -0.19, \emph{p} \textless{} .001), which is examined below in a simple slopes analysis. Table \ref{tab:hyp2-table} includes values for main effects, two-way interaction, and the simple slopes.
+
+To investigate this interaction, simple slopes were calculated for low, average, and high levels of indirect association. This variable was chosen for to show the effects of direct associations across levels of indirect association. At low levels of indirect relation, and thus low levels of the semantic network, we found the largest \(\beta\) for direct association, 0.33. As indirect relation increases, we found decreasing predictiveness of direct relation, average direct \(\beta\) = 0.29, and high direct \(\beta\) = 0.25. Figure \ref{fig:hyp2graph} displays the two-way interaction with this seesaw type effect, indicating that higher semantic network relation results in lower usefulness of direct associative relation.
+
+\hypertarget{interaction-between-relation-when-predicting-recall}{%
+\subsection{Interaction between Relation when Predicting Recall}\label{interaction-between-relation-when-predicting-recall}}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:hyp3-table}MLM Statistics for Hypothesis 3}
+\begin{tabular}{lcccc}
+\toprule
+Statistic & \multicolumn{1}{c}{Coefficient} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$Z$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 0.42 & 0.08 & 5.09 & < .001\\
+Semantic Judgment & 0.18 & 0.04 & 4.38 & < .001\\
+Thematic Judgment & 0.05 & 0.04 & 1.10 & .270\\
+Judged Value & 0.04 & 0.07 & 0.66 & .512\\
+Z Direct & 1.63 & 0.08 & 20.32 & < .001\\
+Z Indirect & 0.32 & 0.09 & 3.71 & < .001\\
+Z Interaction & -1.30 & 0.49 & -2.67 & .008\\
+Z Direct Low & 1.90 & 0.13 & 14.58 & < .001\\
+Z Direct High & 1.37 & 0.12 & 11.09 & < .001\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Direct and indirect association  were mean centered. The table shows main effects and interactions predicting recall.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics{max_buch_JOL_files/figure-latex/hyp3graph-1.pdf}
+\caption{\label{fig:hyp3graph}Simple slopes graph displaying the slope of direct association when predicting recall at low, average, and high indirect association. All variables were mean centered.}
+\end{figure}
+
+Given the results of Hypothesis 2, we then sought to extend the analysis to participant recall scores. A multilevel logistic regression was used with the \emph{lme4} package and \emph{glmer()} function (Bates et al., 2015), testing the interaction between DA and IA when predicting participant recall. As with the previous hypothesis, we controlled for JOR condition and, additionally, covaried JOR ratings. Participants were used as a random intercept factor. Judged values were not a significant predictor of recall, (\(\beta\) = 0.04, \emph{p} .512). A significant interaction was detected between direct and indirect relations (\(\beta\) = -1.30, \emph{p} .008). See Table \ref{tab:hyp3-table} for main effects, interaction, and simple slopes.
+
+The same moderation process used in Hypothesis 2 was then repeated, with simple slopes calculated at low, average, and high levels of indirect association. The same pattern of results emerged where low levels of indirect association resulted in the largest contribution of direct association \(\beta\) = 1.90. As indirect association increased, direct association coefficients decreased, average direct \(\beta\) = 1.63, and high direct \(\beta\) = 1.37. Thus, the cognitive processes of recall and judgment appear to operate similiarly on the memory network.
+
+\hypertarget{predicting-recall-with-jam-slopes}{%
+\subsection{Predicting Recall with JAM Slopes}\label{predicting-recall-with-jam-slopes}}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:hyp4-table}MLM Statistics for Hypothesis 4}
+\begin{tabular}{lcccc}
+\toprule
+Variable & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$z$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+(Intercept) & -0.108 & 0.270 & -0.399 & .690\\
+ACOS & -0.098 & 0.232 & -0.423 & .673\\
+AFSG & 1.168 & 0.257 & 4.543 & < .001\\
+AIntercept & 0.487 & 0.392 & 1.241 & .214\\
+(Intercept) & -1.159 & 0.313 & -3.709 & < .001\\
+SCOS & 1.266 & 0.230 & 5.497 & < .001\\
+SFSG & 1.313 & 0.253 & 5.185 & < .001\\
+SIntercept & 1.799 & 0.428 & 4.199 & < .001\\
+(Intercept) & -1.004 & 0.319 & -3.149 & .002\\
+TCOS & 1.054 & 0.253 & 4.170 & < .001\\
+TFSG & 1.089 & 0.265 & 4.109 & < .001\\
+TIntercept & 1.738 & 0.424 & 4.094 & < .001\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Each judgment-database bias and sensitivity predicting recall for corresponding judgment block. A: Associative, S: Semantic, T: Thematic.}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
 
 \newpage
 
@@ -346,6 +423,9 @@ De Deyne, S., Navarro, D. J., \& Storms, G. (2013b). Better explanations of lexi
 
 \leavevmode\hypertarget{ref-Deese1965}{}%
 Deese, J. (1965). \emph{The structure of association in language and thought}. Baltimore, MD: The Johns Hopkins University Press.
+
+\leavevmode\hypertarget{ref-Gelman2006}{}%
+Gelman, A. (2006). Multilevel (hierarchical) modeling: What it can and cannot do. \emph{Technometrics}, \emph{48}(3), 432--435. doi:\href{https://doi.org/10.1198/004017005000000661}{10.1198/004017005000000661}
 
 \leavevmode\hypertarget{ref-Green2016}{}%
 Green, P., \& MacLeod, C. J. (2016). SIMR: an R package for power analysis of generalized linear mixed models by simulation. \emph{Methods in Ecology and Evolution}, \emph{7}(4), 493--498. doi:\href{https://doi.org/10.1111/2041-210X.12504}{10.1111/2041-210X.12504}
@@ -403,6 +483,9 @@ Nelson, T. O., \& Dunlosky, J. (1991). When people's judgments of learning (JOLs
 
 \leavevmode\hypertarget{ref-Paivio1969}{}%
 Paivio, A. (1969). Mental imagery in associative learning and memory. \emph{Psychological Review}, \emph{76}(3), 241--263. doi:\href{https://doi.org/10.1037/h0027272}{10.1037/h0027272}
+
+\leavevmode\hypertarget{ref-Pinheiro2017}{}%
+Pinheiro, J., Bates, D., Debroy, S., Sarkar, D., \& Team, R. C. (2017). nlme: Linear and nonlinear mixed effects models. Retrieved from \url{https://cran.r-project.org/package=nlme}
 
 \leavevmode\hypertarget{ref-Richardson1998}{}%
 Richardson, J. T. E. (1998). The availability and effectiveness of reported mediators in associative learning: A historical review and an experimental investigation. \emph{Psychonomic Bulletin \& Review}, \emph{5}(4), 597--614. doi:\href{https://doi.org/10.3758/BF03208837}{10.3758/BF03208837}

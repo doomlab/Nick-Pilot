@@ -12,3 +12,5 @@ knitr
 lattice
 MASS
 memisc
+Matrix
+lme4
