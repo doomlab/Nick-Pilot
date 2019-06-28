@@ -583,6 +583,60 @@ p3
 
 Additionally, we examined the frequency that each predictor variable was the strongest predictor for each of the three JOR conditions. For the associative condition, the direct association was the strongest predictor for `r apa(p1[2],1)`% of the participants. This distinction was less pronounced when examining the semantic and thematic JOR conditions. In the semantic condition, DA was `r apa(p2[2], 1)`% of participants, and in the thematic condition, DA was `r apa(p3[2],1)`% of participants. These results mirror the slope values, such that direct association is strongest when asked to judge associative relations, while a more even split between direct and indirect predictors was found when asked to consider semantic and thematic relations. 
 
+## Interaction between Relation when Predicting Judgments of Relatedness
+
+```{r hyp2-table, echo=FALSE, results='asis'}
+
+#center the vars
+noout$zfsg = scale(noout$swow_fsg, scale = F)
+noout$zcosine = scale(noout$cosine, scale = F)
+
+overallh2 = lme(Judged.Value ~ Judgment + 
+               zfsg*zcosine, 
+             data = noout, 
+             method = "ML", 
+             na.action = "na.omit",
+             random = ~1|Partno)
+
+#summary(overallh2)
+
+#split on cosine because that's what we did before
+noout$low_cosine = noout$zcosine + sd(noout$zcosine)
+noout$high_cosine = noout$zcosine - sd(noout$zcosine)
+
+overallh2_low = lme(Judged.Value ~ Judgment + 
+               zfsg*low_cosine, 
+             data = noout, 
+             method = "ML", 
+             na.action = "na.omit",
+             random = ~1|Partno)
+
+overallh2_high = lme(Judged.Value ~ Judgment + 
+               zfsg*high_cosine, 
+             data = noout, 
+             method = "ML", 
+             na.action = "na.omit",
+             random = ~1|Partno)
+
+#summary(overallh2_low) ##.38
+
+#summary(overallh2) ##.30
+
+#summary(overallh2_high) ##.22 
+
+tableprint = matrix(NA, nrow = 10, ncol = 10)
+
+tableprint[1, ] = c()
+
+apa_table(as.data.frame(tableprint),
+          align = c("l", rep("c", 4)), 
+          small = T,
+          caption = "MLM Statistics for Hypothesis 2",
+          note = "Database norms were mean centered. The table shows main effects and interactions for database norms at low, average, and high levels of COS and LSA when predicting participant judgments.",
+          escape = FALSE
+)
+
+```
 
 
 \newpage

@@ -462,7 +462,7 @@ kable(tableprint)
 
 
 
-Additionally, we examined the frequency that each predictor variable was the strongest predictor for each of the three JOR conditions. For the associative condition, FSG was the strongest predictor for `r apa(p1[2],1)`% of the participants, with COS and LSA being the strongest for only `r apa(p1[1],1)`% and `r apa(p1[3],1)`% of participants respectively. These differences were less distinct when examining the semantic and thematic JOR conditions. In the semantic condition, FSG was highest at `r apa(p2[2], 1)`% of participants, LSA was second at `r apa(p2[3],1)`%, and COS was least likely at `r apa(p2[1],1)`%. Finally, in the thematic condition, LSA was most likely to be the strongest predictor with `r apa(p3[3],1)`% of participants, with FSG being the second most likely at `r apa(p3[2],1)`%, and COS again being least likely at `r apa(p3[1],1)`%. Interestingly, in all three conditions, COS was least likely to be the strongest predictor, even in the semantic condition. Therefore, these results provide evidence of the nature of judgments on the memory network as each judgment type appeared to tap each tier differently, suggesting a three-part system, rather than one large, encompassing memory network. 
+
 
 ## Interaction between Norms when Predicting Judgments of Relatedness
 ```{r hyp2-table, echo=FALSE, results='asis'}
