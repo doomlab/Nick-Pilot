@@ -9,8 +9,8 @@ lsa
 kableExtra
 nlme
 knitr
+Matrix
+lme4
 lattice
 MASS
 memisc
-Matrix
-lme4
