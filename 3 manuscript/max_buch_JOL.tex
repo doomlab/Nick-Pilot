@@ -135,7 +135,7 @@ Using this technique, researchers have developed databases of associative word n
 \hypertarget{measuring-relatedness}{%
 \subsection{Measuring Relatedness}\label{measuring-relatedness}}
 
-Whereas direct associations focus on the relationships between individual words, indirect associations focus on how a concept fits into the overall structure of the semantic network (De Deyne et al., 2013b; Deese, 1965). Because indirect associations capture information derived from the overall structure of the semantic network, these norms can also be used to represent semantic properties of item pairs and can be used to approximate links between concepts within semantic memory networks. This includes mediated associates (i.e., \emph{lion} -- \emph{stripes} is mediated through \emph{tiger}; see {\textbf{???}} for a review of mediated associates) and is one of the underlying factors behind distributional models of semantic memory (e.g., Latent Semantic Analysis, Landauer \& Dumais, 1997; Hyperspace Analogue to Language Model, Lund \& Burgess, 1996). These models posit that semantic representations are created through the co-occurrences of words together within a body of text and suggest that words with similar meanings will appear together in similar contexts (Riordan \& Jones, 2011). On the other hand, connectionist models of semantic memory (e.g., Rogers \& McClelland, 2006; Rumelhart, McClelland, \& Group, 1986) portray the semantic network as a system of interconnected units representing concepts, which are linked together by weighted connections representing knowledge. By triggering the input units, activation will then spread throughout the system activating or suppressing connected units based on the weighted strength of the corresponding unit connections (Jones, Willits, \& Dennis, 2015).
+Whereas direct associations focus on the relationships between individual words, indirect associations focus on how a concept fits into the overall structure of the semantic network (De Deyne et al., 2013b; Deese, 1965). Because indirect associations capture information derived from the overall structure of the semantic network, these norms can also be used to represent semantic properties of item pairs and can be used to approximate links between concepts within semantic memory networks. This includes mediated associates (i.e., \emph{lion} -- \emph{stripes} is mediated through \emph{tiger}; see Huff \& Hutchison, 2011 for a review of mediated associates) and is one of the underlying factors behind distributional models of semantic memory (e.g., Latent Semantic Analysis, Landauer \& Dumais, 1997; Hyperspace Analogue to Language Model, Lund \& Burgess, 1996). These models posit that semantic representations are created through the co-occurrences of words together within a body of text and suggest that words with similar meanings will appear together in similar contexts (Riordan \& Jones, 2011). On the other hand, connectionist models of semantic memory (e.g., Rogers \& McClelland, 2006; Rumelhart, McClelland, \& Group, 1986) portray the semantic network as a system of interconnected units representing concepts, which are linked together by weighted connections representing knowledge. By triggering the input units, activation will then spread throughout the system activating or suppressing connected units based on the weighted strength of the corresponding unit connections (Jones, Willits, \& Dennis, 2015).
 
 Semantic overlap between concepts can measured in several ways. Feature production tasks (Buchanan, Holmes, Teasley, \& Hutchison, 2013; McRae, Cree, Seidenberg, \& McNorgan, 2005; Vinson \& Vigliocco, 2008) provide one means of generating semantic word norms. In such tasks, participants are shown the name of a concept and are asked to list what they believe the concept's most important features to be (McRae et al., 2005). Several statistical measures have been developed which measure the degree of feature overlap between concepts. First, similarity between any two concepts can be measured by representing them as vectors and calculating the cosine value (COS) between them (Maki, McKinley, \& Thompson, 2004), with COS values ranging from 0 (completely unrelated) to 1 (perfectly related). For example, the pair \emph{hornet} - \emph{wasp} has a COS of .88, indicating a high degree of overlap between the two concepts. Feature overlap can also be measured by JCN, which involves calculating both the information content value of each concept and the lowest super-ordinate shared by each concept using an online dictionary, such as WordNET (Miller, 1995). The JCN value is then computed by summing together the difference of each concept and its lowest super-ordinate (Jiang \& Conrath, 1997; Maki et al., 2004). The advantage to using COS values over JCN values is the limitation of JCN being tied to a somewhat static dictionary database, while a semantic feature production task can be used on any concept to calculate COS values. However, JCN values are less time consuming to obtain if both concepts are in the database (Buchanan et al., 2013).
 
@@ -185,7 +185,7 @@ The stimuli were arranged into three blocks for each judgment condition describe
 
 \[\frac{DA - Min(DA)} {Max(DA) - Min(DA)}\]
 
-Indirect association (IA) was calculated by comparing the distribution of responses for each concept. Therefore, if the concepts were \emph{bird} and \emph{feather}, the two association sets were combined and the cosine between the response frequencies was calculated. Cosine indicates a measure of overlap in the response distributions, where 0 indicates no overlapping responses, while 1 indicates perfectly overlapping response frequencies (see {\textbf{???}} for more on cosine feature overlap). DA and IA averages are provided in \ref{tab:stim-table}. The study was built online using Qualtrics, and three surveys were created to counter-balance the order in which judgment conditions appeared. Each word pair appeared counter-balanced across each judgment condition, and stimuli were randomized within each block.
+Indirect association (IA) was calculated by comparing the distribution of responses for each concept. Therefore, if the concepts were \emph{bird} and \emph{feather}, the two association sets were combined and the cosine between the response frequencies was calculated. Cosine indicates a measure of overlap in the response distributions, where 0 indicates no overlapping responses, while 1 indicates perfectly overlapping response frequencies (see Buchanan, Valentine, \& Maxwell, 2019 for more on cosine feature overlap). DA and IA averages are provided in \ref{tab:stim-table}. The study was built online using Qualtrics, and three surveys were created to counter-balance the order in which judgment conditions appeared. Each word pair appeared counter-balanced across each judgment condition, and stimuli were randomized within each block.
 
 \begin{table}[t]
 
@@ -268,6 +268,37 @@ First, we sought to replicate bias and sensitivity findings from previous resear
 
 The JAM slope was successfully replicated for DA in all three conditions with slopes falling in the expected range of 0.20 to 0.40. For associative judgments, the indirect relation - which is thought to be representative of semantic relatedness - did not predict judgments. In the thematic judgment condition, the indirect values were positive, indicating contribution of both direct and indirect values to the judgments, which were described as a mix of both relation types. Last, the semantic judgment condition showed that both direct and indirect relations were important with the highest indirect contribution of the three judgment types, indicating differences in focus of judgment tap different relations to meet task demands. Overall, JAM slopes were successfully replicated in each JOR condition, the high intercepts and shallow slopes present across conditions were indicative of overconfidence and insensitivity in participant JORs.
 
+Additionally, we examined the frequency that each predictor variable was the strongest predictor for each of the three JOR conditions. For the associative condition, the direct association was the strongest predictor for 67.3\% of the participants. This distinction was less pronounced when examining the semantic and thematic JOR conditions. In the semantic condition, DA was 52.1\% of participants, and in the thematic condition, DA was 54.1\% of participants. These results mirror the slope values, such that direct association is strongest when asked to judge associative relations, while a more even split between direct and indirect predictors was found when asked to consider semantic and thematic relations.
+
+\hypertarget{interaction-between-relation-when-predicting-judgments-of-relatedness}{%
+\subsection{Interaction between Relation when Predicting Judgments of Relatedness}\label{interaction-between-relation-when-predicting-judgments-of-relatedness}}
+
+\begin{table}[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:hyp2-table}MLM Statistics for Hypothesis 2}
+\begin{tabular}{lccc}
+\toprule
+Statistic & \multicolumn{1}{c}{Coefficient} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 0.594093844566144 & 77.4728317536522 & 0\\
+Semantic Judgment & 0.0471852245875351 & 10.7306417467822 & 8.68990068277197e-27\\
+Thematic Judgment & 0.101445491457195 & 23.1102991378741 & 1.36557891594242e-116\\
+Z Direct & 0.289484961477928 & 38.9834167240464 & 4.09481607273225e-320\\
+Z Indirect & 0.14442187882011 & 15.9167974893851 & 1.10710591095941e-56\\
+Z Interaction & -0.188106799060002 & -3.85962946305517 & 0.000113926824647208\\
+Z Direct Low & 0.144421878820112 & 15.9167974893851 & 1.10710591095782e-56\\
+Z Direct High & 0.144421878820111 & 15.9167974893851 & 1.10710591095912e-56\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Direct and indirect association  were mean centered. The table shows main effects and interactions predicting participant judgments. $df$ = 19404}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table}
+
 \newpage
 
 \hypertarget{references}{%
@@ -288,6 +319,9 @@ Buchanan, E. M. (2010). Access into memory: Differences in judgments and priming
 
 \leavevmode\hypertarget{ref-Buchanan2013}{}%
 Buchanan, E. M., Holmes, J. L., Teasley, M. L., \& Hutchison, K. A. (2013). English semantic word-pair norms and a searchable Web portal for experimental stimulus creation. \emph{Behavior Research Methods}, \emph{45}(3), 746--757. doi:\href{https://doi.org/10.3758/s13428-012-0284-z}{10.3758/s13428-012-0284-z}
+
+\leavevmode\hypertarget{ref-Buchanan2019}{}%
+Buchanan, E. M., Valentine, K. D., \& Maxwell, N. P. (2019). English semantic feature production norms: An extended database of 4436 concepts. \emph{Behavior Research Methods}. doi:\href{https://doi.org/10.3758/s13428-019-01243-z}{10.3758/s13428-019-01243-z}
 
 \leavevmode\hypertarget{ref-Buhrmester2011}{}%
 Buhrmester, M., Kwang, T., \& Gosling, S. D. (2011). Amazon's Mechanical Turk. \emph{Perspectives on Psychological Science}, \emph{6}(1), 3--5. doi:\href{https://doi.org/10.1177/1745691610393980}{10.1177/1745691610393980}
@@ -312,6 +346,9 @@ Green, P., \& MacLeod, C. J. (2016). SIMR: an R package for power analysis of ge
 
 \leavevmode\hypertarget{ref-Hertzog2002}{}%
 Hertzog, C., Kidder, D. P., Powell-Moman, A., \& Dunlosky, J. (2002). Aging and monitoring associative learning: Is monitoring accuracy spared or impaired? \emph{Psychology and Aging}, \emph{17}(2), 209--225. doi:\href{https://doi.org/10.1037/0882-7974.17.2.209}{10.1037/0882-7974.17.2.209}
+
+\leavevmode\hypertarget{ref-Huff2011}{}%
+Huff, M. J., \& Hutchison, K. A. (2011). The effects of mediated word lists on false recall and recognition. \emph{Memory \& Cognition}, \emph{39}(6), 941--953. doi:\href{https://doi.org/10.3758/s13421-011-0077-0}{10.3758/s13421-011-0077-0}
 
 \leavevmode\hypertarget{ref-Jiang1997}{}%
 Jiang, J. J., \& Conrath, D. W. (1997). Semantic similarity based on corpus statistics and lexical taxonomy. \emph{Proceedings of International Conference Research on Computational Linguistics (ROCLING X)}. Retrieved from \url{http://arxiv.org/abs/cmp-lg/9709008}

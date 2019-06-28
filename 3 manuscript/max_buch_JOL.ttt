@@ -51,3 +51,32 @@ Thematic IA & .137 & .282 & 8.653 & 315 & < .001 & 0.487 & 0.370 - 0.603\\
 \end{table*}
 \efloatseparator
  
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+\begin{center}
+\begin{threeparttable}
+\caption{\label{tab:hyp2-table}MLM Statistics for Hypothesis 2}
+\begin{tabular}{lccc}
+\toprule
+Statistic & \multicolumn{1}{c}{Coefficient} & \multicolumn{1}{c}{$t$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 0.594093844566144 & 77.4728317536522 & 0\\
+Semantic Judgment & 0.0471852245875351 & 10.7306417467822 & 8.68990068277197e-27\\
+Thematic Judgment & 0.101445491457195 & 23.1102991378741 & 1.36557891594242e-116\\
+Z Direct & 0.289484961477928 & 38.9834167240464 & 4.09481607273225e-320\\
+Z Indirect & 0.14442187882011 & 15.9167974893851 & 1.10710591095941e-56\\
+Z Interaction & -0.188106799060002 & -3.85962946305517 & 0.000113926824647208\\
+Z Direct Low & 0.144421878820112 & 15.9167974893851 & 1.10710591095782e-56\\
+Z Direct High & 0.144421878820111 & 15.9167974893851 & 1.10710591095912e-56\\
+\bottomrule
+\addlinespace
+\end{tabular}
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Direct and indirect association  were mean centered. The table shows main effects and interactions predicting participant judgments. $df$ = 19404}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+\end{table*}
+\efloatseparator
+ 
