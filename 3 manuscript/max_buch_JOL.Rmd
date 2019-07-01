@@ -4,7 +4,7 @@ shorttitle        : "Judgments and Recall"
 
 author: 
   - name          : "Nicholas P. Maxwell"
-    affiliation   : "1,"
+    affiliation   : "1"
   - name          : "Erin M. Buchanan"
     affiliation   : "2"
     corresponding : yes    # Define only one corresponding author
