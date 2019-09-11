@@ -14,7 +14,7 @@ Semantic Feature Overlap COS & .09 (.10) & .45 (.09) & .75 (.05)\\
 Forward Strength FSG & .08 (.11) & .15 (.17) & .19 (.24)\\
 Latent Semantic Analysis LSA & .25 (.17) & .39 (.18) & .47 (.18)\\
 Direct Association & .12 (.16) & .23 (.23) & .27 (.29)\\
-Direct Association & .10 (.14) & .25 (.17) & .39 (.18)\\
+Indirect Association & .10 (.14) & .25 (.17) & .39 (.18)\\
 \bottomrule
 \multicolumn{4}{l}{\textsuperscript{} $Note$. Standard deviation values are in parentheses.}\\
 \end{tabular}
@@ -121,8 +121,8 @@ Z Direct Association High & 1.37 & 0.12 & 11.09 & < .001\\
 Judgment - Variable & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$z$} & \multicolumn{1}{c}{$p$}\\
 \midrule
 (Intercept) & -0.108 & 0.270 & -0.399 & .690\\
-Association Direct Association & 1.168 & 0.257 & 4.543 & < .001\\
-Association Indirect Association & -0.098 & 0.232 & -0.423 & .673\\
+Associative Direct Association & 1.168 & 0.257 & 4.543 & < .001\\
+Associative Indirect Association & -0.098 & 0.232 & -0.423 & .673\\
 Associative Intercept & 0.487 & 0.392 & 1.241 & .214\\
 (Intercept) & -1.159 & 0.313 & -3.709 & < .001\\
 Semantic Direct Association & 1.313 & 0.253 & 5.185 & < .001\\

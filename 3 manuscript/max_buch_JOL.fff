@@ -12,7 +12,7 @@
 
 \centering
 \includegraphics{max_buch_JOL_files/figure-latex/hyp2graph-1.pdf}
-\caption{\label{fig:hyp2graph}Simple slopes graph displaying the slope of direct association when predicting JORs at low, average, and high indirect association. All variables were mean centered.}
+\caption{\label{fig:hyp2graph}Simple slopes graph displaying the slope of direct association when predicting JORs at low, average, and high indirect association. All variables were mean centered. The top left panel displays overall analysis adjusting for condition. The other three panels indicate associative (no interaction), semantic, and thematic judgments individually.}
 \end{figure*}
 \efloatseparator
  
@@ -21,7 +21,7 @@
 
 \centering
 \includegraphics{max_buch_JOL_files/figure-latex/hyp3graph-1.pdf}
-\caption{\label{fig:hyp3graph}Simple slopes graph displaying the slope of direct association when predicting recall at low, average, and high indirect association. All variables were mean centered.}
+\caption{\label{fig:hyp3graph}Simple slopes graph displaying the slope of direct association when predicting recall at low, average, and high indirect association. All variables were mean centered. The top left panel displays overall analysis adjusting for condition. The other three panels indicate associative (no interaction), semantic, and thematic judgments individually.}
 \end{figure*}
 \efloatseparator
  

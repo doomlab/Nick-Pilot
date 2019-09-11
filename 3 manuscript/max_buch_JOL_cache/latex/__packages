@@ -1,8 +1,8 @@
 base
 papaja
-ggplot2
 cowplot
 MOTE
+ggplot2
 ez
 SnowballC
 lsa
