@@ -13,8 +13,8 @@ Variable & Low & Average & High\\
 Semantic Feature Overlap COS & .09 (.10) & .45 (.09) & .75 (.05)\\
 Forward Strength FSG & .08 (.11) & .15 (.17) & .19 (.24)\\
 Latent Semantic Analysis LSA & .25 (.17) & .39 (.18) & .47 (.18)\\
-Direct Association DA & .12 (.16) & .23 (.23) & .27 (.29)\\
-Direct Association IA & .10 (.14) & .25 (.17) & .39 (.18)\\
+Direct Association & .12 (.16) & .23 (.23) & .27 (.29)\\
+Direct Association & .10 (.14) & .25 (.17) & .39 (.18)\\
 \bottomrule
 \multicolumn{4}{l}{\textsuperscript{} $Note$. Standard deviation values are in parentheses.}\\
 \end{tabular}
@@ -29,22 +29,22 @@ Direct Association IA & .10 (.14) & .25 (.17) & .39 (.18)\\
 \caption{\label{tab:hyp1-table1}Summary Statistics for Hypothesis 1 t-Tests}
 \begin{tabular}{lccccccc}
 \toprule
-Variable & $M$ & $SD$ & $t$ & $df$ & $p$ & $d$ & $95\% CI$\\
+Judgment - Variable & $M$ & $SD$ & $t$ & $df$ & $p$ & $d$ & $95\% CI$\\
 \midrule
 Associative Intercept & .52 & .20 & 45.90 & 311 & < .001 & 2.60 & 2.36 - 2.83\\
-Associative DA & .33 & .30 & 19.27 & 311 & < .001 & 1.09 & 0.95 - 1.23\\
-Associative IA & .03 & .29 & 1.62 & 311 & .105 & 0.09 & -0.02 - 0.20\\
+Associative Direct Association & .33 & .30 & 19.27 & 311 & < .001 & 1.09 & 0.95 - 1.23\\
+Associative Indirect Association & .03 & .29 & 1.62 & 311 & .105 & 0.09 & -0.02 - 0.20\\
 Semantic Intercept & .52 & .21 & 44.64 & 312 & < .001 & 2.52 & 2.29 - 2.75\\
-Semantic DA & .31 & .30 & 18.47 & 312 & < .001 & 1.04 & 0.91 - 1.18\\
-Semantic IA & .24 & .32 & 13.31 & 312 & < .001 & 0.75 & 0.63 - 0.88\\
+Semantic Direct Association & .31 & .30 & 18.47 & 312 & < .001 & 1.04 & 0.91 - 1.18\\
+Semantic Indirect Association & .24 & .32 & 13.31 & 312 & < .001 & 0.75 & 0.63 - 0.88\\
 Thematic Intercept & .61 & .18 & 59.25 & 315 & < .001 & 3.33 & 3.05 - 3.61\\
-Thematic DA & .28 & .27 & 18.54 & 315 & < .001 & 1.04 & 0.91 - 1.18\\
-Thematic IA & .14 & .28 & 8.65 & 315 & < .001 & 0.49 & 0.37 - 0.60\\
+Thematic Direct Association & .28 & .27 & 18.54 & 315 & < .001 & 1.04 & 0.91 - 1.18\\
+Thematic Indirect Association & .14 & .28 & 8.65 & 315 & < .001 & 0.49 & 0.37 - 0.60\\
 \bottomrule
 \addlinespace
 \end{tabular}
 \begin{tablenotes}[para]
-\normalsize{\textit{Note.} Confidence interval for $d$ was calculated using the non-central $t$-distribution. }
+\normalsize{\textit{Note.} Confidence interval for $d$ was calculated using the non-central $t$-distribution. Hypothesis 1 investigated if bias and sensitivity findings replicated in association and extended to semantic and thematic judgment conditions.}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
@@ -64,16 +64,16 @@ Statistic & \multicolumn{1}{c}{Coefficient} & \multicolumn{1}{c}{$SE$} & \multic
 Intercept & 0.59 & 0.01 & 77.47 & < .001\\
 Semantic Judgment & 0.05 & 0.00 & 10.73 & < .001\\
 Thematic Judgment & 0.10 & 0.00 & 23.11 & < .001\\
-Z Direct & 0.29 & 0.01 & 38.98 & < .001\\
-Z Indirect & 0.14 & 0.01 & 15.92 & < .001\\
+Z Direct Association & 0.29 & 0.01 & 38.98 & < .001\\
+Z Indirect Association & 0.14 & 0.01 & 15.92 & < .001\\
 Z Interaction & -0.19 & 0.05 & -3.86 & < .001\\
-Z Direct Low & 0.33 & 0.01 & 26.40 & < .001\\
-Z Direct High & 0.25 & 0.01 & 20.58 & < .001\\
+Z Direct Association Low & 0.33 & 0.01 & 26.40 & < .001\\
+Z Direct Association High & 0.25 & 0.01 & 20.58 & < .001\\
 \bottomrule
 \addlinespace
 \end{tabular}
 \begin{tablenotes}[para]
-\normalsize{\textit{Note.} Direct and indirect association  were mean centered. The table shows main effects and interactions predicting participant judgments. $df$ = 19404}
+\normalsize{\textit{Note.} Direct and indirect association were mean centered. The table shows results from the second hypothesis wherein an interaction between direct and indirect association was investigated predicting judgment score. $df$ = 19404}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
@@ -94,16 +94,16 @@ Intercept & 0.42 & 0.08 & 5.09 & < .001\\
 Semantic Judgment & 0.18 & 0.04 & 4.38 & < .001\\
 Thematic Judgment & 0.05 & 0.04 & 1.10 & .270\\
 Judged Value & 0.04 & 0.07 & 0.66 & .512\\
-Z Direct & 1.63 & 0.08 & 20.32 & < .001\\
-Z Indirect & 0.32 & 0.09 & 3.71 & < .001\\
+Z Direct Association & 1.63 & 0.08 & 20.32 & < .001\\
+Z Indirect Association & 0.32 & 0.09 & 3.71 & < .001\\
 Z Interaction & -1.30 & 0.49 & -2.67 & .008\\
-Z Direct Low & 1.90 & 0.13 & 14.58 & < .001\\
-Z Direct High & 1.37 & 0.12 & 11.09 & < .001\\
+Z Direct Association Low & 1.90 & 0.13 & 14.58 & < .001\\
+Z Direct Association High & 1.37 & 0.12 & 11.09 & < .001\\
 \bottomrule
 \addlinespace
 \end{tabular}
 \begin{tablenotes}[para]
-\normalsize{\textit{Note.} Direct and indirect association  were mean centered. The table shows main effects and interactions predicting recall.}
+\normalsize{\textit{Note.} Direct and indirect association were mean centered. The table shows results from the third hypothesis extending the interaction between direct and indirect associations to recall for words.}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}
@@ -118,25 +118,25 @@ Z Direct High & 1.37 & 0.12 & 11.09 & < .001\\
 \caption{\label{tab:hyp4-table}MLM Statistics for Hypothesis 4}
 \begin{tabular}{lcccc}
 \toprule
-Variable & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$z$} & \multicolumn{1}{c}{$p$}\\
+Judgment - Variable & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$z$} & \multicolumn{1}{c}{$p$}\\
 \midrule
 (Intercept) & -0.108 & 0.270 & -0.399 & .690\\
-A-Direct & 1.168 & 0.257 & 4.543 & < .001\\
-A-Indirect & -0.098 & 0.232 & -0.423 & .673\\
-A-Intercept & 0.487 & 0.392 & 1.241 & .214\\
+Association Direct Association & 1.168 & 0.257 & 4.543 & < .001\\
+Association Indirect Association & -0.098 & 0.232 & -0.423 & .673\\
+Associative Intercept & 0.487 & 0.392 & 1.241 & .214\\
 (Intercept) & -1.159 & 0.313 & -3.709 & < .001\\
-S-Direct & 1.313 & 0.253 & 5.185 & < .001\\
-S-Indirect & 1.266 & 0.230 & 5.497 & < .001\\
-S-Intercept & 1.799 & 0.428 & 4.199 & < .001\\
+Semantic Direct Association & 1.313 & 0.253 & 5.185 & < .001\\
+Semantic Indirect Association & 1.266 & 0.230 & 5.497 & < .001\\
+Semantic Intercept & 1.799 & 0.428 & 4.199 & < .001\\
 (Intercept) & -1.004 & 0.319 & -3.149 & .002\\
-T-Direct & 1.089 & 0.265 & 4.109 & < .001\\
-T-Indirect & 1.054 & 0.253 & 4.170 & < .001\\
-T-Intercept & 1.738 & 0.424 & 4.094 & < .001\\
+Thematic Direct Association & 1.089 & 0.265 & 4.109 & < .001\\
+Thematic  Indirect Association & 1.054 & 0.253 & 4.170 & < .001\\
+Thematic Intercept & 1.738 & 0.424 & 4.094 & < .001\\
 \bottomrule
 \addlinespace
 \end{tabular}
 \begin{tablenotes}[para]
-\normalsize{\textit{Note.} Each judgment-database bias and sensitivity predicting recall for corresponding judgment block. A: Associative, S: Semantic, T: Thematic.}
+\normalsize{\textit{Note.} This hypothesis investigated how each judgment's original bias intercept score and sensitivity slope score would predict the corresponding judgment condition. (Intercept) is the intercept for the overall model, while the Judgment Intercepts are the bias scores for each participant from Hypothesis 1.}
 \end{tablenotes}
 \end{threeparttable}
 \end{center}

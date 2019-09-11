@@ -18,7 +18,7 @@ affiliation:
     institution   : "Harrisburg University of Science and Technology"
 
 author_note: >
-  Nicholas P. Maxwell is a Ph.D. candidate at the University of Southern Mississippi. Erin M. Buchanan is an Professor of Cognitive Analytics at Harrisburg University of Science and Technology. 
+  Nicholas P. Maxwell is a Ph.D. candidate at the University of Southern Mississippi. Erin M. Buchanan is an Professor of Cognitive Analytics at Harrisburg University of Science and Technology. We thank two anonymous reviewers for their suggestions in updating and strengthening our paper. 
   
 abstract: >
   This study examined the interactive relationship between direct and indirect relation strength in the prediction of item judgments and cued-recall performance. Participants were recruited from Amazon's Mechanical Turk and were given word pairs of varying relatedness to judge for their semantic, thematic, and associative strength. After completing a distractor task, participants then completed a cued recall task. First, we sought to expand previous work on judgments of associative memory (JAM) to include semantic and thematic based judgments (judgments of relatedness, JOR), while also replicating bias and sensitivity findings. Next, we tested for an interaction between direct and indirect association when predicting participant judgments while also expanding upon previous work by examining that interaction when predicting recall. The interaction between direct and indirect association was significant for both judgments and recall. For low indirect association, direct association was the primary predictor of both judgment strength and recall proportions. However, this trend reversed for high indirect association, as higher levels of indirect relation decreased the effectiveness of direct relation as a predictor. Overall, our findings indicate the degree to which the processing of similarity information impacts cognitive processes such as retrieval and item judgments, while also examining the underlying, interactive relationship that exists in language used to represent concept information.
@@ -133,7 +133,7 @@ The present study expanded upon previous JAM studies by examining recall rates a
 
 First, we sought to expand upon previous @Maki2007a, @Maki2007, @Buchanan2010, and @Valentine2013 research by using an extended JAM task that included three types of judgments within one experiment (i.e., associative, semantic, and thematic judgments), while replicating JAM bias and sensitivity findings (Hypothesis 1). Because the judgment task we employ is an extended JAM task that also includes semantic and thematic judgments, we subsequently refer to all judgment tasks as a judgment of relatedness task (JOR), regardless of which type of judgment is being elicited. We used the SWOW norms, calculating direct and indirect relations to best capture the continuum of similarity between concepts. These values were used to predict each type of JOR, and we calculated average slope and intercept values for each participant. We expected to find slope and intercept values that were significantly different from zero. Though the three types of word relations are distinct from one another, we should expect to find slopes and intercepts for semantic and thematic JORs to be within the range of previous JAM findings if these memory systems are interconnected. We also examined the frequency of each predictor being the strongest variable to predict an individual judgment condition. Thus, we are interested in exploring whether judgment findings replicate across each judgment type while using the new measurement variables available through SWOW (rather than each individually, as tested in previous JOL and JAM publications), which expands our knowledge on how the judgment process taps into the underlying memory network.
 
-Next, we explored the predictions from semantic network models that the relation between associations and semantics would be interconncected by nature (i.e., both types of knowledge closely linked in memory). Therefore, we expected to find an interaction between direct and indirect association norms when predicting JORs. We used multilevel modeling to examine the interaction of these norms in relation to participant judgments (Hypothesis 2). 
+Next, we explored the predictions from semantic network models that the relation between associations and semantics would be interconnected by nature (i.e., both types of knowledge closely linked in memory). Therefore, we expected to find an interaction between direct and indirect association norms when predicting JORs. We used multilevel modeling to examine the interaction of these norms in relation to participant judgments (Hypothesis 2). 
 
 We then extended these analyses to include recall as the dependent variable of interest (Hypothesis 3). We tested for the interaction of database norms in predicting recall by using a multilevel logistic regression, while controlling for judgment condition and rating. We expected to find that database norms would show differences in recall based on the levels of other variables (the interaction would be significant), and that ratings would also positively predict recall (i.e., words that participants thought were more related would be remembered better). Because judgment and recall are different cognitive processes, we used this hypothesis to examine how the interactive structure of memory networks may differ based on task.
 
@@ -189,7 +189,7 @@ A power analysis was conducted using the *simR* package in *R* [@Green2016]. Thi
 
 ## Materials
 
-The stimuli used were `r length(unique(master$Word.Pair))` words pairs of varying relatedness, which were derived from the @Buchanan2013 word norm database and website. These pairs were evenly split into sixty-three pairs for wave one and wave two of the study.  Pairs were originally selected by using forward strength [FSG; @Nelson2004], semantic feature overlap cosine values (COS) from @Buchanan2013, and Latent Semantic Analysis cosine values [@Landauer1998; @Landauer1997] based on previous research on how word pair psycholinguistic variables overlap [@Maki2008]. The selected stimuli included a range of values for each variable. Table \@ref(tab:stim-table) displays discriptive statistics for the stimuli pairs. A complete list of stimuli can be found at http://osf.io/y8h7v. 
+The stimuli used were `r length(unique(master$Word.Pair))` words pairs of varying relatedness, which were derived from the @Buchanan2013 word norm database and website. These pairs were evenly split into sixty-three pairs for wave one and wave two of the study. Pairs were originally selected by using forward strength [FSG; @Nelson2004], semantic feature overlap cosine values (COS) from @Buchanan2013, and Latent Semantic Analysis cosine values [@Landauer1998; @Landauer1997] based on previous research on how word pair psycholinguistic variables overlap [@Maki2008]. The selected stimuli included a range of values for each variable. Table \@ref(tab:stim-table) displays descriptive statistics for the stimuli pairs. A complete list of stimuli can be found at http://osf.io/y8h7v. 
 
 The stimuli were arranged into three blocks for each judgment condition described below wherein each block contained 21 word pairs. Due to limitations of the available stimuli, blocks were structured so that each one contained seven word pairs of low (0-.33), medium (.34-.66), and high (.67-1.00) COS relatedness. Pairs with low, medium, and high FSG and LSA were then selected, when available. Given the measurement questions raised in the introduction, the direct association from the SWOW norms will be used as the measure of first order association. Based on @DeDeyne2013a's work on continuous association, the response set from all three responses were used. The direct association provided in these norms is calculated as the number of participants who provided the target to the cue divided by the number of possible answers (i.e., participants $\times$ responses). This calculation, therefore, has an upper limit of approximately ~33%, even if every participant listed a target word to a cue. The JOR task assumes the range of direct association is 0 to 100 (or 0-1 proportion), and the SWOW direct association (DA) was normalized using: 
 
@@ -288,14 +288,14 @@ tableprint[ 3, ] = c("Latent Semantic Analysis LSA",
                      
 DAM = tapply(stimuli$swow_fsg, stimuli$range, mean)
 DASD = tapply(stimuli$swow_fsg, stimuli$range, sd)
-tableprint[ 4, ] = c("Direct Association DA", 
+tableprint[ 4, ] = c("Direct Association", 
                      pasteit(DAM[1], DASD[1]),
                      pasteit(DAM[2], DASD[2]),
                      pasteit(DAM[3], DASD[3]))                     
                      
 IAM = tapply(stimuli$cosine, stimuli$range, mean)
 IASD = tapply(stimuli$cosine, stimuli$range, sd)
-tableprint[ 5, ] = c("Direct Association IA", 
+tableprint[ 5, ] = c("Indirect Association", 
                      pasteit(IAM[1], IASD[1]),
                      pasteit(IAM[2], IASD[2]),
                      pasteit(IAM[3], IASD[3]))  
@@ -355,6 +355,9 @@ noout = subset(master3, mahal < cutoff)
 
 ##additivity
 cor(noout[ , c(2,6,7,55)], use = "pairwise.complete.obs")
+cor(noout[ noout$Judgment2 == "Semantic", c(2,6,7,55)], use = "pairwise.complete.obs")
+cor(noout[ noout$Judgment2 == "Associative", c(2,6,7,55)], use = "pairwise.complete.obs")
+cor(noout[ noout$Judgment2 == "Thematic", c(2,6,7,55)], use = "pairwise.complete.obs")
 
 ##descriptive stats
 meanJno = tapply(noout$Judged.Value, noout$Judgment, mean, na.rm = T) * 100
@@ -365,7 +368,7 @@ sdRno = tapply(noout$Recall, noout$Judgment, sd, na.rm = T) * 100
 
 ## Data Processing and Descriptive Statistics
 
-First, the results from the recall phase of the study were coded as zero for incorrect responses, one for correct responses, and NA for participants who did not complete the recall section (all or nearly all responses were blank). All word responses to judgment items were deleted and set to missing data^[The final dataset was created by splitting the initial data file into six sections (one for each of the three experimental blocks and their corresponding recall scores). Each section was individually melted using the *reshape* package in *R* [@Wickham2007] and was written as a csv file. The six output files were then combined to form the final dataset. Code is available on our OSF page embedded inline with the manuscript in an *R* markdown document written with the *papaja* package [@Aust2017]]. With `r length(unique(noout$Partno))` participants, the dataset in long format (i.e., each judgment and recall on their own row) included `r length(unique(noout$Partno)) * 63` rows of potential data (i.e., `r length(unique(noout$Partno))` participants $\times$ 63 JORs). `r badjudge` out of range JOR data points (> 100) were corrected to NA. Missing data for JORs or recall were then excluded from the analyses, which included word responses to judgment items (i.e., responding with *cat* instead of a number when prompted to provide a JOR). These items usually excluded a participant from receiving Amazon Mechanical Turk payment, but were included in the datasets found online. In total, `r sum(missingness[c(2,3,4)])` data points were excluded (`r missingness[2]` JOR only, `r missingness[3]` recall only, `r missingness[4]` both), leading to a final *N* of `r missingness[1]` observations. Recall and JOR values were then screened for outliers using Mahalanobis distance at *p* < .001, and no outliers were detected [@Tabachnick2012]. To screen for multicollinearity, we examined correlations between judgment items, DA, and IA. All correlations were *r*s < .26.
+First, the results from the recall phase of the study were coded as zero for incorrect responses, one for correct responses, and NA for participants who did not complete the recall section (all or nearly all responses were blank). All word responses to judgment items were deleted and set to missing data^[The final dataset was created by splitting the initial data file into six sections (one for each of the three experimental blocks and their corresponding recall scores). Each section was individually melted using the *reshape* package in *R* [@Wickham2007] and was written as a csv file. The six output files were then combined to form the final dataset. Code is available on our OSF page embedded inline with the manuscript in an *R* markdown document written with the *papaja* package [@Aust2017]]. With `r length(unique(noout$Partno))` participants, the dataset in long format (i.e., each judgment and recall on their own row) included `r length(unique(noout$Partno)) * 63` rows of potential data (i.e., `r length(unique(noout$Partno))` participants $\times$ 63 JORs). `r badjudge` out of range JOR data points (> 100) were corrected to NA. Missing data for JORs or recall were then excluded from the analyses, which included word responses to judgment items (i.e., responding with *cat* instead of a number when prompted to provide a JOR). These items usually excluded a participant from receiving Amazon Mechanical Turk payment, but were included in the datasets found online. In total, `r sum(missingness[c(2,3,4)])` data points were excluded (`r missingness[2]` JOR only, `r missingness[3]` recall only, `r missingness[4]` both), leading to a final *N* of `r missingness[1]` observations. Recall and JOR values were then screened for outliers using Mahalanobis distance at *p* < .001, and no outliers were detected [@Tabachnick2012]. To screen for multicollinearity, we examined correlations between judgment items, DA, and IA. The correlations between judged value, recall, direct and indirect association were all *r*s < .26. These correlations were similar regardless of judgment condition. 
 
 ```{r ANOVAs, include = FALSE}
 ##judgments
@@ -471,13 +474,13 @@ tableprint[1 , ] = c("Associative Intercept", apa(hyp1results$AIntercept$m, 2, F
                      hyp1results$AIntercept$df, p.value(hyp1results$AIntercept$p),
                      apa(hyp1results$AIntercept$d, 2, T), paste(apa(hyp1results$AIntercept$dlow, 2, T), 
                                                      "-", apa(hyp1results$AIntercept$dhigh, 2, T)))
-tableprint[2 , ] = c("Associative DA", apa(hyp1results$AFSG$m, 2, F),
+tableprint[2 , ] = c("Associative Direct Association", apa(hyp1results$AFSG$m, 2, F),
                      apa(hyp1results$AFSG$sd, 2, F), apa(hyp1results$AFSG$t, 2, T),
                      hyp1results$AFSG$df, p.value(hyp1results$AFSG$p),
                      apa(hyp1results$AFSG$d, 2, T), paste(apa(hyp1results$AFSG$dlow, 2, T), 
                                                      "-", apa(hyp1results$AFSG$dhigh, 2, T)))
 
-tableprint[3 , ] = c("Associative IA", apa(hyp1results$ACOS$m, 2, F),
+tableprint[3 , ] = c("Associative Indirect Association", apa(hyp1results$ACOS$m, 2, F),
                      apa(hyp1results$ACOS$sd, 2, F), apa(hyp1results$ACOS$t, 2, T),
                      hyp1results$ACOS$df, p.value(hyp1results$ACOS$p),
                      apa(hyp1results$ACOS$d, 2, T), paste(apa(hyp1results$ACOS$dlow, 2, T), 
@@ -490,13 +493,13 @@ tableprint[4 , ] = c("Semantic Intercept", apa(hyp1results$SIntercept$m, 2, F),
                      apa(hyp1results$SIntercept$d, 2, T), paste(apa(hyp1results$SIntercept$dlow, 2, T), 
                                                      "-", apa(hyp1results$SIntercept$dhigh, 2, T)))
 
-tableprint[5 , ] = c("Semantic DA", apa(hyp1results$SFSG$m, 2, F),
+tableprint[5 , ] = c("Semantic Direct Association", apa(hyp1results$SFSG$m, 2, F),
                      apa(hyp1results$SFSG$sd, 2, F), apa(hyp1results$SFSG$t, 2, T),
                      hyp1results$SFSG$df, p.value(hyp1results$SFSG$p),
                      apa(hyp1results$SFSG$d, 2, T), paste(apa(hyp1results$SFSG$dlow, 2, T), 
                                                      "-", apa(hyp1results$SFSG$dhigh, 2, T)))
 
-tableprint[6 , ] = c("Semantic IA", apa(hyp1results$SCOS$m, 2, F),
+tableprint[6 , ] = c("Semantic Indirect Association", apa(hyp1results$SCOS$m, 2, F),
                      apa(hyp1results$SCOS$sd, 2, F), apa(hyp1results$SCOS$t, 2, T),
                      hyp1results$SCOS$df, p.value(hyp1results$SCOS$p),
                      apa(hyp1results$SCOS$d, 2, T), paste(apa(hyp1results$SCOS$dlow, 2, T), 
@@ -510,13 +513,13 @@ tableprint[7 , ] = c("Thematic Intercept", apa(hyp1results$TIntercept$m, 2, F),
                                                      "-", apa(hyp1results$TIntercept$dhigh, 2, T)))
 
 
-tableprint[8 , ] = c("Thematic DA", apa(hyp1results$TFSG$m, 2, F),
+tableprint[8 , ] = c("Thematic Direct Association", apa(hyp1results$TFSG$m, 2, F),
                      apa(hyp1results$TFSG$sd, 2, F), apa(hyp1results$TFSG$t, 2, T),
                      hyp1results$TFSG$df, p.value(hyp1results$TFSG$p),
                      apa(hyp1results$TFSG$d, 2, T), paste(apa(hyp1results$TFSG$dlow, 2, T), 
                                                      "-", apa(hyp1results$TFSG$dhigh, 2, T)))
 
-tableprint[9 , ] = c("Thematic IA", apa(hyp1results$TCOS$m, 2, F),
+tableprint[9 , ] = c("Thematic Indirect Association", apa(hyp1results$TCOS$m, 2, F),
                      apa(hyp1results$TCOS$sd, 2, F), apa(hyp1results$TCOS$t, 2, T),
                      hyp1results$TCOS$df, p.value(hyp1results$TCOS$p),
                      apa(hyp1results$TCOS$d, 2, T), paste(apa(hyp1results$TCOS$dlow, 2, T), 
@@ -525,16 +528,16 @@ tableprint[9 , ] = c("Thematic IA", apa(hyp1results$TCOS$m, 2, F),
 apa_table(as.data.frame(tableprint), 
           align = c("l", rep("c", 7)), 
           caption = "Summary Statistics for Hypothesis 1 t-Tests",
-          note = "Confidence interval for $d$ was calculated using the non-central $t$-distribution. ",
-          col.names = c("Variable", "$M$", "$SD$", "$t$", "$df$", "$p$", "$d$", "$95\\% CI$"),
+          note = "Confidence interval for $d$ was calculated using the non-central $t$-distribution. Hypothesis 1 investigated if bias and sensitivity findings replicated in association and extended to semantic and thematic judgment conditions.",
+          col.names = c("Judgment - Variable", "$M$", "$SD$", "$t$", "$df$", "$p$", "$d$", "$95\\% CI$"),
           escape = FALSE
  )
 
 ```
 
-First, we sought to replicate bias and sensitivity findings from previous research while expanding the JAM function to include judgments based on three types of memory. DA and IA were used to predict each type of relatedness judgment. JOR values were divided by 100, so as to place them on the same scale as the direct and indirect association. Slopes and intercepts were then calculated for each participant's ratings for each of the three JOR conditions, as long as they contained at least nine data points out of the twenty-one that were possible. Single sample *t*-tests were then conducted to test if slope and intercept values significantly differed from zero. See Table \@ref(tab:hyp1-table1) for means and standard deviations. Slopes were then compared to the JAM function, which is characterized by high intercepts (between 40 and 60 on a 100 point scale) and shallow slopes (between 20 and 40). Because of the scaling of our data, to replicate this function, we should expect to find intercepts ranging from .40 to .60 and slopes in the range of 0.20. to 0.40. Intercepts for associative, semantic, and thematic JORs were each significant, and all fell within or near the expected range. Overall, thematic JORs had the highest intercept at `r apa(hyp1results$TIntercept$m, 2, F)`, while JORs elicited in the semantic and associative conditions had the lowest intercept at `r apa(hyp1results$SIntercept$m, 2, F)` each. 
+First, we sought to replicate bias and sensitivity findings from previous research while expanding the JAM function to include judgments based on three types of memory. DA and IA were used to predict each type of relatedness judgment. JOR values were divided by 100, so as to place them on the same scale as the direct and indirect association. Slopes and intercepts were then calculated for each participant's ratings for each of the three JOR conditions, as long as they contained at least nine data points out of the twenty-one that were possible. Single sample *t*-tests were then conducted to test if slope and intercept values significantly differed from zero. See Table \@ref(tab:hyp1-table1) for means and standard deviations. Slopes were then compared to the JAM function, which is characterized by high intercepts (between 40 and 60 on a 100 point scale) and shallow slopes (between 20 and 40). Because of the scaling of our data, to replicate this function, we should expect to find intercepts ranging from .40 to .60 and slopes in the range of .20 to .40. Intercepts for associative, semantic, and thematic JORs were each significant, and all fell within or near the expected range. Overall, thematic JORs had the highest intercept at `r apa(hyp1results$TIntercept$m, 2, F)`, while JORs elicited in the semantic and associative conditions had the lower intercepts at `r apa(hyp1results$SIntercept$m, 2, F)` each. 
 
-The JAM slope was successfully replicated for DA in all three judgment conditions, with slopes falling in the expected range of 0.20 to 0.40. For associative judgments, the indirect relation - which is thought to be representative of semantic relatedness - did not predict judgments [NUMBERS HERE]. In the thematic judgment condition, the indirect values were positive [NUMBERS HERE], indicating a contribution of both direct and indirect values to the judgments, which were described as being a mix of both relation types. Last, the semantic judgment condition showed that both direct [NUMBERS HERE] and indirect [NUMBERS HERE] relations were important (as this judgment type had the highest indirect contribution of the three conditions), indicating that differences in the focus of judgments tap different relations to meet task demands. Overall, JAM slopes were successfully replicated in each JOR condition, and the high intercepts and shallow slopes present across conditions were indicative of overconfidence and insensitivity in participant JORs.
+The JAM slope was successfully replicated for DA in all three judgment conditions, with slopes falling in the expected range of .20 to .40. For associative judgments, the indirect relation - which is thought to be representative of semantic relatedness - did not predict judgments $M_b$ = `r apa(hyp1results$ACOS$m, 2, F)`. In the thematic judgment condition, the indirect values were positive $M_b$ = `r apa(hyp1results$TCOS$m, 2, F)`, indicating a contribution of both direct $M_b$ = `r apa(hyp1results$TFSG$m, 2, F)` and indirect values to the judgments, which were described as being a mix of both relation types. Last, the semantic judgment condition showed that both direct $M_b$ = `r apa(hyp1results$SFSG$m, 2, F)` and indirect $M_b$ = `r apa(hyp1results$SCOS$m, 2, F)` relations were important (as this judgment type had the highest indirect contribution of the three conditions), indicating that differences in the focus of judgments tap different relations to meet task demands. Overall, JAM slopes were successfully replicated in each JOR condition, and the high intercepts and shallow slopes present across conditions were indicative of overconfidence and insensitivity in participant JORs.
 
 ```{r hyp1-part2, include=FALSE}
 ##group them all by type
@@ -633,7 +636,7 @@ overallh2_high = lme(Judged.Value ~ Judgment +
 tableprint = matrix(NA, nrow = 8, ncol = 5)
 
 tableprint[ , 1] = c("Intercept", "Semantic Judgment", "Thematic Judgment", 
-                     "Z Direct", "Z Indirect", "Z Interaction", "Z Direct Low", "Z Direct High")
+                     "Z Direct Association", "Z Indirect Association", "Z Interaction", "Z Direct Association Low", "Z Direct Association High")
 tableprint[1:6 , 2:5] = summary(overallh2)$tTable[ , c(1,2,4,5)]
 
 tableprint[7, 2:5] = summary(overallh2_low)$tTable[4, c(1,2,4,5)]
@@ -647,7 +650,7 @@ colnames(tableprint) = c("Statistic", "Coefficient", "$SE$", "$t$", "$p$")
 apa_table(as.data.frame(tableprint),
           align = c("l", rep("c", 4)), 
           caption = "MLM Statistics for Hypothesis 2",
-          note = "Direct and indirect association  were mean centered. The table shows main effects and interactions predicting participant judgments. $df$ = 19404",
+          note = "Direct and indirect association were mean centered. The table shows results from the second hypothesis wherein an interaction between direct and indirect association was investigated predicting judgment score. $df$ = 19404",
           escape = FALSE
 )
 
@@ -668,14 +671,13 @@ plot1 = ggplot(noout, aes(x = swow_fsg, y = Judged.Value)) +
   geom_vline(xintercept = -.10) +
   geom_hline(yintercept = 0) +
   cleanup + 
+  theme(legend.position = c(.75, .25)) +
   NULL
 
 plot1
 ```
 
-Next, we sought to test the interactive relationship between associative and semantic overlap. If this interactive relationship exists, an interaction should be detected between the database norms when predicting performance on the judgment task. As such, the goal of next analysis was to test for this interaction between direct and indirect association when predicting participant JORs.
-
-First, the database norms were mean centered to aide in interpretation. The *nlme* package and *lme* function were used to calculate these analyses [@Pinheiro2017]. A maximum likelihood multilevel model was used to test for the interaction between DA and IA when predicting JOR values, with participant number used as the random intercept factor. The type of JOR being elicited was controlled for, so as to better assess the impact of each word overlap measure regardless of JOR condition. This analysis resulted in a significant interaction between DA and IA ($\beta$ = `r tableprint[6, 2]`, *p* `r tableprint[6, 5]`), which is examined below in a simple slopes analysis. Table \@ref(tab:hyp2-table) includes values for main effects, two-way interaction, and the simple slopes.
+Next, we sought to test the interactive relationship between associative and semantic overlap. If this interactive relationship exists, a statistical interaction should be detected between the database norms when predicting performance on the judgment task. As such, the goal of next analysis was to test for this interaction between direct and indirect association when predicting participant JORs. First, the database norms were mean centered to aid in interpretation. The *nlme* package and *lme* function were used to calculate these analyses [@Pinheiro2017]. A maximum likelihood multilevel model was used to test for the interaction between DA and IA when predicting JOR values, with participant number used as the random intercept factor. The type of JOR being elicited was controlled for, so as to better assess the impact of each word overlap measure regardless of JOR condition. This analysis resulted in a significant interaction between DA and IA ($\beta$ = `r tableprint[6, 2]`, *p* `r tableprint[6, 5]`), which is examined below in a simple slopes analysis. Table \@ref(tab:hyp2-table) includes values for main effects, two-way interaction, and the simple slopes.
 
 To investigate this interaction, simple slopes were calculated for low, average, and high levels of indirect association. This variable was chosen to show the effects of direct associations across levels of indirect association. At low levels of indirect relation (and thus low levels of the semantic network) we found the largest $\beta$ for direct association, `r tableprint[7,2]`. As indirect relation increased, we found decreasing predictiveness of direct relation, average direct $\beta$ = `r tableprint[4,2]`, and high direct $\beta$ = `r tableprint[8,2]`. Figure \@ref(fig:hyp2graph) displays the two-way interaction with this seesaw type effect, indicating that higher semantic network relation results in lower usefulness of direct associative relation.
 
@@ -712,7 +714,7 @@ recalloverall_high = glmer(Recall ~ (1|Partno) + Judgment +
 tableprint = matrix(NA, nrow = 9, ncol = 5)
 
 tableprint[ , 1] = c("Intercept", "Semantic Judgment", "Thematic Judgment", "Judged Value",
-                     "Z Direct", "Z Indirect", "Z Interaction", "Z Direct Low", "Z Direct High")
+                     "Z Direct Association", "Z Indirect Association", "Z Interaction", "Z Direct Association Low", "Z Direct Association High")
 tableprint[1:7 , 2:5] = coef(summary(recalloverall))[ , ]
 
 tableprint[8, 2:5] = coef(summary(recalloverall_low))[5 , ]
@@ -727,7 +729,7 @@ colnames(tableprint) = c("Statistic", "Coefficient", "$SE$","$Z$", "$p$")
 apa_table(as.data.frame(tableprint),
           align = c("l", rep("c", 4)), 
           caption = "MLM Statistics for Hypothesis 3",
-          note = "Direct and indirect association  were mean centered. The table shows main effects and interactions predicting recall.",
+          note = "Direct and indirect association were mean centered. The table shows results from the third hypothesis extending the interaction between direct and indirect associations to recall for words.",
           escape = FALSE
 )
 
@@ -748,6 +750,7 @@ plot1 = ggplot(noout, aes(x = swow_fsg, y = Recall)) +
   geom_vline(xintercept = -.10) +
   geom_hline(yintercept = 0) +
   cleanup + 
+  theme(legend.position = c(.75, .25)) +
   NULL
 
 plot1
@@ -787,16 +790,16 @@ themeh4 = glmer(Recall ~ (1|Partno) + TCOS + TFSG + TIntercept,
 
 ##create a blank table
 tableprint = matrix(NA, nrow = 12, ncol = 5)
-colnames(tableprint) = c("Variable", "$b$", "$SE$", "$z$", "$p$")
+colnames(tableprint) = c("Judgment - Variable", "$b$", "$SE$", "$z$", "$p$")
 
 tableprint[1:4, 2:5] = coef(summary(assoch4))
-tableprint[1:4, 1] = c("(Intercept)", "A-Indirect", "A-Direct", "A-Intercept")
+tableprint[1:4, 1] = c("(Intercept)", "Associative Indirect Association", "Associative Direct Association", "Associative Intercept")
 
 tableprint[5:8, 2:5] = coef(summary(semh4))
-tableprint[5:8, 1] = c("(Intercept)", "S-Indirect", "S-Direct", "S-Intercept")
+tableprint[5:8, 1] = c("(Intercept)", "Semantic Indirect Association", "Semantic Direct Association", "Semantic Intercept")
 
 tableprint[9:12, 2:5] = coef(summary(themeh4))
-tableprint[9:12, 1] = c("(Intercept)", "T-Indirect", "T-Direct", "T-Intercept")
+tableprint[9:12, 1] = c("(Intercept)", "Thematic  Indirect Association", "Thematic Direct Association", "Thematic Intercept")
 
 tableprint[ , 2] = apa(as.numeric(tableprint[ , 2]),3,T) 
 tableprint[ , 3] = apa(as.numeric(tableprint[ , 3]),3,T)
@@ -806,15 +809,14 @@ tableprint[ , 5] = apply(as.data.frame(as.numeric(tableprint[ , 5])), 1, p.value
 apa_table(as.data.frame(tableprint[c(1,3,2,4,5,7,6,8,9,11,10,12) , ]),
           align = c("l", rep("c", 4)), 
           caption = "MLM Statistics for Hypothesis 4",
-          note = "Each judgment-database bias and sensitivity predicting recall for corresponding judgment block. A: Associative, S: Semantic, T: Thematic.",
+          note = "This hypothesis investigated how each judgment's original bias intercept score and sensitivity slope score would predict the corresponding judgment condition. (Intercept) is the intercept for the overall model, while the Judgment Intercepts are the bias scores for each participant from Hypothesis 1.",
           escape = FALSE
 )
-
 ```
 
 In our fourth and final hypothesis, we investigated whether the JOR slopes and intercepts obtained in Hypothesis 1 would be predictive of recall ability. Whereas Hypothesis 3 indicated that word relatedness was directly related to recall performance, this hypothesis instead looked at whether or not participants' sensitivity and bias to word relatedness could be used a predictor of recall [@Maki2007]. This analysis was conducted with a multilevel logistic regression, as described in Hypothesis 3, where each direct and indirect slope and intercept was used as a predictor of recall using participant as a random intercept factor. These analyses were separated by judgment condition, so that each set of JOR slopes and intercepts was used to predict recall. The separation controlled for the number of variables in the equation, as all slopes and intercepts would have resulted in overfitting. These values were obtained from Hypothesis 1 where each participant's individual slopes and intercepts were calculated for associative, semantic, and thematic JOR conditions. Table \@ref(tab:hyp1-table1) shows average slopes and intercepts for recall for each of the three types of memory, and Table \@ref(tab:hyp4-table) portrays the regression coefficients and statistics. 
 
-In the associative condition, the direct association slope significantly predicted recall (*b* = `r printnum(as.numeric(tableprint[3, 2]), digits = 2)`, *p* = `r tableprint[3, 5]`), while the indirect association did not predict recall (*b* = `r printnum(as.numeric(tableprint[2, 2]), digits = 2)`, *p* = `r tableprint[2, 5]`). However, in both of the semantic and thematic conditions, the direct and indirect relations are both predictors, along with the intercepts (see Table \@ref(tab:hyp4-table)).  In each of these judgment conditions, the direct and indirect association predictors have similar coefficients, showing equal weight in the prediction of recall. Therefore, higher levels of sensitivity in judgments contribute to higher recall, and higher bias in judgments also leaders to more recall. These results mimic the results from across our hypotheses, wherein the associative condition was predicted by direct associations, while the semantic and thematic conditions were predicted by both direct and indirect associations. This analysis indicated the extent to which the cognitive processes are related to each other as part of the memory network (i.e., judgment sensitivity predicting recall), furthering the previous two analyses, which illustrated the nature of those cognitive processes' relationship with the underlying memory network. 
+In the associative condition, the direct association slope significantly predicted recall (*b* = `r printnum(as.numeric(tableprint[3, 2]), digits = 2)`, *p* = `r tableprint[3, 5]`), while the indirect association did not predict recall (*b* = `r printnum(as.numeric(tableprint[2, 2]), digits = 2)`, *p* = `r tableprint[2, 5]`). However, in both of the semantic and thematic conditions, the direct and indirect relations are both predictors, along with the intercepts (see Table \@ref(tab:hyp4-table)). In each of these judgment conditions, the direct and indirect association predictors have similar coefficients, showing equal weight in the prediction of recall. Therefore, higher levels of sensitivity in judgments contribute to higher recall, and higher bias in judgments also leaders to more recall. These results mimic the results from across our hypotheses, wherein the associative condition was predicted by direct associations, while the semantic and thematic conditions were predicted by both direct and indirect associations. This analysis indicated the extent to which the cognitive processes are related to each other as part of the memory network (i.e., judgment sensitivity predicting recall), furthering the previous two analyses, which illustrated the nature of those cognitive processes' relationship with the underlying memory network. 
 
 # Discussion
 
@@ -827,11 +829,11 @@ tapply(nodirect$Judged.Value, nodirect$Judgment, sd, na.rm = T)
 
 This study investigated the relationship between direct (associative) and indirect (semantic) relations and their effect on participant JORs and recall performance through the testing of four hypotheses. In our first hypothesis, we show that bias and sensitivity findings first proposed by @Maki2007a successfully replicated in all three judgment conditions. Participants displayed high intercepts and shallow slopes, suggesting overconfidence in judgment making and an insensitivity to changes in strength between pairs. Additionally, when looking at the frequency that each predictor was the strongest in making JORs, direct association was the strongest predictor for the associative condition, with a nearly even split between direct and indirect association for the semantic and thematic conditions. The observation that direct association was the strongest predictor of both judgments and recall within the associative condition and that the indirect association was strongest for the semantic and thematic conditions is not surprising. Direct associations are designed to capture the associative overlap shared between word pairs whereas indirect associations are thought to tap into elements of the overall semantic network and represent similarities in meaning rather than cue-target probabilities. Therefore, these results appear to reflect the task demands for each judgment condition. This finding may also be comparable to results in the semantic priming literature, wherein direct and indirectly related pairs show different priming effects [@Lerner2012], often modulated by task [@Jones2010; @Jones2012a], and recognition is also too influenced by indirect relations [@Huff2011; @Huff2012b].
 
-Finally, in contrast to the study conducted by @DeDeyne2013a, we found bias in judgments for pairs with no direct relation across each of the three judgment conditions (average judgment = `r printnum(mean(nodirect$Judged.Value, na.rm = T)*100)`); however,these findings should be viewed cautiously as our stimuli contained only `r length(unique(nodirect$pair))` item pairs that had no direct association. The SWOW norms size and construction lessens the measurement bias in the data, and these results support that some overestimation bias likely exists beyond potential measurement bias, especially in line with the traditional judgments of learning literature. 
+Finally, in contrast to the study conducted by @DeDeyne2013a, we found bias in judgments for pairs with no direct relation across each of the three judgment conditions (average judgment = `r printnum(mean(nodirect$Judged.Value, na.rm = T)*100)`); however, these findings should be viewed cautiously as our stimuli contained only `r length(unique(nodirect$pair))` item pairs that had no direct association. The SWOW norms size and construction lessens the measurement bias in the data, and these results support that some overestimation bias likely exists beyond potential measurement bias, especially in line with the traditional judgments of learning literature. 
 
-Our second hypothesis examined the interaction between direct and indirect association when predicting participant JORs. The interaction was present as a seesaw effect wherein increasing levels of indirect association lead to decreasing predictiveness of direct association. Therefore, as semantic connections become stronger in the memory network, the direct associative connections become less useful for judgments. This finding was extended to recall in our third hypothesis, supporting the notion that recall and judgment cognitive processes draw in similar ways on the memory network. 
+Our second hypothesis examined if there was an interaction between direct and indirect association when predicting participant JORs. The interaction was present as a seesaw effect wherein increasing levels of indirect association lead to decreasing predictiveness of direct association. Therefore, as semantic connections become stronger in the memory network, the direct associative connections become less useful for judgments. This finding was extended to recall in our third hypothesis, supporting the notion that recall and judgment cognitive processes draw in similar ways on the memory network. 
 
-Finally, our fourth hypothesis used the JOR slopes and intercepts calculated in Hypothesis 1 to investigate whether participants' bias and sensitivity to word relatedness could be used to predict recall. For the associative condition, the only the direct association slope significantly predicted recall. In the semantic and thematic conditions, both direct and indirect associations, along with their intercepts, predicted recall. These results mirror results from Hypothesis 1 suggesting that task demands from the judgment instructions carry over into recall processes. 
+Finally, our fourth hypothesis used the JOR slopes and intercepts calculated in Hypothesis 1 to investigate whether participants' bias and sensitivity to word relatedness could be used to predict recall. For the associative condition, the only the direct association slope significantly predicted recall. In the semantic and thematic conditions, both direct and indirect associations, along with their intercepts, predicted recall. These results mirror results from Hypothesis 1 suggesting that task demands from the judgment instructions carry over into recall processes. For direct association, increasing sensitivity to the relation between pairs lead to increasing likelihood of memory, which is not surprising. Indirect association also showed this effect, that stronger indirect sensitivity to word pair relation also increased memory in the thematic and semantic judgment conditions, similar to indirect memory results from @Huff2011 and @Huff2012b. The intercepts or bias estimates from the first hypothesis indicated that increasing participant overestimation of weakly related pairs also predicted increased recall. Potentially, this result can be viewed as self-fulfilling, the more related participants thought the weakly related word pairs were, they more likely they were to remember them. 
 
 Overall, our findings indicated the degree to which the processing of direct and indirect word-pair network information impacts retrieval and judgment making tasks. Previous research has shown the effects of direct associations on priming [@Buchanan2010; @Hutchison2003], cued-recall [@Nelson1997; @Nelson2001], judgments of associative memory [@Maki2007; @Maki2007a; @Valentine2013; @DeDeyne2013a] and response latencies [@DeDeyne2013] to name a few. Our results suggest a competitive network based on task-demand. When instructed to focus on direct association, direct association was a strong (and often the only) predictor of judgment or recall. When directed to focus on semantic or thematic type relations, both indirect and direct association play a role in judgments and recall. Further, this effect was interactive, wherein different levels of indirect semantic strength lead to different activation of the direct associative network. As indirect strength increases, the effect of direct strength decreases, albeit does not completely diminish.
 
