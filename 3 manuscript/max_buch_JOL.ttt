@@ -120,18 +120,18 @@ Z Direct Association High & 1.37 & 0.12 & 11.09 & < .001\\
 \toprule
 Judgment - Variable & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{$SE$} & \multicolumn{1}{c}{$z$} & \multicolumn{1}{c}{$p$}\\
 \midrule
-(Intercept) & -0.108 & 0.268 & -0.402 & .688\\
-Associative Direct Association & 1.168 & 0.256 & 4.559 & < .001\\
-Associative Indirect Association & -0.098 & 0.232 & -0.424 & .672\\
-Associative Intercept & 0.486 & 0.388 & 1.254 & .210\\
-(Intercept) & -1.159 & 0.310 & -3.738 & < .001\\
-Semantic Direct Association & 1.313 & 0.252 & 5.215 & < .001\\
-Semantic Indirect Association & 1.266 & 0.230 & 5.504 & < .001\\
-Semantic Intercept & 1.799 & 0.425 & 4.231 & < .001\\
-(Intercept) & -1.004 & 0.322 & -3.114 & .002\\
-Thematic Direct Association & 1.089 & 0.265 & 4.117 & < .001\\
-Thematic  Indirect Association & 1.054 & 0.254 & 4.156 & < .001\\
-Thematic Intercept & 1.738 & 0.430 & 4.039 & < .001\\
+(Intercept) & -0.11 & 0.27 & -0.40 & .690\\
+Associative Direct Association & 1.17 & 0.26 & 4.54 & < .001\\
+Associative Indirect Association & -0.10 & 0.23 & -0.42 & .673\\
+Associative Intercept & 0.49 & 0.39 & 1.24 & .214\\
+(Intercept) & -1.16 & 0.31 & -3.71 & < .001\\
+Semantic Direct Association & 1.31 & 0.25 & 5.19 & < .001\\
+Semantic Indirect Association & 1.27 & 0.23 & 5.50 & < .001\\
+Semantic Intercept & 1.80 & 0.43 & 4.20 & < .001\\
+(Intercept) & -1.00 & 0.32 & -3.15 & .002\\
+Thematic Direct Association & 1.09 & 0.27 & 4.11 & < .001\\
+Thematic  Indirect Association & 1.05 & 0.25 & 4.17 & < .001\\
+Thematic Intercept & 1.74 & 0.42 & 4.09 & < .001\\
 \bottomrule
 \addlinespace
 \end{tabular}
