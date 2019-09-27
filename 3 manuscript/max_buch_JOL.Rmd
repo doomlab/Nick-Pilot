@@ -134,6 +134,11 @@ plot1 = ggplot(fakedata, aes(FSG, JAM)) +
   
 plot1 + theme(legend.position = c(.75, .25))
 
+# tiff(filename = "makislope-1.tiff", res = 150, width = 6, 
+#      height = 6, units = 'in', compression = "lzw")
+# plot1 + theme(legend.position = c(.75, .25))
+# dev.off()
+
 ```
 
 The discrepancy between direct association strength and JAM ratings is noteworthy because on the surface, the two tasks should each be tapping into the same concept of associative overlap. One explanation for this provided by @Maki2007a is that judgment tasks are more easily influenced by outside factors such as the availability heuristic. Thus, it may be that the mere act of viewing the cue-target pair together at the time of judgment interferes with individuals' ability to consider other target words that are related to the cue, thereby inflating (or reducing) the perceived relatedness between the items [@Maki2007a]. Indeed, work by @Nelson1991 has shown this effect when eliciting judgments of learning, as JOLs made after a delay tend to be more accurate relative to those made immediately in the presence of the studied information. Further, the influence of indirect relations on judgments has not been investigated within the context of multiple judgment types (but see @DeDeyne2013 for a review of both SWOW association types within the context of semantic similarity judgments).
@@ -829,6 +834,11 @@ hyp2graphout <- plot_grid(plot1 + theme(legend.position="none"),
                    hjust = -1,
                    nrow = 2)
 hyp2graphout
+
+# tiff(filename = "hyp2graph-1.tiff", res = 150, width = 8, 
+#     height = 6, units = 'in', compression = "lzw")
+# hyp2graphout
+# dev.off()
 ```
 
 Next, we sought to test the interactive relationship between associative and semantic overlap. If this interactive relationship exists, a statistical interaction should be detected between the database norms when predicting performance on the judgment task. As such, the goal of next analysis was to test for this interaction between direct and indirect association when predicting participant JORs. First, the database norms were mean centered to aid in interpretation. The *nlme* package and *lme* function were used to calculate these analyses [@Pinheiro2017]. A maximum likelihood multilevel model was used to test for the interaction between DA and IA when predicting JOR values, with participant number used as the random intercept factor. The type of JOR being elicited was controlled for so as to better assess the impact of each word overlap measure regardless of JOR condition. This analysis resulted in a significant interaction between DA and IA ($\beta$ = `r tableprint[6, 2]`, *p* `r tableprint[6, 5]`), which is examined below in a simple slopes analysis. Table \@ref(tab:hyp2-table) includes values for main effects, two-way interaction, and the simple slopes.
@@ -1042,6 +1052,11 @@ hyp3graphout <- plot_grid(plot1 + theme(legend.position="none"),
                    hjust = -1,
                    nrow = 2)
 hyp3graphout
+
+tiff(filename = "hyp3graph-1.tiff", res = 150, width = 8, 
+    height = 6, units = 'in', compression = "lzw")
+hyp3graphout
+dev.off()
 ```
 
 Given the results of Hypothesis 2, we then sought to extend the analysis to participant recall scores. A multilevel logistic regression was used with the *lme4* package and *glmer()* function [@Bates2015], testing the interaction between DA and IA when predicting participant recall. As with the previous hypothesis, we controlled for JOR condition and, additionally, covaried JOR ratings. Participants were used as a random intercept factor. Judged values were not a significant predictor of recall, ($\beta$ = `r tableprint[4, 2]`, *p* = `r tableprint[4, 5]`). A significant interaction was detected between direct and indirect relations ($\beta$ = `r tableprint[7, 2]`, *p* = `r tableprint[7, 5]`). See Table \@ref(tab:hyp3-table) for main effects, interaction, and simple slopes. 
